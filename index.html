@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Official Void Staff Academy</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
@@ -27,28 +26,19 @@ body{
 nav{
   display:flex;
   justify-content:space-between;
-  align-items:center;
   padding:20px 60px;
   border-bottom:1px solid var(--stroke);
-  background:rgba(0,0,0,.4);
-  backdrop-filter:blur(10px);
 }
 
 nav h1{
-  font-weight:800;
-  font-size:22px;
   color:var(--accent);
-}
-
-nav ul{
-  display:flex;
-  gap:25px;
-  list-style:none;
+  font-weight:800;
 }
 
 nav a{
   text-decoration:none;
   color:white;
+  margin-left:25px;
   font-weight:500;
   transition:.3s;
 }
@@ -67,20 +57,30 @@ nav a:hover{
   margin-bottom:20px;
 }
 
-.hero span{
-  color:var(--accent);
-}
-
 .hero p{
-  max-width:700px;
+  max-width:800px;
   margin:auto;
   opacity:.8;
   line-height:1.6;
 }
 
+.section{
+  max-width:1000px;
+  margin:60px auto;
+  padding:40px;
+  background:var(--panel);
+  border:1px solid var(--stroke);
+  border-radius:16px;
+}
+
+.section h3{
+  margin-bottom:20px;
+  color:var(--accent);
+}
+
 .btn{
   display:inline-block;
-  margin-top:40px;
+  margin-top:30px;
   padding:14px 30px;
   border-radius:12px;
   background:linear-gradient(135deg,var(--accent),var(--accent2));
@@ -93,6 +93,13 @@ nav a:hover{
 .btn:hover{
   transform:scale(1.05);
 }
+
+footer{
+  text-align:center;
+  padding:40px;
+  opacity:.6;
+  font-size:14px;
+}
 </style>
 </head>
 
@@ -100,25 +107,40 @@ nav a:hover{
 
 <nav>
   <h1>Void Staff Academy</h1>
-  <ul>
-    <li><a href="moderation.html">Moderation</a></li>
-    <li><a href="recruitment.html">Recruitment</a></li>
-    <li><a href="operations.html">Operations</a></li>
-    <li><a href="leadership.html">Leadership</a></li>
-    <li><a href="certification.html">Certification</a></li>
-  </ul>
+  <div>
+    <a href="moderation.html">Moderation</a>
+    <a href="roster.html">Roster</a>
+    <a href="operations.html">Operations</a>
+    <a href="certification.html">Certification</a>
+  </div>
 </nav>
 
 <section class="hero">
-  <h2>Welcome to the <span>Official Void Staff Academy</span></h2>
+  <h2>Void Moderator Certification Program</h2>
   <p>
-    This academy ensures all Void Esports staff operate with professionalism,
-    consistency, and leadership excellence. Every staff member must complete
-    training before holding an official position.
+    Comprehensive certification program for new Void Esports moderators.
+    Master ticket handling, roster management, and community moderation
+    through structured learning and real-time assessment.
   </p>
-
-  <a href="moderation.html" class="btn">Begin Training</a>
 </section>
+
+<section class="section">
+  <h3>Learn • Practice • Complete</h3>
+  <p>
+    This academy ensures all moderators operate under professional standards.
+    You will learn structured ticket workflows, roster onboarding, shift
+    logging protocols, and escalation procedures.
+  </p>
+  <a href="certification.html" class="btn">Begin Practical Assessment</a>
+</section>
+
+<footer>
+  Void Esports Mod Certification System • Made by Void Yeezy <br><br>
+  © 2026 Void Esports. All rights reserved. <br>
+  Founded by Frank • Ranked 25th in NAC • 13k+ Discord Members <br>
+  Community: discord.gg/dqHF9HPucf <br><br>
+  System Architecture: Enhanced Audit Layer Active
+</footer>
 
 </body>
 </html>
