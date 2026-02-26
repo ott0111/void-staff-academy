@@ -1,124 +1,186 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Void Staff Academy</title>
-  <link rel="stylesheet" href="assets/styles.css" />
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script defer src="assets/app.js"></script>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Void Staff Academy • Governance</title>
+  <meta name="description" content="Void Staff Academy — governance, training, certification, and compliance system for Void Esports staff."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/app.css"/>
 </head>
-<body>
-  <div class="noise"></div>
 
+<body class="fade-page">
+  <div class="aurora"></div>
+  <div class="grain"></div>
+
+  <!-- Topbar -->
   <header class="topbar">
-    <div class="inner">
-      <a class="brand" href="index.html">
-        <div class="mark"></div>
-        <div class="title">
-          <span>VOID STAFF ACADEMY</span>
-          <span>Governance • Training • Compliance</span>
-        </div>
-      </a>
+    <div class="container">
+      <div class="inner">
+        <a class="brand" href="index.html" aria-label="Home">
+          <div class="mark"></div>
+          <div class="title">
+            <b>VOID STAFF ACADEMY</b>
+            <span>Governance • Training • Compliance</span>
+          </div>
+        </a>
 
-      <nav class="nav">
-        <a data-nav href="index.html"><i data-lucide="home" style="width:16px;height:16px"></i>Home</a>
-        <a data-nav href="moderation.html"><i data-lucide="shield" style="width:16px;height:16px"></i>Moderation</a>
-        <a data-nav href="roster.html"><i data-lucide="users" style="width:16px;height:16px"></i>Roster</a>
-        <a data-nav href="command-center.html"><i data-lucide="layout-dashboard" style="width:16px;height:16px"></i>Command Center</a>
-        <a data-nav href="certification.html"><i data-lucide="clipboard-check" style="width:16px;height:16px"></i>Certification</a>
-      </nav>
+        <nav class="nav" aria-label="Primary">
+          <a data-nav href="index.html">Home</a>
+          <a data-nav href="moderation.html">Moderation</a>
+          <a data-nav href="roster.html">Roster</a>
+          <a data-nav href="operations.html">Command Center</a>
+          <a data-nav href="certification.html">Certification</a>
+        </nav>
+
+        <div class="actions">
+          <span class="kbd">Ctrl/⌘ K</span>
+          <button id="mobileOpen" class="btn ghost mobileBtn" type="button" aria-label="Open menu">
+            <span class="icon">☰</span> Menu
+          </button>
+        </div>
+      </div>
     </div>
   </header>
 
-  <main class="wrap">
-    <section class="hero fade-in">
-      <div class="kicker"><i data-lucide="sparkles" style="width:16px;height:16px"></i>Enterprise-grade staff enablement</div>
-      <h1 class="h1">Void Mod Training</h1>
-      <p class="sub">
-        Comprehensive certification program for new Void Esports moderators. Master ticket handling, roster intake, and community moderation through realistic scenarios and measurable testing — built to scale with the organization.
-      </p>
-
-      <div class="btnrow">
-        <a class="btn primary" href="certification.html"><i data-lucide="clipboard-check" style="width:16px;height:16px"></i>Begin Certification</a>
-        <a class="btn" href="moderation.html"><i data-lucide="book-open" style="width:16px;height:16px"></i>View Protocol</a>
-        <a class="btn" href="roster.html"><i data-lucide="users" style="width:16px;height:16px"></i>Roster Standards</a>
+  <!-- Mobile sheet -->
+  <div id="mobileSheet" class="mobileSheet" aria-hidden="true">
+    <div class="shade"></div>
+    <div class="panel">
+      <div class="head">
+        <b>Navigation</b>
+        <button id="mobileClose" class="btn ghost" type="button">Close</button>
       </div>
-
-      <div class="stats">
-        <div class="stat"><div class="k">Passing score</div><div class="v">70%</div></div>
-        <div class="stat"><div class="k">Scenario questions</div><div class="v">20</div></div>
-        <div class="stat"><div class="k">Audit logging</div><div class="v">Enabled</div></div>
-        <div class="stat"><div class="k">Deploy</div><div class="v">Vercel</div></div>
-      </div>
-    </section>
-
-    <div class="grid">
-      <div class="card fade-in">
-        <div class="hd">
-          <div class="left">
-            <div class="iconbox"><i data-lucide="message-square"></i></div>
-            <div>
-              <h3>Ticket Architecture</h3>
-              <p>Professional ticket flow: greeting → intent → verification → routing → documentation → closure.</p>
-            </div>
-          </div>
-        </div>
-        <div class="btnrow">
-          <a class="btn" href="moderation.html"><i data-lucide="shield"></i>Open module</a>
-        </div>
-      </div>
-
-      <div class="card fade-in">
-        <div class="hd">
-          <div class="left">
-            <div class="iconbox"><i data-lucide="badge-check"></i></div>
-            <div>
-              <h3>Roster Intake Standards</h3>
-              <p>Verify PR, earnings, eligibility, and onboarding steps across competitive, creative, and content divisions.</p>
-            </div>
-          </div>
-        </div>
-        <div class="btnrow">
-          <a class="btn" href="roster.html"><i data-lucide="users"></i>Open standards</a>
-        </div>
-      </div>
-
-      <div class="card fade-in">
-        <div class="hd">
-          <div class="left">
-            <div class="iconbox"><i data-lucide="layout-dashboard"></i></div>
-            <div>
-              <h3>Staff Command Center</h3>
-              <p>Shift logging, escalation tools, and performance thresholds — designed for accountability at scale.</p>
-            </div>
-          </div>
-        </div>
-        <div class="btnrow">
-          <a class="btn" href="command-center.html"><i data-lucide="arrow-right"></i>Enter</a>
-        </div>
-      </div>
-
-      <div class="card fade-in">
-        <div class="hd">
-          <div class="left">
-            <div class="iconbox"><i data-lucide="clipboard-check"></i></div>
-            <div>
-              <h3>Certification Portal</h3>
-              <p>Scenario-based exam using realistic chat logs and operational decision-making — not basic trivia.</p>
-            </div>
-          </div>
-        </div>
-        <div class="btnrow">
-          <a class="btn primary" href="certification.html"><i data-lucide="play"></i>Start</a>
-        </div>
+      <div class="links">
+        <a data-nav href="index.html">Home</a>
+        <a data-nav href="moderation.html">Moderation</a>
+        <a data-nav href="roster.html">Roster</a>
+        <a data-nav href="operations.html">Command Center</a>
+        <a data-nav href="certification.html">Certification</a>
+        <a data-nav href="recruitment.html">Recruitment</a>
+        <a data-nav href="leadership.html">Leadership</a>
       </div>
     </div>
+  </div>
 
-    <div class="footer">
-      <div>Void Staff Academy • Internal Governance System</div>
-      <div class="right">© 2026 Void Esports. All rights reserved.</div>
+  <main>
+    <div class="container">
+
+      <section class="hero reveal" data-reveal>
+        <div class="content">
+          <div>
+            <div class="eyebrow">
+              <span class="pill">Enterprise-grade staff enablement</span>
+            </div>
+
+            <div class="h1">Void Mod Training</div>
+            <p class="sub">
+              Comprehensive certification program for new Void Esports moderators. Master ticket handling,
+              roster intake, and community moderation through realistic scenarios and measurable testing —
+              built to scale with the organization.
+            </p>
+
+            <div class="cta">
+              <a class="btn primary" href="certification.html">Begin Certification</a>
+              <a class="btn" href="moderation.html">View Protocol</a>
+              <a class="btn" href="roster.html">Roster Standards</a>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="row">
+              <span class="pill">Audit logging: Enabled</span>
+              <span class="pill">Passing score: 70%</span>
+              <span class="pill">Deploy: Vercel</span>
+            </div>
+          </div>
+
+          <div class="metrics">
+            <div class="metric">
+              <b>Passing score</b>
+              <span>70%</span>
+            </div>
+            <div class="metric">
+              <b>Scenario questions</b>
+              <span>20</span>
+            </div>
+            <div class="metric">
+              <b>Audit logging</b>
+              <span>Enabled</span>
+            </div>
+            <div class="metric">
+              <b>Deploy</b>
+              <span>Vercel</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card reveal" data-reveal>
+          <h3>Ticket Architecture</h3>
+          <p>Professional ticket flow: greeting → intent → verification → routing → documentation → closure.</p>
+          <div class="card-actions">
+            <a class="btn" href="moderation.html">Open module</a>
+            <span class="small">Standardized openers, routing, escalation, and closure.</span>
+          </div>
+        </article>
+
+        <article class="card reveal" data-reveal>
+          <h3>Roster Intake Standards</h3>
+          <p>Verify PR, earnings, eligibility, and onboarding steps across competitive, creative, and content divisions.</p>
+          <div class="card-actions">
+            <a class="btn" href="roster.html">Open standards</a>
+            <span class="small">Pro / Semi-Pro / Academy / Creative / CC / Jr CC / GFX-VFX.</span>
+          </div>
+        </article>
+
+        <article class="card reveal" data-reveal>
+          <h3>Staff Command Center</h3>
+          <p>Shift logging, escalation tools, and performance thresholds — designed for accountability at scale.</p>
+          <div class="card-actions">
+            <a class="btn" href="operations.html">Enter</a>
+            <span class="small">Login/logout, LOA, warn/report rules, minimum activity.</span>
+          </div>
+        </article>
+
+        <article class="card reveal" data-reveal>
+          <h3>Certification Portal</h3>
+          <p>Scenario-based exam using realistic chat logs and operational decision-making — not basic trivia.</p>
+          <div class="card-actions">
+            <a class="btn primary" href="certification.html">Start</a>
+            <span class="small">Auto-scoring + audit logs + admin review.</span>
+          </div>
+        </article>
+      </section>
+
+      <div class="footer reveal" data-reveal>
+        <div class="split">
+          <div>Void Staff Academy • Internal Governance System</div>
+          <div>© 2026 Void Esports. All rights reserved.</div>
+        </div>
+      </div>
+
     </div>
   </main>
+
+  <!-- Command palette -->
+  <div id="cmdPalette" class="backdrop" role="dialog" aria-modal="true" aria-label="Command palette">
+    <div class="modal">
+      <div class="hd">
+        <b>Command Palette</b>
+        <span class="kbd">Esc</span>
+      </div>
+      <div class="bd">
+        <input id="cmdInput" placeholder="Type to search… (Home, Moderation, Roster, Certification)" />
+        <div id="cmdList" class="cmd-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="assets/app.js"></script>
 </body>
 </html>
