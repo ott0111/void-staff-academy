@@ -449,33 +449,21 @@ textarea {
 .opt:hover {
   background: rgba(255,255,255,0.08);
 }
-/* ===== FORCE VISIBILITY FIX ===== */
+/* ===== EXAM TEXT FIX (SAFE) ===== */
 
-.qcard,
-.qcard h3,
-.qcard p,
-.qcard div,
-.qcard span,
-.qcard label {
-  color: #ffffff !important;
+.examGrid,
+.examGrid * {
+  color: #ffffff;
 }
 
 .chat {
-  color: #ffffff !important;
+  background: rgba(0,0,0,0.55);
 }
 
 .opt {
-  color: #ffffff !important;
+  background: rgba(255,255,255,0.06);
 }
 
 textarea {
-  color: #ffffff !important;
-}
-
-.qmeta {
-  color: #cfcfff !important;
-}
-
-.examGrid {
-  opacity: 1 !important;
+  color: #ffffff;
 }
