@@ -1,102 +1,905 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Void Staff Academy — Certification</title>
-
-<link rel="stylesheet" href="assets/styles.css">
-<script src="https://unpkg.com/lucide@latest"></script>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Void Staff Academy • Certification</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/app.css"/>
 </head>
 
-<body>
+<body class="fade-page">
+  <div class="aurora"></div>
+  <div class="grain"></div>
 
-<main class="wrap">
+  <header class="topbar">
+    <div class="container">
+      <div class="inner">
+        <a class="brand" href="index.html">
+          <div class="mark"></div>
+          <div class="title">
+            <b>VOID STAFF ACADEMY</b>
+            <span>Governance • Training • Compliance</span>
+          </div>
+        </a>
 
-<section class="hero">
-  <div class="qmeta">Void Staff Academy • Internal Compliance</div>
-  <h1>Certification Examination</h1>
-  <p class="sub">
-    This structured evaluation measures escalation logic, moderation discipline,
-    documentation standards, and operational judgment.
-  </p>
+        <nav class="nav">
+          <a data-nav href="index.html">Home</a>
+          <a data-nav href="moderation.html">Moderation</a>
+          <a data-nav href="roster.html">Roster</a>
+          <a data-nav href="operations.html">Command Center</a>
+          <a data-nav href="certification.html">Certification</a>
+        </nav>
 
-  <div class="bar">
-    <button onclick="window.location.href='index.html'" class="btn">
-      ← Back to Home
-    </button>
-
-    <input id="traineeName" class="input" placeholder="Candidate name">
-
-    <button id="openAdmin" class="btn">
-      <i data-lucide="shield"></i> Admin Access
-    </button>
-
-    <span class="pill">
-      <span id="progressText">0 / 20 answered</span>
-    </span>
-  </div>
-</section>
-
-<section id="exam" class="examGrid"></section>
-
-<section class="section">
-  <h2>Submit Attempt</h2>
-
-  <div class="btnrow">
-    <button id="submitExam" class="btn primary">
-      Submit Certification
-    </button>
-
-    <button id="resetExam" class="btn">
-      Reset
-    </button>
-  </div>
-
-  <div id="result" style="margin-top:24px;"></div>
-</section>
-
-<div class="footer">
-  <div>Void Staff Academy</div>
-  <div>Confidential Internal Certification System</div>
-</div>
-
-</main>
-
-<!-- ADMIN MODAL -->
-<div id="adminModal" class="modal">
-  <div class="panel">
-
-    <div style="display:flex;justify-content:space-between;align-items:center;">
-      <h2>Admin Control Panel</h2>
-      <button id="closeAdmin" class="btn">Close</button>
+        <div class="actions">
+          <button id="adminBtn" class="btn" type="button">Admin</button>
+          <span class="kbd">Ctrl/⌘ K</span>
+          <button id="mobileOpen" class="btn ghost mobileBtn" type="button"><span class="icon">☰</span> Menu</button>
+        </div>
+      </div>
     </div>
+  </header>
 
-    <div class="bar">
-      <input id="adminPass" class="input" type="password" placeholder="Admin password">
-      <button id="adminLogin" class="btn primary">Unlock</button>
-      <span id="adminStatus" class="pill">Locked</span>
+  <div id="mobileSheet" class="mobileSheet">
+    <div class="shade"></div>
+    <div class="panel">
+      <div class="head">
+        <b>Navigation</b>
+        <button id="mobileClose" class="btn ghost" type="button">Close</button>
+      </div>
+      <div class="links">
+        <a data-nav href="index.html">Home</a>
+        <a data-nav href="moderation.html">Moderation</a>
+        <a data-nav href="roster.html">Roster</a>
+        <a data-nav href="operations.html">Command Center</a>
+        <a data-nav href="certification.html">Certification</a>
+        <a data-nav href="recruitment.html">Recruitment</a>
+        <a data-nav href="leadership.html">Leadership</a>
+      </div>
     </div>
-
-    <!-- Hidden until unlocked -->
-    <div class="tabs" id="adminTabs">
-      <div class="tab active" data-tab="attempts">Attempts</div>
-      <div class="tab" data-tab="questions">Questions</div>
-      <div class="tab" data-tab="export">Export</div>
-    </div>
-
-    <div id="adminBody" style="margin-top:20px;"></div>
-
   </div>
-</div>
 
-<script src="assets/exam.js"></script>
+  <main>
+    <div class="container">
 
-<script>
-document.addEventListener("DOMContentLoaded",()=>{
-  if(window.lucide) lucide.createIcons();
-});
-</script>
+      <section class="hero reveal" data-reveal>
+        <div class="content" style="grid-template-columns:1fr;">
+          <div>
+            <div class="eyebrow">
+              <span class="pill">Scenario Exam • Audit Logged</span>
+              <span class="pill">20 Questions</span>
+              <span class="pill">70% Required</span>
+            </div>
+            <div class="h1">Certification Portal</div>
+            <p class="sub">
+              This assessment tests real decisions: ticket openers, routing, escalation, and closure.
+              No guessing your way through — every attempt is logged.
+            </p>
+          </div>
+        </div>
+      </section>
 
+      <section class="examGrid">
+        <!-- LEFT: Exam -->
+        <div class="qCard reveal" data-reveal>
+          <div class="qTitle">
+            <b>Candidate Session</b>
+            <span id="statusMono">Status: idle</span>
+          </div>
+
+          <div class="hr"></div>
+
+          <div id="startPanel">
+            <div class="field">
+              <div class="label">Discord tag / username</div>
+              <input id="candidateName" class="input" placeholder="e.g. VoidYeezy#0001 or @VoidYeezy" maxlength="40"/>
+              <div class="help">This is stored locally for audit logs on this device. (You can clear it in Admin.)</div>
+            </div>
+
+            <div class="row">
+              <button id="beginBtn" class="btn primary" type="button">Begin Exam</button>
+              <a class="btn ghost" href="index.html">Go Back</a>
+            </div>
+          </div>
+
+          <div id="examPanel" class="hidden">
+            <div class="field">
+              <div class="label">Progress</div>
+              <div class="progress"><div id="bar"></div></div>
+              <div class="help"><span id="progText">0/20 answered</span> • Required to pass: <b>14/20</b></div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div id="questionHost"></div>
+
+            <div class="row" style="margin-top:14px; justify-content:space-between;">
+              <button id="prevBtn" class="btn ghost" type="button">← Previous</button>
+              <div class="row">
+                <button id="saveBtn" class="btn" type="button">Save</button>
+                <button id="submitBtn" class="btn primary" type="button">Submit</button>
+              </div>
+              <button id="nextBtn" class="btn ghost" type="button">Next →</button>
+            </div>
+
+            <div class="hr"></div>
+            <div class="help">
+              <b>Tip:</b> Use good judgement. The best answers match the training modules (protocol + routing + documentation).
+            </div>
+          </div>
+
+          <div id="resultPanel" class="hidden">
+            <div class="qTitle">
+              <b>Attempt Result</b>
+              <span id="resultBadge" class="badge">—</span>
+            </div>
+            <div class="hr"></div>
+            <div id="resultText" class="sub"></div>
+            <div class="hr"></div>
+            <div class="row">
+              <button id="reviewBtn" class="btn" type="button">Review Answers</button>
+              <button id="resetBtn" class="btn primary" type="button">New Attempt</button>
+            </div>
+
+            <div id="reviewHost" class="hidden" style="margin-top:16px;"></div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Overview -->
+        <aside class="qCard reveal" data-reveal>
+          <div class="qTitle">
+            <b>System Overview</b>
+            <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">local audit store</span>
+          </div>
+          <div class="hr"></div>
+
+          <div class="row" style="gap:10px;">
+            <span class="badge">Total Questions: <b>20</b></span>
+            <span class="badge warn">Passing: <b>70%</b></span>
+            <span class="badge good">Correct Needed: <b>14</b></span>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="field">
+            <div class="label">Attempts (this device)</div>
+            <div id="attemptsMini" class="help">No attempts yet.</div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="field">
+            <div class="label">Audit Rules</div>
+            <div class="help">
+              • Each submit stores: candidate name, score, pass/fail, timestamp, and per-question responses.<br/>
+              • Admin can export logs as JSON for moderation review.
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <div class="footer reveal" data-reveal>
+        <div class="split">
+          <div>Void Staff Academy • Certification System</div>
+          <div>© 2026 Void Esports. All rights reserved.</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Admin modal -->
+  <div id="adminModal" class="backdrop" role="dialog" aria-modal="true" aria-label="Admin panel">
+    <div class="modal" style="width:min(980px, 100%);">
+      <div class="hd">
+        <b>Admin Control Dashboard</b>
+        <button id="adminClose" class="btn ghost" type="button">Close</button>
+      </div>
+      <div class="bd">
+        <div id="adminGate">
+          <div class="field">
+            <div class="label">Admin password</div>
+            <input id="adminPass" type="password" placeholder="Enter password…" />
+            <div class="help">Only you should know this. Change it in the code (top of script).</div>
+          </div>
+          <button id="adminUnlock" class="btn primary" type="button">Unlock</button>
+        </div>
+
+        <div id="adminPanel" class="hidden">
+          <div class="row" style="justify-content:space-between; align-items:center;">
+            <div class="field" style="margin:0; flex:1;">
+              <div class="label">Search attempts</div>
+              <input id="adminSearch" placeholder="Search by name, score, pass/fail, date…" />
+            </div>
+            <div class="row" style="align-items:end;">
+              <button id="exportBtn" class="btn" type="button">Export JSON</button>
+              <button id="clearBtn" class="btn" type="button">Clear Logs</button>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <table class="table" aria-label="Attempts table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Candidate</th>
+                <th>Score</th>
+                <th>Status</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody id="attemptTable"></tbody>
+          </table>
+
+          <div class="help">Tip: click “View” to see exactly who answered what.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Command palette -->
+  <div id="cmdPalette" class="backdrop">
+    <div class="modal">
+      <div class="hd"><b>Command Palette</b><span class="kbd">Esc</span></div>
+      <div class="bd">
+        <input id="cmdInput" placeholder="Type to search…"/>
+        <div id="cmdList" class="cmd-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="assets/app.js"></script>
+
+  <script>
+    /***************
+     * CERT SETTINGS
+     ***************/
+    const ADMIN_PASSWORD = "CHANGE_THIS_TO_YOUR_SECRET"; // <-- CHANGE THIS
+
+    const PASS_PERCENT = 70;
+    const TOTAL_Q = 20;
+
+    // Question bank (20)
+    const QUESTIONS = [
+      {
+        q:"A user opens a ticket. What is the correct FIRST message?",
+        choices:[
+          "yo what you need",
+          "Hello, how may I help you today?",
+          "Drop your tracker",
+          "What’s good bro"
+        ],
+        a:1
+      },
+      {
+        q:"After greeting, what is one of the first required questions?",
+        choices:[
+          "What’s your earnings?",
+          "May I ask how old you are?",
+          "What console do you play?",
+          "Are you famous?"
+        ],
+        a:1
+      },
+      {
+        q:"A roster applicant wants Pro. What proof do you request before routing?",
+        choices:[
+          "Only vibes",
+          "Tracker + lobby proof (default dance image) + earnings proof if needed",
+          "Just a TikTok link",
+          "Nothing, just add them"
+        ],
+        a:1
+      },
+      {
+        q:"When should you escalate a ticket?",
+        choices:[
+          "When it’s complex or sensitive and you have proof + context",
+          "Always escalate every ticket",
+          "Never escalate anything",
+          "Only if the user asks"
+        ],
+        a:0
+      },
+      {
+        q:"Where should the warn command be used?",
+        choices:[
+          "General chat",
+          "#staff-commands only",
+          "Any ticket channel",
+          "DMs"
+        ],
+        a:1
+      },
+      {
+        q:"What is the correct warn format?",
+        choices:[
+          "/warn @user",
+          "*warn user-id reason",
+          "!warn username",
+          "warn reason user"
+        ],
+        a:1
+      },
+      {
+        q:"A user doesn’t qualify for roster roles. What can you offer?",
+        choices:[
+          "Instant Pro",
+          "Void Grinder+ (fallback offer)",
+          "Ban them",
+          "Ignore them"
+        ],
+        a:1
+      },
+      {
+        q:"A Content Creator applicant. What do you request?",
+        choices:[
+          "Only PR",
+          "Their socials (YT/Twitch/TikTok) and quality proof",
+          "Their favorite skin",
+          "Their keyboard brand"
+        ],
+        a:1
+      },
+      {
+        q:"GFX/VFX applicant. What do you request?",
+        choices:[
+          "Portfolio/previous work",
+          "Earnings screenshot",
+          "Only tracker",
+          "Nothing"
+        ],
+        a:0
+      },
+      {
+        q:"What does a clean ticket closure include?",
+        choices:[
+          "A rude message",
+          "Confirmation + roles + polite close",
+          "Leaving it open forever",
+          "Deleting the ticket"
+        ],
+        a:1
+      },
+      {
+        q:"What should you include when escalating to senior staff?",
+        choices:[
+          "Proof + context + summary",
+          "Just opinions",
+          "Nothing, they’ll figure it out",
+          "A random screenshot"
+        ],
+        a:0
+      },
+      {
+        q:"Which is a professional greeting?",
+        choices:[
+          "yo bro",
+          "Hello, what can I assist you with today?",
+          "sup",
+          "bruh"
+        ],
+        a:1
+      },
+      {
+        q:"What is required for ticket opening (minimum)?",
+        choices:[
+          "Greeting + role inquiry + age verification",
+          "Only role inquiry",
+          "Only greeting",
+          "Only age verification"
+        ],
+        a:0
+      },
+      {
+        q:"Roster ticket first response must include:",
+        choices:[
+          "Memes",
+          "Age verification and direction to proper resources",
+          "Asking for Nitro",
+          "Instant acceptance"
+        ],
+        a:1
+      },
+      {
+        q:"Operations shift start command:",
+        choices:[
+          "/start",
+          "/login",
+          "/shift",
+          "/begin"
+        ],
+        a:1
+      },
+      {
+        q:"Operations shift end command:",
+        choices:[
+          "/logout",
+          "/end",
+          "/stop",
+          "/leave"
+        ],
+        a:0
+      },
+      {
+        q:"LOA should include:",
+        choices:[
+          "Duration + reason",
+          "Only emojis",
+          "Nothing",
+          "A random excuse with no time"
+        ],
+        a:0
+      },
+      {
+        q:"Report command is used for:",
+        choices:[
+          "Minor warnings",
+          "Major or repeated infractions with documentation",
+          "Flexing",
+          "Spamming"
+        ],
+        a:1
+      },
+      {
+        q:"Blacklist procedure for underage should store:",
+        choices:[
+          "Only nickname",
+          "Username + Discord ID + reason",
+          "Just a vibe",
+          "Nothing"
+        ],
+        a:1
+      },
+      {
+        q:"Best practice for documentation is:",
+        choices:[
+          "No logs",
+          "Clean notes + proof references + final outcome",
+          "Delete everything",
+          "Only ping people"
+        ],
+        a:1
+      }
+    ];
+
+    /***************
+     * STORAGE MODEL
+     ***************/
+    const LS_KEY = "VOID_CERT_LOGS_V1";
+    const LS_DRAFT = "VOID_CERT_DRAFT_V1";
+    const LS_NAME = "VOID_CERT_NAME_V1";
+
+    const nowISO = ()=> new Date().toISOString();
+
+    function loadLogs(){
+      try{ return JSON.parse(localStorage.getItem(LS_KEY) || "[]"); }
+      catch{ return []; }
+    }
+    function saveLogs(logs){
+      localStorage.setItem(LS_KEY, JSON.stringify(logs));
+      refreshMini();
+    }
+
+    function fmtTime(iso){
+      const d = new Date(iso);
+      return d.toLocaleString();
+    }
+
+    /***************
+     * EXAM STATE
+     ***************/
+    let idx = 0;
+    let answers = Array(TOTAL_Q).fill(null); // chosen index
+    let candidate = localStorage.getItem(LS_NAME) || "";
+
+    const statusMono = document.getElementById("statusMono");
+    const startPanel = document.getElementById("startPanel");
+    const examPanel = document.getElementById("examPanel");
+    const resultPanel = document.getElementById("resultPanel");
+
+    const candidateName = document.getElementById("candidateName");
+    const beginBtn = document.getElementById("beginBtn");
+
+    const questionHost = document.getElementById("questionHost");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const saveBtn = document.getElementById("saveBtn");
+    const submitBtn = document.getElementById("submitBtn");
+
+    const bar = document.getElementById("bar");
+    const progText = document.getElementById("progText");
+
+    const attemptsMini = document.getElementById("attemptsMini");
+
+    const resultBadge = document.getElementById("resultBadge");
+    const resultText = document.getElementById("resultText");
+    const reviewBtn = document.getElementById("reviewBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const reviewHost = document.getElementById("reviewHost");
+
+    // Admin
+    const adminBtn = document.getElementById("adminBtn");
+    const adminModal = document.getElementById("adminModal");
+    const adminClose = document.getElementById("adminClose");
+    const adminGate = document.getElementById("adminGate");
+    const adminPanel = document.getElementById("adminPanel");
+    const adminPass = document.getElementById("adminPass");
+    const adminUnlock = document.getElementById("adminUnlock");
+    const adminSearch = document.getElementById("adminSearch");
+    const attemptTable = document.getElementById("attemptTable");
+    const exportBtn = document.getElementById("exportBtn");
+    const clearBtn = document.getElementById("clearBtn");
+
+    // Init name
+    candidateName.value = candidate;
+
+    function setStatus(s){ statusMono.textContent = "Status: " + s; }
+
+    function answeredCount(){
+      return answers.filter(a=>a!==null).length;
+    }
+
+    function renderProgress(){
+      const done = answeredCount();
+      const pct = Math.round((done / TOTAL_Q) * 100);
+      bar.style.width = pct + "%";
+      progText.textContent = `${done}/${TOTAL_Q} answered`;
+    }
+
+    function renderQuestion(){
+      const q = QUESTIONS[idx];
+      const chosen = answers[idx];
+
+      questionHost.innerHTML = `
+        <div class="qTitle">
+          <b>Question ${idx+1}</b>
+          <span>${doneText()}</span>
+        </div>
+        <div style="margin-top:10px;color:rgba(238,240,255,.92);font-size:14px;line-height:1.5">
+          ${escapeHTML(q.q)}
+        </div>
+        <div style="display:grid;gap:10px;margin-top:12px;">
+          ${q.choices.map((c,i)=>`
+            <label class="choice">
+              <input type="radio" name="q" ${chosen===i ? "checked":""} data-choice="${i}">
+              <div class="txt">${escapeHTML(c)}</div>
+            </label>
+          `).join("")}
+        </div>
+      `;
+
+      questionHost.querySelectorAll("input[type=radio]").forEach(r=>{
+        r.addEventListener("change", ()=>{
+          const v = Number(r.getAttribute("data-choice"));
+          answers[idx] = v;
+          renderProgress();
+          VOIDToast("Saved answer for Q" + (idx+1));
+        });
+      });
+
+      prevBtn.disabled = idx === 0;
+      nextBtn.disabled = idx === TOTAL_Q - 1;
+    }
+
+    function doneText(){
+      return `${idx+1}/${TOTAL_Q} • Required correct: 14`;
+    }
+
+    function saveDraft(){
+      const draft = { idx, answers, candidate: candidateName.value.trim(), t: nowISO() };
+      localStorage.setItem(LS_DRAFT, JSON.stringify(draft));
+      localStorage.setItem(LS_NAME, draft.candidate);
+      VOIDToast("Draft saved.");
+      refreshMini();
+    }
+
+    function loadDraft(){
+      try{
+        const d = JSON.parse(localStorage.getItem(LS_DRAFT) || "null");
+        if(!d) return false;
+        idx = Math.min(Math.max(0, d.idx || 0), TOTAL_Q-1);
+        answers = Array.isArray(d.answers) ? d.answers.slice(0, TOTAL_Q) : answers;
+        candidateName.value = d.candidate || candidateName.value;
+        return true;
+      }catch{
+        return false;
+      }
+    }
+
+    function startExam(){
+      const name = candidateName.value.trim();
+      if(!name){
+        VOIDToast("Enter your Discord tag / username.");
+        return;
+      }
+      localStorage.setItem(LS_NAME, name);
+      setStatus("in progress");
+      startPanel.classList.add("hidden");
+      examPanel.classList.remove("hidden");
+      resultPanel.classList.add("hidden");
+      renderProgress();
+      renderQuestion();
+      VOIDToast("Exam started.");
+    }
+
+    function scoreExam(){
+      let correct = 0;
+      const perQ = QUESTIONS.map((q,i)=>{
+        const picked = answers[i];
+        const ok = picked === q.a;
+        if(ok) correct++;
+        return {i, picked, correct: q.a, ok};
+      });
+      const percent = Math.round((correct / TOTAL_Q) * 100);
+      const passed = percent >= PASS_PERCENT;
+      return {correct, percent, passed, perQ};
+    }
+
+    function submitExam(){
+      if(answeredCount() < TOTAL_Q){
+        VOIDToast("Answer all 20 questions before submitting.");
+        return;
+      }
+
+      const name = (candidateName.value || "").trim() || "Unknown";
+      const r = scoreExam();
+      const logs = loadLogs();
+
+      const attempt = {
+        id: crypto.randomUUID(),
+        t: nowISO(),
+        candidate: name,
+        percent: r.percent,
+        correct: r.correct,
+        passed: r.passed,
+        answers: QUESTIONS.map((q,i)=>({
+          q: q.q,
+          picked: answers[i],
+          pickedText: q.choices[answers[i]],
+          correct: q.a,
+          correctText: q.choices[q.a],
+          ok: answers[i] === q.a
+        }))
+      };
+
+      logs.unshift(attempt);
+      saveLogs(logs);
+      localStorage.removeItem(LS_DRAFT);
+
+      // Show result
+      examPanel.classList.add("hidden");
+      resultPanel.classList.remove("hidden");
+      setStatus("submitted");
+
+      resultBadge.className = "badge " + (attempt.passed ? "good":"bad");
+      resultBadge.textContent = attempt.passed ? "PASS" : "FAIL";
+      resultText.innerHTML = `
+        Candidate: <b>${escapeHTML(attempt.candidate)}</b><br/>
+        Score: <b>${attempt.correct}/${TOTAL_Q}</b> • <b>${attempt.percent}%</b><br/>
+        Timestamp: <span style="font-family:var(--mono)">${escapeHTML(fmtTime(attempt.t))}</span>
+      `;
+
+      reviewHost.classList.add("hidden");
+      reviewHost.innerHTML = "";
+      VOIDToast(attempt.passed ? "Certified." : "Not passed — review and retry.");
+    }
+
+    function renderReview(){
+      const r = scoreExam();
+      reviewHost.innerHTML = r.perQ.map(x=>{
+        const q = QUESTIONS[x.i];
+        const picked = x.picked;
+        const pickedText = picked === null ? "—" : q.choices[picked];
+        const ok = x.ok;
+
+        return `
+          <div class="qCard" style="margin-bottom:12px;">
+            <div class="qTitle">
+              <b>Q${x.i+1} • ${ok ? "Correct":"Incorrect"}</b>
+              <span class="${ok ? "badge good":"badge bad"}">${ok ? "OK":"MISS"}</span>
+            </div>
+            <div style="margin-top:10px;color:rgba(238,240,255,.92);">${escapeHTML(q.q)}</div>
+            <div class="hr"></div>
+            <div class="help">
+              Your answer: <b>${escapeHTML(pickedText)}</b><br/>
+              Correct answer: <b>${escapeHTML(q.choices[q.a])}</b>
+            </div>
+          </div>
+        `;
+      }).join("");
+      reviewHost.classList.remove("hidden");
+    }
+
+    function resetExam(){
+      idx = 0;
+      answers = Array(TOTAL_Q).fill(null);
+      localStorage.removeItem(LS_DRAFT);
+      startPanel.classList.remove("hidden");
+      examPanel.classList.add("hidden");
+      resultPanel.classList.add("hidden");
+      setStatus("idle");
+      renderProgress();
+      VOIDToast("Ready for a new attempt.");
+    }
+
+    // Mini attempts display
+    function refreshMini(){
+      const logs = loadLogs();
+      if(!logs.length){
+        attemptsMini.textContent = "No attempts yet.";
+        return;
+      }
+      const last = logs[0];
+      attemptsMini.innerHTML = `
+        <b>${logs.length}</b> total attempt(s). Latest: 
+        <span class="${last.passed ? "badge good":"badge bad"}">${last.passed ? "PASS":"FAIL"}</span>
+        <span style="font-family:var(--mono)">${escapeHTML(last.candidate)}</span> •
+        <span style="font-family:var(--mono)">${last.percent}%</span>
+        <div class="help" style="margin-top:8px;">Open Admin to view full logs and who answered what.</div>
+      `;
+    }
+
+    // Admin UI
+    function openAdmin(){
+      adminModal.classList.add("show");
+      adminGate.classList.remove("hidden");
+      adminPanel.classList.add("hidden");
+      adminPass.value = "";
+      adminSearch.value = "";
+    }
+    function closeAdmin(){
+      adminModal.classList.remove("show");
+    }
+
+    function unlockAdmin(){
+      if(adminPass.value !== ADMIN_PASSWORD){
+        VOIDToast("Wrong password.");
+        return;
+      }
+      adminGate.classList.add("hidden");
+      adminPanel.classList.remove("hidden");
+      renderAdminTable();
+      VOIDToast("Admin unlocked.");
+    }
+
+    function renderAdminTable(){
+      const q = (adminSearch.value || "").toLowerCase().trim();
+      const logs = loadLogs().filter(a=>{
+        if(!q) return true;
+        const blob = `${a.t} ${a.candidate} ${a.percent} ${a.correct} ${a.passed ? "pass":"fail"}`.toLowerCase();
+        return blob.includes(q);
+      });
+
+      attemptTable.innerHTML = logs.map(a=>{
+        const badge = a.passed ? "good" : "bad";
+        return `
+          <tr>
+            <td style="font-family:var(--mono);font-size:12px;">${escapeHTML(fmtTime(a.t))}</td>
+            <td><b>${escapeHTML(a.candidate)}</b></td>
+            <td style="font-family:var(--mono)">${a.correct}/${TOTAL_Q} • ${a.percent}%</td>
+            <td><span class="badge ${badge}">${a.passed ? "PASS":"FAIL"}</span></td>
+            <td><button class="btn ghost" type="button" data-view="${a.id}">View</button></td>
+          </tr>
+        `;
+      }).join("");
+
+      // bind view buttons
+      attemptTable.querySelectorAll("[data-view]").forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+          const id = btn.getAttribute("data-view");
+          const logs2 = loadLogs();
+          const found = logs2.find(x=>x.id===id);
+          if(!found){ VOIDToast("Not found."); return; }
+          viewAttempt(found);
+        });
+      });
+    }
+
+    function viewAttempt(a){
+      // quick modal inside admin (reuse admin modal body by injecting)
+      const detail = document.createElement("div");
+      detail.className = "qCard";
+      detail.style.marginTop = "14px";
+      detail.innerHTML = `
+        <div class="qTitle">
+          <b>Attempt Details</b>
+          <span class="badge ${a.passed ? "good":"bad"}">${a.passed ? "PASS":"FAIL"} • ${a.percent}%</span>
+        </div>
+        <div class="hr"></div>
+        <div class="help">
+          Candidate: <b>${escapeHTML(a.candidate)}</b><br/>
+          Time: <span style="font-family:var(--mono)">${escapeHTML(fmtTime(a.t))}</span><br/>
+          Correct: <b>${a.correct}/${TOTAL_Q}</b>
+        </div>
+        <div class="hr"></div>
+        ${a.answers.map((x,i)=>`
+          <div style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06)">
+            <div style="font-weight:700">Q${i+1}</div>
+            <div class="help" style="margin-top:6px">${escapeHTML(x.q)}</div>
+            <div class="row" style="margin-top:8px;gap:10px;">
+              <span class="badge ${x.ok ? "good":"bad"}">${x.ok ? "Correct":"Incorrect"}</span>
+              <span class="help">Picked: <b>${escapeHTML(x.pickedText)}</b></span>
+              <span class="help">Correct: <b>${escapeHTML(x.correctText)}</b></span>
+            </div>
+          </div>
+        `).join("")}
+      `;
+
+      // remove previous detail if exists
+      const old = adminPanel.querySelector(".qCard[data-detail='1']");
+      if(old) old.remove();
+      detail.setAttribute("data-detail","1");
+      adminPanel.appendChild(detail);
+      VOIDToast("Showing attempt answers.");
+      detail.scrollIntoView({behavior:"smooth", block:"start"});
+    }
+
+    function exportLogs(){
+      const logs = loadLogs();
+      const blob = new Blob([JSON.stringify(logs, null, 2)], {type:"application/json"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "void-certification-logs.json";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      VOIDToast("Exported logs.");
+    }
+
+    function clearLogs(){
+      if(!confirm("Clear ALL logs on this device?")) return;
+      localStorage.removeItem(LS_KEY);
+      localStorage.removeItem(LS_DRAFT);
+      refreshMini();
+      renderAdminTable();
+      VOIDToast("Logs cleared.");
+    }
+
+    function escapeHTML(s){
+      return String(s).replace(/[&<>"']/g, (m)=>({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+      }[m]));
+    }
+
+    // Bind events
+    beginBtn.addEventListener("click", startExam);
+    prevBtn.addEventListener("click", ()=>{ idx = Math.max(0, idx-1); renderQuestion(); });
+    nextBtn.addEventListener("click", ()=>{ idx = Math.min(TOTAL_Q-1, idx+1); renderQuestion(); });
+    saveBtn.addEventListener("click", saveDraft);
+    submitBtn.addEventListener("click", submitExam);
+
+    reviewBtn.addEventListener("click", renderReview);
+    resetBtn.addEventListener("click", resetExam);
+
+    adminBtn.addEventListener("click", openAdmin);
+    adminClose.addEventListener("click", closeAdmin);
+    adminModal.addEventListener("click", (e)=>{ if(e.target === adminModal) closeAdmin(); });
+    adminUnlock.addEventListener("click", unlockAdmin);
+    adminSearch.addEventListener("input", renderAdminTable);
+    exportBtn.addEventListener("click", exportLogs);
+    clearBtn.addEventListener("click", clearLogs);
+
+    // Auto-load draft if exists
+    if(loadDraft()){
+      setStatus("draft loaded");
+      startPanel.classList.add("hidden");
+      examPanel.classList.remove("hidden");
+      renderProgress();
+      renderQuestion();
+      VOIDToast("Draft loaded.");
+    }else{
+      setStatus("idle");
+      renderProgress();
+    }
+
+    refreshMini();
+  </script>
 </body>
 </html>
