@@ -10,21 +10,28 @@
 </head>
 
 <body>
+
 <main class="wrap">
 
 <section class="hero">
-  <div class="qmeta">Void Staff Academy</div>
-  <h1 class="h1">Certification Examination</h1>
+  <div class="qmeta">Void Staff Academy • Internal Compliance</div>
+  <h1>Certification Examination</h1>
   <p class="sub">
-    This evaluation measures judgment, escalation logic, documentation standards,
-    and operational discipline through structured scenarios.
+    This structured evaluation measures escalation logic, moderation discipline,
+    documentation standards, and operational judgment.
   </p>
 
   <div class="bar">
-    <input id="traineeName" class="input" placeholder="Enter your name">
-    <button id="openAdmin" class="btn">
-      <i data-lucide="shield"></i> Admin
+    <button onclick="window.location.href='index.html'" class="btn">
+      ← Back to Home
     </button>
+
+    <input id="traineeName" class="input" placeholder="Candidate name">
+
+    <button id="openAdmin" class="btn">
+      <i data-lucide="shield"></i> Admin Access
+    </button>
+
     <span class="pill">
       <span id="progressText">0 / 20 answered</span>
     </span>
@@ -35,24 +42,23 @@
 
 <section class="section">
   <h2>Submit Attempt</h2>
-  <p class="sub">Passing score: 70%</p>
 
   <div class="btnrow">
     <button id="submitExam" class="btn primary">
-      <i data-lucide="check-circle"></i> Submit
+      Submit Certification
     </button>
 
     <button id="resetExam" class="btn">
-      <i data-lucide="rotate-ccw"></i> Reset
+      Reset
     </button>
   </div>
 
-  <div id="result" style="margin-top:20px;"></div>
+  <div id="result" style="margin-top:24px;"></div>
 </section>
 
 <div class="footer">
   <div>Void Staff Academy</div>
-  <div>Internal Certification System</div>
+  <div>Confidential Internal Certification System</div>
 </div>
 
 </main>
@@ -67,23 +73,25 @@
     </div>
 
     <div class="bar">
-      <input id="adminPass" class="input" type="password" placeholder="Password">
+      <input id="adminPass" class="input" type="password" placeholder="Admin password">
       <button id="adminLogin" class="btn primary">Unlock</button>
       <span id="adminStatus" class="pill">Locked</span>
     </div>
 
-    <div class="tabs">
+    <!-- Hidden until unlocked -->
+    <div class="tabs" id="adminTabs">
       <div class="tab active" data-tab="attempts">Attempts</div>
       <div class="tab" data-tab="questions">Questions</div>
       <div class="tab" data-tab="export">Export</div>
     </div>
 
-    <div id="adminBody"></div>
+    <div id="adminBody" style="margin-top:20px;"></div>
 
   </div>
 </div>
 
 <script src="assets/exam.js"></script>
+
 <script>
 document.addEventListener("DOMContentLoaded",()=>{
   if(window.lucide) lucide.createIcons();
