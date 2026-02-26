@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Void Staff Academy • Command Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/app.css"/>
+</head>
+
+<body class="fade-page">
+  <div class="aurora"></div>
+  <div class="grain"></div>
+
+  <header class="topbar">
+    <div class="container">
+      <div class="inner">
+        <a class="brand" href="index.html">
+          <div class="mark"></div>
+          <div class="title">
+            <b>VOID STAFF ACADEMY</b>
+            <span>Governance • Training • Compliance</span>
+          </div>
+        </a>
+
+        <nav class="nav">
+          <a data-nav href="index.html">Home</a>
+          <a data-nav href="moderation.html">Moderation</a>
+          <a data-nav href="roster.html">Roster</a>
+          <a data-nav href="operations.html">Command Center</a>
+          <a data-nav href="certification.html">Certification</a>
+        </nav>
+
+        <div class="actions">
+          <span class="kbd">Ctrl/⌘ K</span>
+          <button id="mobileOpen" class="btn ghost mobileBtn" type="button"><span class="icon">☰</span> Menu</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="mobileSheet" class="mobileSheet">
+    <div class="shade"></div>
+    <div class="panel">
+      <div class="head">
+        <b>Navigation</b>
+        <button id="mobileClose" class="btn ghost" type="button">Close</button>
+      </div>
+      <div class="links">
+        <a data-nav href="index.html">Home</a>
+        <a data-nav href="moderation.html">Moderation</a>
+        <a data-nav href="roster.html">Roster</a>
+        <a data-nav href="operations.html">Command Center</a>
+        <a data-nav href="certification.html">Certification</a>
+        <a data-nav href="recruitment.html">Recruitment</a>
+        <a data-nav href="leadership.html">Leadership</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <div class="container">
+
+      <section class="hero reveal" data-reveal>
+        <div class="content">
+          <div>
+            <div class="eyebrow"><span class="pill">Operations Module</span></div>
+            <div class="h1">Operations Command Center</div>
+            <p class="sub">
+              Operational discipline ensures structure. This module enforces command logging,
+              accountability metrics, and performance thresholds across all moderators.
+            </p>
+            <div class="cta">
+              <a class="btn" href="moderation.html">Back to Protocol</a>
+              <a class="btn primary" href="certification.html">Certification</a>
+            </div>
+          </div>
+
+          <div class="metrics">
+            <div class="metric">
+              <b>Minimum Tickets / Week</b>
+              <span>10</span>
+            </div>
+            <div class="metric">
+              <b>Minimum Messages / Week</b>
+              <span>400</span>
+            </div>
+            <div class="metric">
+              <b>Escalation Standard</b>
+              <span>Evidence + context</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card reveal" data-reveal>
+          <h3>Shift Logging</h3>
+          <p>Begin session with <span style="font-family:var(--mono)"><code>/login</code></span></p>
+          <p>End session with <span style="font-family:var(--mono)"><code>/logout</code></span></p>
+          <p class="small">No ghost shifts. Logging is non-negotiable.</p>
+        </article>
+
+        <article class="card reveal" data-reveal>
+          <h3>Warn Command</h3>
+          <p>Use in <b>#staff-commands</b> only:</p>
+          <p style="font-family:var(--mono)"><code>*warn user-id reason</code></p>
+          <p class="small">Keep it short, factual, and consistent.</p>
+        </article>
+
+        <article class="card reveal" data-reveal>
+          <h3>Report Command</h3>
+          <p>For major or repeated infractions:</p>
+          <p style="font-family:var(--mono)"><code>/report</code></p>
+          <p class="small">Attach documentation. No vague reports.</p>
+        </article>
+
+        <article class="card reveal" data-reveal>
+          <h3>LOA Protocol</h3>
+          <p>Unavailable? Submit <span style="font-family:var(--mono)"><code>/loa</code></span> with duration + reason.</p>
+          <p>Notify senior staff for extended absences.</p>
+          <p class="small">Staying silent = performance issue.</p>
+        </article>
+      </section>
+
+      <div class="footer reveal" data-reveal>
+        <div class="split">
+          <div>Void Esports Mod Certification System • Made by Void Yeezy</div>
+          <div>© 2026 Void Esports. All rights reserved.</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="cmdPalette" class="backdrop">
+    <div class="modal">
+      <div class="hd"><b>Command Palette</b><span class="kbd">Esc</span></div>
+      <div class="bd">
+        <input id="cmdInput" placeholder="Type to search…"/>
+        <div id="cmdList" class="cmd-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="assets/app.js"></script>
+</body>
+</html>
