@@ -1,7 +1,8 @@
 // ===== VOID STAFF ACADEMY — CERTIFICATION SYSTEM (V2) =====
 // Local mode: attempts stored in localStorage (same device only).
 // For true "everyone who took it", you need a database (see end of file).
-
+document.getElementById("adminTabs").classList.add("show");
+document.getElementById("adminTabs").classList.remove("show");
 const ADMIN_PASSWORD = "STAFFACCESS";
 const PASSING_SCORE = 0.70;
 
