@@ -1,289 +1,124 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Void Staff Academy</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --bg:#050509;
-  --accent:#a855f7;
-  --accent2:#7c3aed;
-  --text:#ffffff;
-  --muted:rgba(255,255,255,.65);
-}
-
-*{margin:0;padding:0;box-sizing:border-box}
-
-body{
-  font-family:'Inter',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
-}
-
-/* Animated Grid Background */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    linear-gradient(rgba(168,85,247,.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(168,85,247,.06) 1px, transparent 1px);
-  background-size:40px 40px;
-  mask-image:radial-gradient(circle at center, black 40%, transparent 80%);
-  z-index:-3;
-}
-
-/* Floating Glow */
-.glow{
-  position:fixed;
-  width:700px;
-  height:700px;
-  background:radial-gradient(circle, rgba(168,85,247,.4), transparent 60%);
-  filter:blur(140px);
-  top:-200px;
-  left:-200px;
-  animation:moveGlow 14s infinite alternate ease-in-out;
-  z-index:-2;
-}
-
-@keyframes moveGlow{
-  from{transform:translate(0,0)}
-  to{transform:translate(200px,150px)}
-}
-
-/* NAV */
-nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  padding:25px 80px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  backdrop-filter:blur(14px);
-  background:rgba(10,10,15,.5);
-  border-bottom:1px solid rgba(255,255,255,.05);
-  z-index:100;
-  transition:.4s;
-}
-
-nav.scrolled{
-  padding:18px 80px;
-  background:rgba(5,5,10,.9);
-}
-
-.logo{
-  font-weight:900;
-  font-size:18px;
-  letter-spacing:.5px;
-  background:linear-gradient(90deg,var(--accent),white);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-nav a{
-  margin-left:30px;
-  text-decoration:none;
-  color:var(--muted);
-  font-weight:600;
-  font-size:14px;
-  transition:.3s;
-}
-
-nav a:hover{
-  color:white;
-}
-
-/* HERO */
-.hero{
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:0 20px;
-}
-
-.hero h1{
-  font-size:72px;
-  font-weight:900;
-  line-height:1.05;
-  max-width:1000px;
-  animation:fadeUp 1.2s ease forwards;
-  opacity:0;
-}
-
-.hero span{
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.hero p{
-  max-width:700px;
-  margin-top:30px;
-  font-size:18px;
-  color:var(--muted);
-  animation:fadeUp 1.6s ease forwards;
-  opacity:0;
-}
-
-@keyframes fadeUp{
-  from{transform:translateY(40px);opacity:0}
-  to{transform:translateY(0);opacity:1}
-}
-
-.cta{
-  margin-top:40px;
-  padding:18px 50px;
-  border-radius:60px;
-  border:none;
-  font-weight:700;
-  font-size:15px;
-  cursor:pointer;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  color:white;
-  transition:.4s;
-  animation:fadeUp 2s ease forwards;
-  opacity:0;
-}
-
-.cta:hover{
-  transform:scale(1.08);
-  box-shadow:0 0 60px rgba(168,85,247,.7);
-}
-
-/* FEATURES */
-.features{
-  padding:120px 60px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
-  max-width:1400px;
-  margin:auto;
-}
-
-.card{
-  padding:40px;
-  border-radius:30px;
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.05);
-  backdrop-filter:blur(20px);
-  transition:.4s;
-  transform:translateY(40px);
-  opacity:0;
-}
-
-.card.show{
-  transform:translateY(0);
-  opacity:1;
-}
-
-.card:hover{
-  border-color:rgba(168,85,247,.4);
-  box-shadow:0 0 50px rgba(168,85,247,.25);
-}
-
-.card h3{
-  font-size:20px;
-  margin-bottom:15px;
-}
-
-.card p{
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.6;
-}
-
-/* FOOTER */
-footer{
-  padding:80px 20px;
-  text-align:center;
-  color:rgba(255,255,255,.4);
-  border-top:1px solid rgba(255,255,255,.05);
-}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Void Staff Academy</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="assets/app.js"></script>
 </head>
-
 <body>
+  <div class="noise"></div>
 
-<div class="glow"></div>
+  <header class="topbar">
+    <div class="inner">
+      <a class="brand" href="index.html">
+        <div class="mark"></div>
+        <div class="title">
+          <span>VOID STAFF ACADEMY</span>
+          <span>Governance • Training • Compliance</span>
+        </div>
+      </a>
 
-<nav id="nav">
-  <div class="logo">Void Staff Academy</div>
-  <div>
-    <a href="moderation.html">Moderation</a>
-    <a href="roster.html">Roster</a>
-    <a href="operations.html">Operations</a>
-    <a href="certification.html">Certification</a>
-  </div>
-</nav>
+      <nav class="nav">
+        <a data-nav href="index.html"><i data-lucide="home" style="width:16px;height:16px"></i>Home</a>
+        <a data-nav href="moderation.html"><i data-lucide="shield" style="width:16px;height:16px"></i>Moderation</a>
+        <a data-nav href="roster.html"><i data-lucide="users" style="width:16px;height:16px"></i>Roster</a>
+        <a data-nav href="command-center.html"><i data-lucide="layout-dashboard" style="width:16px;height:16px"></i>Command Center</a>
+        <a data-nav href="certification.html"><i data-lucide="clipboard-check" style="width:16px;height:16px"></i>Certification</a>
+      </nav>
+    </div>
+  </header>
 
-<section class="hero">
-  <h1>
-  <span>Void Mod Training</span>
-</h1>
+  <main class="wrap">
+    <section class="hero fade-in">
+      <div class="kicker"><i data-lucide="sparkles" style="width:16px;height:16px"></i>Enterprise-grade staff enablement</div>
+      <h1 class="h1">Void Mod Training</h1>
+      <p class="sub">
+        Comprehensive certification program for new Void Esports moderators. Master ticket handling, roster intake, and community moderation through realistic scenarios and measurable testing — built to scale with the organization.
+      </p>
 
-<p>
-  The official certification program for new Void Esports moderators.
-  Learn proper ticket handling, roster intake procedures, and community
-  moderation through structured scenarios and practical testing.
-</p>
-  <button class="cta" onclick="location.href='certification.html'">
-    Begin Practical Assessment
-  </button>
-</section>
+      <div class="btnrow">
+        <a class="btn primary" href="certification.html"><i data-lucide="clipboard-check" style="width:16px;height:16px"></i>Begin Certification</a>
+        <a class="btn" href="moderation.html"><i data-lucide="book-open" style="width:16px;height:16px"></i>View Protocol</a>
+        <a class="btn" href="roster.html"><i data-lucide="users" style="width:16px;height:16px"></i>Roster Standards</a>
+      </div>
 
-<section class="features">
-  <div class="card">
-    <h3>Ticket Architecture</h3>
-    <p>Master professional handling of general and roster tickets using real escalation logic.</p>
-  </div>
-  <div class="card">
-    <h3>Roster Verification System</h3>
-    <p>Apply PR validation, earnings checks, and structured onboarding procedures.</p>
-  </div>
-  <div class="card">
-    <h3>Operational Discipline</h3>
-    <p>Enforce login, logout, LOA, and weekly performance accountability systems.</p>
-  </div>
-  <div class="card">
-    <h3>Audit-Grade Certification</h3>
-    <p>Complete a 20-question real-world scenario assessment with certificate generation.</p>
-  </div>
-</section>
+      <div class="stats">
+        <div class="stat"><div class="k">Passing score</div><div class="v">70%</div></div>
+        <div class="stat"><div class="k">Scenario questions</div><div class="v">20</div></div>
+        <div class="stat"><div class="k">Audit logging</div><div class="v">Enabled</div></div>
+        <div class="stat"><div class="k">Deploy</div><div class="v">Vercel</div></div>
+      </div>
+    </section>
 
-<footer>
-  Void Esports Mod Certification System • Made by Void Yeezy <br><br>
-  © 2026 Void Esports. All rights reserved.
-</footer>
+    <div class="grid">
+      <div class="card fade-in">
+        <div class="hd">
+          <div class="left">
+            <div class="iconbox"><i data-lucide="message-square"></i></div>
+            <div>
+              <h3>Ticket Architecture</h3>
+              <p>Professional ticket flow: greeting → intent → verification → routing → documentation → closure.</p>
+            </div>
+          </div>
+        </div>
+        <div class="btnrow">
+          <a class="btn" href="moderation.html"><i data-lucide="shield"></i>Open module</a>
+        </div>
+      </div>
 
-<script>
-/* Nav shrink on scroll */
-window.addEventListener("scroll",()=>{
-  const nav=document.getElementById("nav");
-  nav.classList.toggle("scrolled",window.scrollY>50);
-});
+      <div class="card fade-in">
+        <div class="hd">
+          <div class="left">
+            <div class="iconbox"><i data-lucide="badge-check"></i></div>
+            <div>
+              <h3>Roster Intake Standards</h3>
+              <p>Verify PR, earnings, eligibility, and onboarding steps across competitive, creative, and content divisions.</p>
+            </div>
+          </div>
+        </div>
+        <div class="btnrow">
+          <a class="btn" href="roster.html"><i data-lucide="users"></i>Open standards</a>
+        </div>
+      </div>
 
-/* Scroll reveal */
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
-    }
-  });
-},{threshold:.2});
+      <div class="card fade-in">
+        <div class="hd">
+          <div class="left">
+            <div class="iconbox"><i data-lucide="layout-dashboard"></i></div>
+            <div>
+              <h3>Staff Command Center</h3>
+              <p>Shift logging, escalation tools, and performance thresholds — designed for accountability at scale.</p>
+            </div>
+          </div>
+        </div>
+        <div class="btnrow">
+          <a class="btn" href="command-center.html"><i data-lucide="arrow-right"></i>Enter</a>
+        </div>
+      </div>
 
-document.querySelectorAll(".card").forEach(card=>{
-  observer.observe(card);
-});
-</script>
+      <div class="card fade-in">
+        <div class="hd">
+          <div class="left">
+            <div class="iconbox"><i data-lucide="clipboard-check"></i></div>
+            <div>
+              <h3>Certification Portal</h3>
+              <p>Scenario-based exam using realistic chat logs and operational decision-making — not basic trivia.</p>
+            </div>
+          </div>
+        </div>
+        <div class="btnrow">
+          <a class="btn primary" href="certification.html"><i data-lucide="play"></i>Start</a>
+        </div>
+      </div>
+    </div>
 
+    <div class="footer">
+      <div>Void Staff Academy • Internal Governance System</div>
+      <div class="right">© 2026 Void Esports. All rights reserved.</div>
+    </div>
+  </main>
 </body>
 </html>
