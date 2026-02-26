@@ -1,172 +1,165 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Void Staff Academy • Roster</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/app.css"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Void Staff Academy — Roster Management</title>
+  <link rel="stylesheet" href="assets/ui.css" />
 </head>
+<body>
 
-<body class="fade-page">
-  <div class="aurora"></div>
-  <div class="grain"></div>
+  <div class="vfx"></div>
+  <div class="noise"></div>
 
-  <header class="topbar">
-    <div class="container">
-      <div class="inner">
-        <a class="brand" href="index.html">
-          <div class="mark"></div>
-          <div class="title">
-            <b>VOID STAFF ACADEMY</b>
-            <span>Governance • Training • Compliance</span>
-          </div>
-        </a>
-
-        <nav class="nav">
-          <a data-nav href="index.html">Home</a>
-          <a data-nav href="moderation.html">Moderation</a>
-          <a data-nav href="roster.html">Roster</a>
-          <a data-nav href="operations.html">Command Center</a>
-          <a data-nav href="certification.html">Certification</a>
-        </nav>
-
-        <div class="actions">
-          <span class="kbd">Ctrl/⌘ K</span>
-          <button id="mobileOpen" class="btn ghost mobileBtn" type="button"><span class="icon">☰</span> Menu</button>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <h1>VOID STAFF ACADEMY</h1>
+          <p>Talent Management Division</p>
         </div>
       </div>
-    </div>
-  </header>
 
-  <div id="mobileSheet" class="mobileSheet">
-    <div class="shade"></div>
-    <div class="panel">
-      <div class="head">
-        <b>Navigation</b>
-        <button id="mobileClose" class="btn ghost" type="button">Close</button>
+      <nav class="nav">
+        <a data-nav href="index.html"><span class="label">🏛️ Home</span></a>
+        <a data-nav href="roster.html"><span class="label">📋 Roster</span><span class="pill">Active</span></a>
+        <a data-nav href="recruitment.html"><span class="label">🧲 Recruitment</span></a>
+        <a data-nav href="operations.html"><span class="label">🧠 Operations</span></a>
+        <a data-nav href="certification.html"><span class="label">✅ Certification</span></a>
+      </nav>
+
+      <div class="sb-foot">
+        <div class="kbd"><span>Roster Standard</span><code>Verified Only</code></div>
       </div>
-      <div class="links">
-        <a data-nav href="index.html">Home</a>
-        <a data-nav href="moderation.html">Moderation</a>
-        <a data-nav href="roster.html">Roster</a>
-        <a data-nav href="operations.html">Command Center</a>
-        <a data-nav href="certification.html">Certification</a>
-        <a data-nav href="recruitment.html">Recruitment</a>
-        <a data-nav href="leadership.html">Leadership</a>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+
+      <div class="topbar fade-in">
+        <div class="breadcrumb">
+          <b>Void</b> <span class="dot"></span> <span id="crumbHere">Roster</span>
+        </div>
+        <div class="top-actions">
+          <a class="btn primary" href="certification.html">Certification Required</a>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <main>
-    <div class="container">
-
-      <section class="hero reveal" data-reveal>
-        <div class="content" style="grid-template-columns:1fr;">
+      <!-- Hero -->
+      <section class="hero fade-in" style="animation-delay:80ms">
+        <div class="hero-inner">
           <div>
-            <div class="eyebrow"><span class="pill">Roster Division</span></div>
-            <div class="h1">Void Roster Standards</div>
-            <p class="sub">
-              Responsible for intake, eligibility verification, and structured onboarding across competitive,
-              creative, and content divisions. Enforce consistency — no shortcuts, no favoritism.
+            <span class="kicker"><span class="spark"></span> Precision Intake System</span>
+            <h2>Roster Verification & Onboarding</h2>
+            <p>
+              Every player and creator entering Void must pass structured intake verification.
+              No favoritism. No shortcuts. Only documented, verified talent joins the roster.
             </p>
-            <div class="cta">
-              <a class="btn" href="moderation.html">Ticket Routing</a>
-              <a class="btn primary" href="certification.html">Certification</a>
+          </div>
+
+          <div class="cards">
+            <div class="card">
+              <div class="t">Proof Required</div>
+              <div class="v">Always</div>
+              <div class="sub">Screenshots + links</div>
+            </div>
+            <div class="card">
+              <div class="t">Double Verification</div>
+              <div class="v">Standard</div>
+              <div class="sub">Ask twice, confirm twice</div>
+            </div>
+            <div class="card">
+              <div class="t">Documentation</div>
+              <div class="v">Mandatory</div>
+              <div class="sub">Every intake logged</div>
+            </div>
+            <div class="card">
+              <div class="t">Denial Protocol</div>
+              <div class="v">Clear</div>
+              <div class="sub">No drama, no debate</div>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- Roster Types -->
       <section class="grid">
-        <article class="card reveal" data-reveal>
-          <h3>Pro Roster</h3>
-          <p>• 25,000+ Power Ranking</p>
-          <p>• $1,000+ Official Earnings</p>
-          <p>• Place and earn consistently</p>
-          <p>• Represent Void in-game & on socials</p>
-        </article>
 
-        <article class="card reveal" data-reveal>
-          <h3>Semi-Pro</h3>
-          <p>• 10,000–25,000 PR</p>
-          <p>• Must have earnings</p>
-          <p>• Place consistently</p>
-          <p>• Use Fortnite code</p>
-        </article>
+        <!-- Competitive -->
+        <div class="panel span-7 fade-in" style="animation-delay:120ms">
+          <h3>Competitive Division</h3>
+          <p>
+            • Verified PR or ranking proof  
+            • Region & platform confirmation  
+            • Earnings verification (if applicable)  
+            • Availability & commitment confirmation  
+            • No edited screenshots
+          </p>
+        </div>
 
-        <article class="card reveal" data-reveal>
-          <h3>Academy</h3>
-          <p>• 500–10,000 PR</p>
-          <p>• Place consistently</p>
-          <p>• Represent Void in-game</p>
-          <p>• Use Fortnite code</p>
-        </article>
+        <div class="panel span-5 fade-in" style="animation-delay:140ms">
+          <h3>Automatic Denial (Competitive)</h3>
+          <p>
+            • Refusal to provide proof  
+            • Inconsistent stats  
+            • Altered or cropped screenshots  
+            • Avoiding direct questions
+          </p>
+        </div>
 
-        <article class="card reveal" data-reveal>
-          <h3>Creative Roster</h3>
-          <p>• Smooth / fast mechanics</p>
-          <p>• Must be unique</p>
-          <p>• Provide clips when asked</p>
-          <p>• Represent Void publicly</p>
-        </article>
+        <!-- Creative -->
+        <div class="panel span-7 fade-in" style="animation-delay:160ms">
+          <h3>Creative Division</h3>
+          <p>
+            • Portfolio or past work required  
+            • Original content verification  
+            • Consistency in quality  
+            • Alignment with Void branding
+          </p>
+        </div>
 
-        <article class="card reveal" data-reveal>
-          <h3>Streamer</h3>
-          <p>• 1k+ followers/subscribers</p>
-          <p>• 25+ average viewers</p>
-          <p>• Stream 4× per week</p>
-          <p>• Use hashtags & represent Void</p>
-        </article>
+        <div class="panel span-5 fade-in" style="animation-delay:180ms">
+          <h3>Content Creator Division</h3>
+          <p>
+            • Channel links required  
+            • Recent uploads verified  
+            • Engagement consistency  
+            • No purchased followers
+          </p>
+        </div>
 
-        <article class="card reveal" data-reveal>
-          <h3>Content Creator</h3>
-          <p>• 1k+ Twitch/YouTube</p>
-          <p>• 10k+ TikTok</p>
-          <p>• Original high-quality posts</p>
-          <p>• Active & willing to help Void</p>
-        </article>
+        <!-- Junior Creator -->
+        <div class="panel span-12 fade-in" style="animation-delay:200ms">
+          <h3>Junior Creator Pathway</h3>
+          <p>
+            Designed for smaller creators showing growth potential.  
+            Requires consistency, improvement trajectory, and positive conduct.
+            Promotion into full Creator status is performance-based.
+          </p>
+        </div>
 
-        <article class="card reveal" data-reveal>
-          <h3>Junior Content Creator</h3>
-          <p>• 500+ Twitch/YouTube</p>
-          <p>• 3k+ TikTok</p>
-          <p>• High-quality posts</p>
-          <p>• Grinding toward main roster CC</p>
-        </article>
+        <!-- Anti-Fake System -->
+        <div class="panel span-12 fade-in" style="animation-delay:220ms">
+          <h3>Anti-Fake Verification Rule</h3>
+          <p>
+            Ask key requirements in two different ways.  
+            If answers change — intake stops.  
+            Every verification must be documented before approval.
+          </p>
+        </div>
 
-        <article class="card reveal" data-reveal>
-          <h3>GFX / VFX</h3>
-          <p>• Editing experience</p>
-          <p>• Portfolio required</p>
-          <p>• 1440p+ quality work</p>
-          <p>• Deliver consistently</p>
-        </article>
       </section>
 
-      <div class="footer reveal" data-reveal>
-        <div class="split">
-          <div>Void Esports Mod Certification System • Made by Void Yeezy</div>
-          <div>© 2026 Void Esports. All rights reserved.</div>
-        </div>
+      <div class="footer">
+        <div>Void Staff Academy • Talent Governance</div>
+        <div>© 2026 Void Esports.</div>
       </div>
 
-    </div>
-  </main>
-
-  <div id="cmdPalette" class="backdrop">
-    <div class="modal">
-      <div class="hd"><b>Command Palette</b><span class="kbd">Esc</span></div>
-      <div class="bd">
-        <input id="cmdInput" placeholder="Type to search…"/>
-        <div id="cmdList" class="cmd-list"></div>
-      </div>
-    </div>
+    </main>
   </div>
 
-  <div id="toast" class="toast"></div>
-  <script src="assets/app.js"></script>
+  <script src="assets/ui.js"></script>
 </body>
 </html>
