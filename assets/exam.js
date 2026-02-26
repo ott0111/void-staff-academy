@@ -295,7 +295,15 @@ function safeJSONParse(v, fallback) {
 }
 
 function loadAnswers() {
-  return safeJSONParse(localStorage.getItem(LS_ANSWERS), {});
+  const raw = localStorage.getItem(LS_ANSWERS);
+  if (!raw) return {};
+  try {
+    const parsed = JSON.parse(raw);
+    if (typeof parsed !== "object" || parsed === null) return {};
+    return parsed;
+  } catch {
+    return {};
+  }
 }
 function saveAnswers(a) {
   localStorage.setItem(LS_ANSWERS, JSON.stringify(a));
