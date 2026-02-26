@@ -9,7 +9,7 @@
   --stroke: rgba(255,255,255,.10);
   --stroke2: rgba(255,255,255,.16);
   --text:#eef0ff;
-  --muted: rgba(238,240,255,.72);
+  --muted: rgba(238,240,255,0.85);
   --muted2: rgba(238,240,255,.52);
   --accent:#8b5cf6;
   --accent2:#6366f1;
@@ -435,7 +435,17 @@ button, input, textarea{font:inherit}
   cursor: pointer;
   transition: 0.2s ease;
 }
+.qcard {
+  color: #ffffff;
+}
 
+.opt {
+  color: #ffffff;
+}
+
+textarea {
+  color: #ffffff;
+}
 .opt:hover {
   background: rgba(255,255,255,0.08);
 }
