@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Void Staff Academy — Roster</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b14; --panel:rgba(255,255,255,.06); --stroke:rgba(255,255,255,.10);
+  --text:#ffffff; --muted:rgba(255,255,255,.72);
+  --accent:#a855f7; --accent2:#7c3aed; --shadow:0 18px 60px rgba(0,0,0,.55);
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Inter,system-ui,Segoe UI,Arial;
+  background:radial-gradient(circle at top,#1a1a2b,var(--bg));
+  color:var(--text);
+}
+nav{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 28px;border-bottom:1px solid var(--stroke);
+  background:rgba(10,10,18,.6);backdrop-filter:blur(12px);
+}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .dot{width:10px;height:10px;border-radius:999px;background:var(--accent);box-shadow:0 0 20px rgba(168,85,247,.8)}
+.brand h1{font-size:16px;font-weight:800;color:var(--accent)}
+.links a{
+  color:var(--text);text-decoration:none;font-weight:600;font-size:13px;
+  padding:10px 12px;border-radius:12px;opacity:.9;transition:.2s;
+}
+.links a:hover{background:rgba(255,255,255,.06);opacity:1}
+.links a.active{background:linear-gradient(135deg,rgba(168,85,247,.22),rgba(124,58,237,.14));border:1px solid rgba(168,85,247,.35)}
+.wrap{max-width:1100px;margin:0 auto;padding:28px}
+.hero{
+  display:flex;flex-direction:column;gap:10px;
+  padding:22px;border:1px solid var(--stroke);background:var(--panel);border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+.hero h2{font-size:24px}
+.hero p{color:var(--muted);line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:16px}
+.card{
+  grid-column:span 12;
+  padding:18px;border:1px solid var(--stroke);background:var(--panel);border-radius:var(--radius);
+}
+@media(min-width:900px){ .card.third{grid-column:span 4} .card.half{grid-column:span 6} }
+.card h3{color:var(--accent);font-size:16px;margin-bottom:10px}
+.card ul{padding-left:18px}
+.card li{color:var(--muted);line-height:1.65;margin:6px 0}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 10px;border-radius:999px;border:1px solid rgba(168,85,247,.35);
+  background:rgba(168,85,247,.10);color:#f2e9ff;font-weight:800;font-size:12px;
+}
+.footer{ text-align:center;margin-top:22px;padding:18px;color:rgba(255,255,255,.55);font-size:12px }
+hr.sep{border:none;border-top:1px solid rgba(255,255,255,.08);margin:14px 0}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand"><div class="dot"></div><h1>Void Staff Academy</h1></div>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="moderation.html">Moderation</a>
+    <a class="active" href="roster.html">Roster</a>
+    <a href="operations.html">Operations</a>
+    <a href="certification.html">Certification</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="hero">
+    <span class="badge">Module — Roster Intake</span>
+    <h2>Roster Categories & Requirements</h2>
+    <p>When handling roster tickets, identify the requested role, verify age, collect proof (tracker, clips, socials), and route to the correct department for review.</p>
+  </div>
+
+  <div class="grid">
+    <div class="card third">
+      <h3>🏆 Pro Roster</h3>
+      <ul>
+        <li>25,000+ Power Ranking</li>
+        <li>$1,000+ in Official Fortnite Earnings</li>
+        <li>Place and earn consistently</li>
+        <li>Represent us in-game and on socials</li>
+      </ul>
+    </div>
+
+    <div class="card third">
+      <h3>🎮 Semi-Pro</h3>
+      <ul>
+        <li>10,000–25,000 PR</li>
+        <li>Place consistently</li>
+        <li>Represent us in-game</li>
+        <li>Use our Fortnite code</li>
+        <li>Must have earnings</li>
+      </ul>
+    </div>
+
+    <div class="card third">
+      <h3>🎓 Academy Roster</h3>
+      <ul>
+        <li>500–10,000 PR</li>
+        <li>Place consistently</li>
+        <li>Represent us in-game</li>
+        <li>Use our Fortnite code</li>
+      </ul>
+    </div>
+
+    <div class="card third">
+      <h3>🎨 Creative Roster</h3>
+      <ul>
+        <li>Smooth/fast mechanics</li>
+        <li>Must be unique</li>
+        <li>Provide clips when asked</li>
+        <li>Represent us in-game and on socials</li>
+      </ul>
+    </div>
+
+    <div class="card third">
+      <h3>🎙️ Streamer</h3>
+      <ul>
+        <li>1k+ followers/subscribers</li>
+        <li>Average 25+ viewers per stream</li>
+        <li>Stream at least 4x per week</li>
+        <li>Use our hashtags in bio/descriptions</li>
+        <li>Represent us in-game and on socials</li>
+      </ul>
+    </div>
+
+    <div class="card third">
+      <h3>🎥 Content Creator</h3>
+      <ul>
+        <li>&gt;1k followers on Twitch/YouTube</li>
+        <li>&gt;10k followers on TikTok</li>
+        <li>Original/high quality posts</li>
+        <li>Willing to help with Void content</li>
+        <li>Must post actively</li>
+        <li>Represent us in-game and on socials</li>
+      </ul>
+    </div>
+
+    <div class="card half">
+      <h3>🎬 Junior Content Creator</h3>
+      <ul>
+        <li>&gt;500 followers on Twitch/YouTube</li>
+        <li>&gt;3k followers on TikTok</li>
+        <li>Posts are original and high quality</li>
+        <li>Willing to grind to become main roster CC</li>
+        <li>Represent us in-game and on socials</li>
+      </ul>
+    </div>
+
+    <div class="card half">
+      <h3>🖌️ GFX/VFX</h3>
+      <ul>
+        <li>Editing experience</li>
+        <li>Portfolio required</li>
+        <li>High-quality work (1440p+)</li>
+        <li>Willing to do free work for staff/roster</li>
+        <li>Deliver when asked</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Void Grinder+ (Fallback Offer)</h3>
+      <p style="color:rgba(255,255,255,.72);line-height:1.7">
+        If they do not qualify for any roles, you can offer <strong>Grinder+</strong>.
+        Required proof:
+      </p>
+      <ul style="padding-left:18px;margin-top:10px">
+        <li>Screenshot using support creator code: <strong>Team.Void</strong></li>
+        <li>Screenshot of Epic Games username containing <strong>“Void”</strong></li>
+        <li>Use our Discord “Void” tag</li>
+      </ul>
+      <hr class="sep">
+      <p style="color:rgba(255,255,255,.65)">
+        After proof is submitted: confirm, assign roles, and close professionally.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Blacklist (⚠️ underage)</h3>
+      <p style="color:rgba(255,255,255,.72);line-height:1.7">
+        If the user is underage or violates a non-negotiable rule, follow blacklist procedure exactly:
+      </p>
+      <ul style="padding-left:18px;margin-top:10px">
+        <li><strong>User:</strong> Username</li>
+        <li><strong>User ID:</strong> Discord ID</li>
+        <li><strong>Reason:</strong> Underage</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    Void Esports Mod Certification System • Made by Void Yeezy<br>
+    © 2026 Void Esports. All rights reserved.
+  </div>
+</div>
+
+</body>
+</html>
