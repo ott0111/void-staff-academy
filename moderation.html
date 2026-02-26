@@ -1,568 +1,157 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Void Staff Academy — Moderation</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --bg:#050509;
-  --accent:#a855f7;
-  --accent2:#7c3aed;
-  --text:#ffffff;
-  --muted:rgba(255,255,255,.65);
-  --panel:rgba(255,255,255,.035);
-  --stroke:rgba(255,255,255,.06);
-  --stroke2:rgba(168,85,247,.25);
-}
-
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:'Inter',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
-}
-
-/* Animated grid */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    linear-gradient(rgba(168,85,247,.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(168,85,247,.06) 1px, transparent 1px);
-  background-size:42px 42px;
-  mask-image:radial-gradient(circle at 40% 20%, black 35%, transparent 78%);
-  z-index:-3;
-}
-
-/* Floating glow */
-.glow{
-  position:fixed;
-  width:720px;height:720px;
-  background:radial-gradient(circle, rgba(168,85,247,.42), transparent 60%);
-  filter:blur(150px);
-  top:-220px;left:-240px;
-  animation:moveGlow 14s infinite alternate ease-in-out;
-  z-index:-2;
-}
-@keyframes moveGlow{
-  from{transform:translate(0,0)}
-  to{transform:translate(220px,160px)}
-}
-
-/* Nav */
-nav{
-  position:fixed;top:0;left:0;right:0;
-  padding:24px 80px;
-  display:flex;justify-content:space-between;align-items:center;
-  backdrop-filter:blur(14px);
-  background:rgba(10,10,15,.5);
-  border-bottom:1px solid rgba(255,255,255,.05);
-  z-index:100;
-  transition:.4s;
-}
-nav.scrolled{
-  padding:18px 80px;
-  background:rgba(5,5,10,.9);
-}
-.logo{
-  font-weight:900;
-  font-size:18px;
-  letter-spacing:.4px;
-  background:linear-gradient(90deg,var(--accent),white);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-.navlinks a{
-  margin-left:30px;
-  text-decoration:none;
-  color:var(--muted);
-  font-weight:700;
-  font-size:13px;
-  transition:.25s;
-}
-.navlinks a:hover{color:white}
-.navlinks a.active{
-  color:white;
-  padding:10px 14px;
-  border-radius:999px;
-  border:1px solid rgba(168,85,247,.25);
-  background:linear-gradient(135deg, rgba(168,85,247,.18), rgba(124,58,237,.08));
-}
-
-/* Layout */
-.wrap{
-  max-width:1250px;
-  margin:0 auto;
-  padding:120px 28px 90px;
-}
-
-/* Header */
-.header{
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:22px;
-  align-items:stretch;
-}
-@media(max-width:980px){
-  .header{grid-template-columns:1fr}
-}
-.hero{
-  padding:34px 34px;
-  border-radius:34px;
-  background:linear-gradient(135deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
-  border:1px solid var(--stroke);
-  backdrop-filter:blur(18px);
-  position:relative;
-  overflow:hidden;
-  transform:translateY(30px);
-  opacity:0;
-}
-.hero.show{transform:translateY(0);opacity:1;transition:all .8s ease}
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:-120px -120px auto auto;
-  width:320px;height:320px;
-  background:radial-gradient(circle, rgba(168,85,247,.28), transparent 60%);
-  filter:blur(40px);
-}
-.kicker{
-  display:inline-flex;
-  gap:10px;
-  align-items:center;
-  font-weight:800;
-  font-size:12px;
-  color:rgba(255,255,255,.75);
-  padding:10px 14px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.06);
-  background:rgba(255,255,255,.03);
-}
-.kdot{
-  width:9px;height:9px;border-radius:999px;
-  background:var(--accent);
-  box-shadow:0 0 18px rgba(168,85,247,.8);
-}
-.hero h1{
-  margin-top:18px;
-  font-size:42px;
-  line-height:1.05;
-  font-weight:900;
-  letter-spacing:-.6px;
-}
-.hero h1 span{
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-.hero p{
-  margin-top:16px;
-  color:var(--muted);
-  font-size:15px;
-  line-height:1.8;
-  max-width:66ch;
-}
-
-/* Side stat card */
-.side{
-  padding:28px;
-  border-radius:34px;
-  border:1px solid var(--stroke);
-  background:rgba(255,255,255,.03);
-  backdrop-filter:blur(18px);
-  transform:translateY(30px);
-  opacity:0;
-}
-.side.show{transform:translateY(0);opacity:1;transition:all .85s ease}
-.side h3{
-  font-size:16px;
-  font-weight:900;
-  margin-bottom:12px;
-}
-.mini{
-  display:grid;
-  gap:10px;
-}
-.metric{
-  padding:14px 14px;
-  border-radius:18px;
-  background:rgba(0,0,0,.25);
-  border:1px solid rgba(255,255,255,.06);
-}
-.metric b{display:block;font-size:13px}
-.metric span{display:block;margin-top:6px;color:rgba(255,255,255,.72);font-size:12px;line-height:1.5}
-
-/* Sections */
-.section{
-  margin-top:26px;
-  padding:26px;
-  border-radius:34px;
-  border:1px solid rgba(255,255,255,.06);
-  background:rgba(255,255,255,.03);
-  backdrop-filter:blur(18px);
-  transform:translateY(30px);
-  opacity:0;
-}
-.section.show{transform:translateY(0);opacity:1;transition:all .85s ease}
-.sectionHeader{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:12px;
-  flex-wrap:wrap;
-}
-.sectionHeader h2{
-  font-size:18px;
-  font-weight:900;
-  letter-spacing:-.2px;
-}
-.sectionHeader p{
-  color:rgba(255,255,255,.55);
-  font-size:12px;
-  font-weight:700;
-}
-.divider{
-  height:1px;
-  background:linear-gradient(90deg, rgba(168,85,247,.0), rgba(168,85,247,.25), rgba(168,85,247,.0));
-  margin:18px 0 14px;
-}
-
-/* Cards grid */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:18px;
-  margin-top:10px;
-}
-.card{
-  grid-column:span 12;
-  padding:22px;
-  border-radius:26px;
-  background:linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-  border:1px solid rgba(255,255,255,.06);
-  transition:.35s;
-  position:relative;
-  overflow:hidden;
-}
-.card:hover{
-  transform:translateY(-6px);
-  border-color:rgba(168,85,247,.22);
-  box-shadow:0 0 60px rgba(168,85,247,.14);
-}
-.card::after{
-  content:"";
-  position:absolute;
-  inset:auto -120px -120px auto;
-  width:240px;height:240px;
-  background:radial-gradient(circle, rgba(168,85,247,.18), transparent 60%);
-  filter:blur(30px);
-  pointer-events:none;
-}
-@media(min-width:980px){
-  .card.half{grid-column:span 6}
-}
-.card h3{
-  font-size:16px;
-  font-weight:900;
-  margin-bottom:10px;
-}
-.card p, .card li{
-  color:rgba(255,255,255,.72);
-  line-height:1.75;
-  font-size:13px;
-}
-ul{padding-left:18px}
-li{margin:8px 0}
-
-/* Protocol highlight */
-.protocol{
-  border:1px solid rgba(168,85,247,.25);
-  background:linear-gradient(135deg, rgba(168,85,247,.12), rgba(124,58,237,.06));
-}
-kbd{
-  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
-  font-size:12px;
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.10);
-  padding:3px 8px;
-  border-radius:10px;
-}
-
-/* Footer */
-footer{
-  margin-top:34px;
-  padding:40px 10px 0;
-  text-align:center;
-  color:rgba(255,255,255,.4);
-  font-size:12px;
-  border-top:1px solid rgba(255,255,255,.05);
-}
-
-/* Small button */
-.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-.btn{
-  border:none;
-  cursor:pointer;
-  font-weight:900;
-  font-size:13px;
-  padding:12px 16px;
-  border-radius:999px;
-  color:white;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  transition:.3s;
-}
-.btn:hover{transform:scale(1.05);box-shadow:0 0 50px rgba(168,85,247,.35)}
-.btn.secondary{
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.10);
-  color:rgba(255,255,255,.85);
-}
-.btn.secondary:hover{box-shadow:none}
-</style>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Void Staff Academy • Moderation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/app.css"/>
 </head>
 
-<body>
-<div class="glow"></div>
+<body class="fade-page">
+  <div class="aurora"></div>
+  <div class="grain"></div>
 
-<nav id="nav">
-  <div class="logo">Void Staff Academy</div>
-  <div class="navlinks">
-    <a href="index.html">Home</a>
-    <a class="active" href="moderation.html">Moderation</a>
-    <a href="roster.html">Roster</a>
-    <a href="command-center.html">Commands</a>
-    <a href="certification.html">Certification</a>
-  </div>
-</nav>
+  <header class="topbar">
+    <div class="container">
+      <div class="inner">
+        <a class="brand" href="index.html">
+          <div class="mark"></div>
+          <div class="title">
+            <b>VOID STAFF ACADEMY</b>
+            <span>Governance • Training • Compliance</span>
+          </div>
+        </a>
 
-<div class="wrap">
+        <nav class="nav">
+          <a data-nav href="index.html">Home</a>
+          <a data-nav href="moderation.html">Moderation</a>
+          <a data-nav href="roster.html">Roster</a>
+          <a data-nav href="operations.html">Command Center</a>
+          <a data-nav href="certification.html">Certification</a>
+        </nav>
 
-  <div class="header">
-    <div class="hero reveal">
-      <div class="kicker"><span class="kdot"></span> MODERATION MODULE</div>
-      <h1>Ticket Handling <span>Standards</span></h1>
-      <p>
-        Your priority is efficient, professional ticket management.
-        Every response must follow protocol: greeting → purpose → age verification → correct routing → documentation.
-      </p>
-
-      <div class="btnrow">
-        <button class="btn" onclick="location.href='certification.html'">Go to Practical Assessment</button>
-        <button class="btn secondary" onclick="location.href='command-center.html'">Next Module: Commands</button>
-      </div>
-    </div>
-
-    <div class="side reveal">
-      <h3>Protocol Snapshot</h3>
-      <div class="mini">
-        <div class="metric">
-          <b>Ticket Types</b>
-          <span>General • Roster</span>
-        </div>
-        <div class="metric">
-          <b>Required Opening</b>
-          <span>Professional greeting + role inquiry + age verification</span>
-        </div>
-        <div class="metric">
-          <b>Escalation</b>
-          <span>Complex or sensitive cases go to senior staff with proof + context</span>
+        <div class="actions">
+          <span class="kbd">Ctrl/⌘ K</span>
+          <button id="mobileOpen" class="btn ghost mobileBtn" type="button"><span class="icon">☰</span> Menu</button>
         </div>
       </div>
     </div>
-  </div>
+  </header>
 
-  <div class="section reveal">
-    <div class="sectionHeader">
-      <h2>Ticket Types</h2>
-      <p>Correct classification = faster handling + cleaner logs</p>
-    </div>
-    <div class="divider"></div>
-
-    <div class="grid">
-      <div class="card half">
-        <h3>General Ticket</h3>
-        <p>
-          Created for support inquiries, moderator assistance, or reporting issues.
-          Handle professionally and escalate complex matters with documentation.
-        </p>
+  <div id="mobileSheet" class="mobileSheet">
+    <div class="shade"></div>
+    <div class="panel">
+      <div class="head">
+        <b>Navigation</b>
+        <button id="mobileClose" class="btn ghost" type="button">Close</button>
       </div>
-
-      <div class="card half">
-        <h3>Roster Ticket</h3>
-        <p>
-          Application channel for users seeking to join Void Esports.
-          First response must include age verification and direction to proper resources.
-        </p>
-      </div>
-
-      <div class="card protocol">
-        <h3>Protocol (Non-Negotiable)</h3>
-        <ul>
-          <li>Start with a professional greeting (no “yo”, “bro”, etc.).</li>
-          <li>Ask what they need / what role they’re applying for.</li>
-          <li>Ask for age verification clearly.</li>
-          <li>Request correct proof (tracker/clips/socials/portfolio).</li>
-          <li>Route to correct department + keep records.</li>
-        </ul>
+      <div class="links">
+        <a data-nav href="index.html">Home</a>
+        <a data-nav href="moderation.html">Moderation</a>
+        <a data-nav href="roster.html">Roster</a>
+        <a data-nav href="operations.html">Command Center</a>
+        <a data-nav href="certification.html">Certification</a>
+        <a data-nav href="recruitment.html">Recruitment</a>
+        <a data-nav href="leadership.html">Leadership</a>
       </div>
     </div>
   </div>
 
-  <div class="section reveal">
-    <div class="sectionHeader">
-      <h2>Approved Openers</h2>
-      <p>Professional tone only</p>
+  <main>
+    <div class="container">
+
+      <section class="hero reveal" data-reveal>
+        <div class="content" style="grid-template-columns:1fr;">
+          <div>
+            <div class="eyebrow"><span class="pill">Moderation Module</span></div>
+            <div class="h1">Ticket Handling Standards</div>
+            <p class="sub">
+              Your priority is efficient, professional ticket management. Every response must follow protocol:
+              greeting → purpose → age verification → correct routing → documentation.
+            </p>
+            <div class="cta">
+              <a class="btn primary" href="certification.html">Go to Practical Assessment</a>
+              <a class="btn" href="operations.html">Next Module: Operations</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card reveal" data-reveal>
+          <h3>Protocol Snapshot</h3>
+          <p><b>Ticket Types:</b> General • Roster</p>
+          <p><b>Required Opening:</b> professional greeting + role inquiry + age verification</p>
+          <p><b>Escalation:</b> complex or sensitive cases go to senior staff with proof + context</p>
+        </article>
+
+        <article class="card reveal" data-reveal>
+          <h3>Protocol (Non-Negotiable)</h3>
+          <p>• Start with a professional greeting (no “yo”, “bro”, etc.).</p>
+          <p>• Ask what they need / what role they’re applying for.</p>
+          <p>• Ask for age verification clearly.</p>
+          <p>• Request correct proof (tracker/clips/socials/portfolio).</p>
+          <p>• Route to correct department + keep records.</p>
+        </article>
+
+        <article class="card reveal" data-reveal>
+          <h3>Approved Openers</h3>
+          <p><b>Greetings</b></p>
+          <p>• Hello, how may I help you?</p>
+          <p>• Hello, what can I assist you with today?</p>
+          <div class="hr"></div>
+          <p><b>Core Questions</b></p>
+          <p>• What role are you applying for today?</p>
+          <p>• May I ask how old you are?</p>
+        </article>
+
+        <article class="card reveal" data-reveal>
+          <h3>Role-Specific Routing</h3>
+          <p><b>Creative</b> — ask for 2–3 clips, ping Creative Department.</p>
+          <p><b>Roster</b> — ask tracker + lobby proof. Pro/Semi: ping operations.</p>
+          <p><b>GFX/VFX</b> — ask portfolio, ping GFX/VFX lead.</p>
+          <p><b>Content</b> — ask socials, ping Content Department.</p>
+          <p class="small">Fallback: offer Grinder+ if they don’t qualify for roster roles.</p>
+        </article>
+
+        <article class="card reveal" data-reveal>
+          <h3>Closing the Ticket</h3>
+          <p><b>Final prompt</b>: “Perfect! Please change your name to have Void in it and send a screenshot of using our code!”</p>
+          <p><b>After proof</b>: “Thank you! Here are your roles! Have a nice day!”</p>
+        </article>
+
+        <article class="card reveal" data-reveal>
+          <h3>Commands Reminder</h3>
+          <p><span class="badge warn">Warn</span> Use only in #staff-commands: <span style="font-family:var(--mono)"><code>*warn user-id reason</code></span></p>
+          <p><span class="badge bad">Report</span> Use <span style="font-family:var(--mono)"><code>/report</code></span> with documentation.</p>
+          <p><span class="badge">Blacklist (Underage)</span> Store Username • Discord ID • Reason.</p>
+        </article>
+      </section>
+
+      <div class="footer reveal" data-reveal>
+        <div class="split">
+          <div>Void Esports Mod Certification System • Made by Void Yeezy</div>
+          <div>© 2026 Void Esports. All rights reserved.</div>
+        </div>
+      </div>
+
     </div>
-    <div class="divider"></div>
+  </main>
 
-    <div class="grid">
-      <div class="card half">
-        <h3>Greetings</h3>
-        <ul>
-          <li>Hello, how may I help you?</li>
-          <li>Hello, what can I assist you with today?</li>
-        </ul>
-      </div>
-      <div class="card half">
-        <h3>Core Questions</h3>
-        <ul>
-          <li>What role are you applying for today?</li>
-          <li>May I ask how old you are?</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="section reveal">
-    <div class="sectionHeader">
-      <h2>Role-Specific Routing</h2>
-      <p>Ask for proof + ping the right department</p>
-    </div>
-    <div class="divider"></div>
-
-    <div class="grid">
-      <div class="card half">
-        <h3>Creative</h3>
-        <ul>
-          <li><b>@Creative Academy / @Main Creative</b> — Ask for 2–3 clips and ping <b>@Creative Department</b>.</li>
-        </ul>
-      </div>
-
-      <div class="card half">
-        <h3>Roster</h3>
-        <ul>
-          <li><b>@Academy Roster</b> — Ask for tracker + default dance lobby image.</li>
-          <li><b>@Semi-Pro / @Pro Roster</b> — Ask for tracker + default dance lobby image and ping <b>@operations</b>.</li>
-        </ul>
-      </div>
-
-      <div class="card half">
-        <h3>GFX / VFX</h3>
-        <ul>
-          <li><b>@VOID VFX / @VOID GFX</b> — Ask for portfolio/previous work and ping <b>@GFX / VFX Lead</b>.</li>
-        </ul>
-      </div>
-
-      <div class="card half">
-        <h3>Content</h3>
-        <ul>
-          <li><b>@Content Creator</b> — Ask for socials and ping <b>@Content Department</b>.</li>
-          <li><b>@Coach</b> — Ask who they coached + link trackers.</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Fallback Offer: Grinder+</h3>
-        <p>
-          If they don’t qualify for roster roles, you can offer <b>Void Grinder+</b>.
-          (Full requirements are listed in the Roster module.)
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="section reveal">
-    <div class="sectionHeader">
-      <h2>Closing the Ticket</h2>
-      <p>Clean close + confirmation + roles</p>
-    </div>
-    <div class="divider"></div>
-
-    <div class="grid">
-      <div class="card half">
-        <h3>Final Step Prompt</h3>
-        <p>
-          “Perfect! Please change your name to have <b>Void</b> in it and send a screenshot of using our code!”
-        </p>
-      </div>
-      <div class="card half">
-        <h3>After Proof is Sent</h3>
-        <p>
-          “Thank you! Here are your roles! Have a nice day!”
-        </p>
+  <div id="cmdPalette" class="backdrop">
+    <div class="modal">
+      <div class="hd"><b>Command Palette</b><span class="kbd">Esc</span></div>
+      <div class="bd">
+        <input id="cmdInput" placeholder="Type to search…"/>
+        <div id="cmdList" class="cmd-list"></div>
       </div>
     </div>
   </div>
 
-  <div class="section reveal">
-    <div class="sectionHeader">
-      <h2>Commands Reminder</h2>
-      <p>Use the right command in the right place</p>
-    </div>
-    <div class="divider"></div>
-
-    <div class="grid">
-      <div class="card half">
-        <h3>Warn (Minor Violations)</h3>
-        <p>Use only in <b>#staff-commands</b>:</p>
-        <p style="margin-top:10px"><kbd>*warn user-id reason</kbd></p>
-      </div>
-
-      <div class="card half">
-        <h3>Report (Major / Repeated)</h3>
-        <p>Use:</p>
-        <p style="margin-top:10px"><kbd>/report</kbd> with detailed documentation.</p>
-      </div>
-
-      <div class="card protocol">
-        <h3>Blacklist Procedure (Underage)</h3>
-        <ul>
-          <li><b>User:</b> Username</li>
-          <li><b>User ID:</b> Discord ID</li>
-          <li><b>Reason:</b> Underage</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <footer>
-    Void Esports Mod Certification System • Made by Void Yeezy<br><br>
-    © 2026 Void Esports. All rights reserved.
-  </footer>
-</div>
-
-<script>
-/* Nav shrink */
-window.addEventListener("scroll",()=>{
-  const nav=document.getElementById("nav");
-  nav.classList.toggle("scrolled", window.scrollY>50);
-});
-
-/* Scroll reveal */
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting) e.target.classList.add("show");
-  });
-},{threshold:.18});
-
-document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
-</script>
-
+  <div id="toast" class="toast"></div>
+  <script src="assets/app.js"></script>
 </body>
 </html>
