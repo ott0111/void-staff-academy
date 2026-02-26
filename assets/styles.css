@@ -333,16 +333,6 @@ button, input, textarea{font:inherit}
 }
 .footer .right{opacity:.9}
 
-.fade-in{
-  opacity:0;
-  transform: translateY(10px);
-  transition: .35s ease;
-}
-.fade-in.show{
-  opacity:1;
-  transform: translateY(0);
-}
-
 @media (max-width: 980px){
   .h1{font-size: 34px}
   .card{grid-column: span 12}
