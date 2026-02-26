@@ -17,6 +17,7 @@
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
+
 body{
   font-family:'Inter',sans-serif;
   background:var(--bg);
@@ -24,7 +25,7 @@ body{
   overflow-x:hidden;
 }
 
-/* Animated Grid */
+/* Background Grid */
 body::before{
   content:"";
   position:fixed;
@@ -46,12 +47,7 @@ body::before{
   filter:blur(160px);
   top:-200px;
   left:-200px;
-  animation:float 18s infinite alternate ease-in-out;
   z-index:-2;
-}
-@keyframes float{
-  from{transform:translate(0,0)}
-  to{transform:translate(250px,200px)}
 }
 
 /* NAV */
@@ -60,24 +56,56 @@ nav{
   top:0;
   width:100%;
   padding:25px 80px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
   backdrop-filter:blur(14px);
   background:rgba(10,10,15,.5);
   border-bottom:1px solid rgba(255,255,255,.05);
 }
-<div class="back-container">
-  <button class="back-btn" onclick="location.href='index.html'">
-    ← Go Back
-  </button>
-</div>
+
 .logo{
   font-weight:900;
   font-size:18px;
   background:linear-gradient(90deg,var(--accent),white);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+}
+
+/* Back Button */
+.back-container{
+  position:fixed;
+  top:95px;
+  left:80px;
+  z-index:90;
+}
+
+.back-btn{
+  padding:10px 20px;
+  border-radius:999px;
+  border:1px solid rgba(168,85,247,.3);
+  background:rgba(168,85,247,.2);
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.back-btn:hover{
+  box-shadow:0 0 30px rgba(168,85,247,.5);
+}
+
+/* Admin Button */
+.admin-btn-container{
+  position:fixed;
+  top:95px;
+  right:80px;
+}
+
+.admin-btn{
+  padding:10px 20px;
+  border-radius:999px;
+  border:1px solid rgba(168,85,247,.3);
+  background:rgba(168,85,247,.2);
+  color:white;
+  font-weight:700;
+  cursor:pointer;
 }
 
 .wrapper{
@@ -98,22 +126,15 @@ span{
   -webkit-text-fill-color:transparent;
 }
 
-p{
-  margin-top:15px;
-  color:var(--muted);
-}
-
-/* Quiz Box */
 .quiz-box{
   margin-top:50px;
   padding:40px;
   border-radius:30px;
   background:rgba(255,255,255,.03);
   border:1px solid rgba(255,255,255,.05);
-  backdrop-filter:blur(20px);
 }
 
-input[type="text"]{
+input{
   width:100%;
   padding:14px;
   margin-bottom:25px;
@@ -139,11 +160,6 @@ input[type="text"]{
   transition:.4s;
 }
 
-.question{
-  font-size:18px;
-  margin-bottom:20px;
-}
-
 .options button{
   display:block;
   width:100%;
@@ -155,7 +171,6 @@ input[type="text"]{
   font-weight:600;
   background:rgba(255,255,255,.05);
   color:white;
-  transition:.3s;
 }
 
 .options button:hover{
@@ -163,29 +178,41 @@ input[type="text"]{
 }
 
 .result{
-  margin-top:40px;
+  margin-top:30px;
   font-size:22px;
   font-weight:800;
 }
 
 .certificate{
-  margin-top:60px;
-  padding:50px;
-  border-radius:30px;
+  margin-top:50px;
+  padding:40px;
+  border-radius:20px;
   border:2px solid rgba(168,85,247,.4);
   background:linear-gradient(135deg, rgba(168,85,247,.1), rgba(124,58,237,.05));
   display:none;
 }
 
-.certificate h2{
-  font-size:32px;
-  margin-bottom:20px;
+/* Admin Modal */
+.admin-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.8);
+  justify-content:center;
+  align-items:center;
 }
 
-footer{
-  margin-top:80px;
-  font-size:13px;
-  color:rgba(255,255,255,.4);
+.admin-box{
+  background:#111;
+  padding:40px;
+  border-radius:20px;
+}
+
+.admin-panel{
+  display:none;
+  padding:120px 40px;
+  max-width:1000px;
+  margin:auto;
 }
 </style>
 </head>
@@ -198,61 +225,78 @@ footer{
   <div class="logo">Void Staff Academy</div>
 </nav>
 
+<div class="back-container">
+  <button class="back-btn" onclick="location.href='index.html'">← Go Back</button>
+</div>
+
+<div class="admin-btn-container">
+  <button class="admin-btn" onclick="openAdmin()">Admin</button>
+</div>
+
 <div class="wrapper">
 
-  <h1>Certification <span>Portal</span></h1>
-  <p>20 Question Practical Assessment • Passing Score: 70%</p>
+<h1>Certification <span>Portal</span></h1>
+<p>20 Question Practical Assessment • Passing Score: 70%</p>
 
-  <div class="quiz-box" id="quizBox">
-    <input type="text" id="username" placeholder="Enter Discord Username">
+<div class="quiz-box" id="quizBox">
+<input type="text" id="username" placeholder="Enter Discord Username">
+<div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+<div id="questionText"></div>
+<div class="options" id="options"></div>
+</div>
 
-    <div class="progress">
-      <div class="progress-bar" id="progressBar"></div>
-    </div>
+<div class="result" id="result"></div>
 
-    <div class="question" id="questionText"></div>
-    <div class="options" id="options"></div>
-  </div>
-
-  <div class="result" id="result"></div>
-
-  <div class="certificate" id="certificate">
-    <h2>Official Void Moderator Certification</h2>
-    <p id="certName"></p>
-    <p id="certScore"></p>
-    <p id="certID"></p>
-    <p id="certDate"></p>
-  </div>
-
-  <footer>
-    Void Esports Mod Certification System • Made by Void Yeezy<br>
-    © 2026 Void Esports. All rights reserved.
-  </footer>
+<div class="certificate" id="certificate">
+<h2>Official Void Moderator Certification</h2>
+<p id="certName"></p>
+<p id="certScore"></p>
+<p id="certID"></p>
+<p id="certDate"></p>
+</div>
 
 </div>
 
+<!-- Admin Modal -->
+<div class="admin-modal" id="adminModal">
+<div class="admin-box">
+<h2>Admin Login</h2>
+<input type="password" id="adminPass" placeholder="Password">
+<button onclick="verifyAdmin()">Access</button>
+<button onclick="closeAdmin()">Close</button>
+</div>
+</div>
+
+<div class="admin-panel" id="adminPanel">
+<h2>Question Bank Overview</h2>
+<div id="questionList"></div>
+<button onclick="closePanel()">Close Admin View</button>
+</div>
+
 <script>
+const ADMIN_PASSWORD="VoidAdmin2026";
+
 const questions=[
-  {q:"A ticket opens. What is your first action?",a:["Say yo","Professional greeting + age","Ignore","Ban"],c:1},
-  {q:"Minor rule violation command?",a:["/report","*warn","/ban","None"],c:1},
-  {q:"Weekly ticket minimum?",a:["5","10","20","1"],c:1},
-  {q:"Weekly message minimum?",a:["100","250","400","50"],c:2},
-  {q:"Underage user action?",a:["Ignore","Blacklist properly","Give role","Warn"],c:1},
-  {q:"Roster ticket must ask?",a:["Favorite skin","Age","PC specs","KD"],c:1},
-  {q:"Shift start command?",a:["/logout","/login","/report","/loa"],c:1},
-  {q:"Shift end command?",a:["/logout","/login","/warn","/loa"],c:0},
-  {q:"Pro roster PR?",a:["5k","10k","25k+","50k"],c:2},
-  {q:"Academy PR?",a:["500-10k","25k","50k","100k"],c:0},
-  {q:"Creative must provide?",a:["Clips","PR","Earnings","Nothing"],c:0},
-  {q:"Streamer min viewers?",a:["5","10","25+","100"],c:2},
-  {q:"Content creator TikTok?",a:["1k","5k","10k+","50k"],c:2},
-  {q:"Junior CC TikTok?",a:["3k+","10k","100k","1k"],c:0},
-  {q:"GFX requires?",a:["Portfolio","PR","Earnings","None"],c:0},
-  {q:"Grinder+ needs code proof?",a:["Yes","No","Optional","Unknown"],c:0},
-  {q:"Warn used in?",a:["Any channel","#staff-commands","DM","Public"],c:1},
-  {q:"Major infractions?",a:["Warn","Report","Ignore","Kick"],c:1},
-  {q:"LOA requires?",a:["Nothing","Reason + duration","Just reason","Just date"],c:1},
-  {q:"Closing ticket message?",a:["k bye","Professional thank you","Ignore","Spam"],c:1}
+{q:"A ticket opens. What is your first action?",a:["Say yo","Professional greeting + age","Ignore","Ban"],c:1},
+{q:"Minor rule violation command?",a:["/report","*warn","/ban","None"],c:1},
+{q:"Weekly ticket minimum?",a:["5","10","20","1"],c:1},
+{q:"Weekly message minimum?",a:["100","250","400","50"],c:2},
+{q:"Underage user action?",a:["Ignore","Blacklist properly","Give role","Warn"],c:1},
+{q:"Roster ticket must ask?",a:["Favorite skin","Age","PC specs","KD"],c:1},
+{q:"Shift start command?",a:["/logout","/login","/report","/loa"],c:1},
+{q:"Shift end command?",a:["/logout","/login","/warn","/loa"],c:0},
+{q:"Pro roster PR?",a:["5k","10k","25k+","50k"],c:2},
+{q:"Academy PR?",a:["500-10k","25k","50k","100k"],c:0},
+{q:"Creative must provide?",a:["Clips","PR","Earnings","Nothing"],c:0},
+{q:"Streamer min viewers?",a:["5","10","25+","100"],c:2},
+{q:"Content creator TikTok?",a:["1k","5k","10k+","50k"],c:2},
+{q:"Junior CC TikTok?",a:["3k+","10k","100k","1k"],c:0},
+{q:"GFX requires?",a:["Portfolio","PR","Earnings","None"],c:0},
+{q:"Grinder+ needs code proof?",a:["Yes","No","Optional","Unknown"],c:0},
+{q:"Warn used in?",a:["Any channel","#staff-commands","DM","Public"],c:1},
+{q:"Major infractions?",a:["Warn","Report","Ignore","Kick"],c:1},
+{q:"LOA requires?",a:["Nothing","Reason + duration","Just reason","Just date"],c:1},
+{q:"Closing ticket message?",a:["k bye","Professional thank you","Ignore","Spam"],c:1}
 ];
 
 let current=0;
@@ -263,48 +307,68 @@ const optionsDiv=document.getElementById("options");
 const progressBar=document.getElementById("progressBar");
 
 function loadQuestion(){
-  let q=questions[current];
-  questionText.textContent=q.q;
-  optionsDiv.innerHTML="";
-  q.a.forEach((opt,i)=>{
-    let btn=document.createElement("button");
-    btn.textContent=opt;
-    btn.onclick=()=>selectAnswer(i);
-    optionsDiv.appendChild(btn);
-  });
-  progressBar.style.width=((current/questions.length)*100)+"%";
+let q=questions[current];
+questionText.textContent=q.q;
+optionsDiv.innerHTML="";
+q.a.forEach((opt,i)=>{
+let btn=document.createElement("button");
+btn.textContent=opt;
+btn.onclick=()=>selectAnswer(i);
+optionsDiv.appendChild(btn);
+});
+progressBar.style.width=((current/questions.length)*100)+"%";
 }
 
 function selectAnswer(i){
-  if(i===questions[current].c) score++;
-  current++;
-  if(current<questions.length){
-    loadQuestion();
-  }else{
-    finishQuiz();
-  }
+if(i===questions[current].c) score++;
+current++;
+if(current<questions.length){loadQuestion();}
+else{finishQuiz();}
 }
 
 function finishQuiz(){
-  document.getElementById("quizBox").style.display="none";
-  let percent=Math.round((score/questions.length)*100);
-  let result=document.getElementById("result");
-  result.textContent="Final Score: "+percent+"%";
-  if(percent>=70){
-    showCertificate(percent);
-  }else{
-    result.textContent+=" — Failed (70% Required)";
-  }
+document.getElementById("quizBox").style.display="none";
+let percent=Math.round((score/questions.length)*100);
+document.getElementById("result").textContent="Final Score: "+percent+"%";
+if(percent>=70){showCertificate(percent);}
+else{document.getElementById("result").textContent+=" — Failed (70% Required)";}
 }
 
 function showCertificate(percent){
-  let name=document.getElementById("username").value;
-  let cert=document.getElementById("certificate");
-  cert.style.display="block";
-  document.getElementById("certName").textContent="Awarded to: "+name;
-  document.getElementById("certScore").textContent="Score: "+percent+"%";
-  document.getElementById("certID").textContent="ID: VOID-"+Math.random().toString(36).substring(2,8).toUpperCase();
-  document.getElementById("certDate").textContent="Issued: "+new Date().toLocaleDateString();
+let name=document.getElementById("username").value;
+let cert=document.getElementById("certificate");
+cert.style.display="block";
+document.getElementById("certName").textContent="Awarded to: "+name;
+document.getElementById("certScore").textContent="Score: "+percent+"%";
+document.getElementById("certID").textContent="ID: VOID-"+Math.random().toString(36).substring(2,8).toUpperCase();
+document.getElementById("certDate").textContent="Issued: "+new Date().toLocaleDateString();
+}
+
+function openAdmin(){document.getElementById("adminModal").style.display="flex";}
+function closeAdmin(){document.getElementById("adminModal").style.display="none";}
+function verifyAdmin(){
+if(document.getElementById("adminPass").value===ADMIN_PASSWORD){
+closeAdmin();
+showAdminPanel();
+}else{alert("Incorrect password");}
+}
+function showAdminPanel(){
+document.getElementById("adminPanel").style.display="block";
+document.getElementById("quizBox").style.display="none";
+renderQuestions();
+}
+function closePanel(){
+document.getElementById("adminPanel").style.display="none";
+document.getElementById("quizBox").style.display="block";
+}
+function renderQuestions(){
+const container=document.getElementById("questionList");
+container.innerHTML="";
+questions.forEach((q,i)=>{
+const div=document.createElement("div");
+div.innerHTML="<strong>Q"+(i+1)+":</strong> "+q.q+"<br><em>Correct:</em> "+q.a[q.c];
+container.appendChild(div);
+});
 }
 
 loadQuestion();
