@@ -1,993 +1,145 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Void Staff Academy • Certification</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/app.css"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Void Staff Academy — Certification</title>
+  <link rel="stylesheet" href="assets/ui.css" />
 </head>
+<body>
+  <div class="vfx"></div>
+  <div class="noise"></div>
 
-<body class="fade-page">
-  <div class="aurora"></div>
-  <div class="grain"></div>
-
-  <header class="topbar">
-    <div class="container">
-      <div class="inner">
-        <a class="brand" href="index.html">
-          <div class="mark"></div>
-          <div class="title">
-            <b>VOID STAFF ACADEMY</b>
-            <span>Governance • Training • Compliance</span>
-          </div>
-        </a>
-
-        <nav class="nav">
-          <a data-nav href="index.html">Home</a>
-          <a data-nav href="moderation.html">Moderation</a>
-          <a data-nav href="roster.html">Roster</a>
-          <a data-nav href="operations.html">Command Center</a>
-          <a data-nav href="certification.html">Certification</a>
-        </nav>
-
-        <div class="actions">
-          <button id="adminBtn" class="btn" type="button">Admin</button>
-          <span class="kbd">Ctrl/⌘ K</span>
-          <button id="mobileOpen" class="btn ghost mobileBtn" type="button" aria-label="Open menu">
-            <span class="icon">☰</span> Menu
-          </button>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <h1>VOID STAFF ACADEMY</h1>
+          <p>Internal Compliance</p>
         </div>
       </div>
-    </div>
-  </header>
 
-  <div id="mobileSheet" class="mobileSheet">
-    <div class="shade"></div>
-    <div class="panel">
-      <div class="head">
-        <b>Navigation</b>
-        <button id="mobileClose" class="btn ghost" type="button">Close</button>
+      <nav class="nav">
+        <a data-nav href="index.html"><span class="label">🏛️ Home</span><span class="pill">Back</span></a>
+        <a data-nav href="moderation.html"><span class="label">🛡️ Moderation</span><span class="pill">Protocol</span></a>
+        <a data-nav href="roster.html"><span class="label">📋 Roster</span><span class="pill">Standards</span></a>
+        <a data-nav href="operations.html"><span class="label">🧠 Operations</span><span class="pill">Logs</span></a>
+        <a data-nav href="certification.html"><span class="label">✅ Certification</span><span class="pill">Exam</span></a>
+      </nav>
+
+      <div class="sb-foot">
+        <div class="kbd"><span>Command Palette</span><code>Ctrl/⌘ K</code></div>
+        <div class="kbd"><span>Admin</span><button class="btn" id="adminBtn" style="padding:6px 10px">Open</button></div>
       </div>
-      <div class="links">
-        <a data-nav href="index.html">Home</a>
-        <a data-nav href="moderation.html">Moderation</a>
-        <a data-nav href="roster.html">Roster</a>
-        <a data-nav href="operations.html">Command Center</a>
-        <a data-nav href="certification.html">Certification</a>
-        <a data-nav href="recruitment.html">Recruitment</a>
-        <a data-nav href="leadership.html">Leadership</a>
+    </aside>
+
+    <main class="main">
+      <div class="topbar fade-in">
+        <div class="breadcrumb">
+          <b>Void</b> <span class="dot"></span> <span id="crumbHere">Certification</span>
+        </div>
+        <div class="top-actions">
+          <a class="btn" href="index.html">← Back</a>
+          <button class="btn primary" id="cmdkOpen">Jump</button>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <main>
-    <div class="container">
-
-      <section class="hero reveal" data-reveal>
-        <div class="content" style="grid-template-columns:1fr;">
+      <section class="hero fade-in" style="animation-delay:80ms">
+        <div class="hero-inner" style="grid-template-columns: 1fr;">
           <div>
-            <div class="eyebrow">
-              <span class="pill">Scenario Exam • Cloud Logged</span>
-              <span class="pill">30 Questions</span>
-              <span class="pill">Pass: 80%</span>
-            </div>
-            <div class="h1">Certification Portal</div>
-            <p class="sub">
-              This exam is intentionally difficult. It measures judgement: ticket tone, routing, proof checks,
-              escalation discipline, and staff safety. Every attempt is written to the cloud.
+            <span class="kicker"><span class="spark"></span> Certification Examination</span>
+            <h2>Operational Judgment Test</h2>
+            <p>
+              This structured evaluation measures escalation logic, moderation discipline, documentation standards, and decision-making.
+              Your progress autosaves on this device.
             </p>
           </div>
         </div>
       </section>
 
-      <section class="examGrid">
-        <!-- LEFT -->
-        <div class="qCard reveal" data-reveal>
-          <div class="qTitle">
-            <b>Candidate Session</b>
-            <span id="statusMono">Status: loading</span>
-          </div>
-
-          <div class="hr"></div>
-
-          <div id="startPanel">
-            <div class="field">
-              <div class="label">Discord tag / username</div>
-              <input id="candidateName" class="input" placeholder="e.g. VoidYeezy#0001 or @VoidYeezy" maxlength="40"/>
-              <div class="help">This is saved with your attempt for audit.</div>
-            </div>
-
-            <div class="row">
-              <button id="beginBtn" class="btn primary" type="button">Begin Exam</button>
-              <a class="btn ghost" href="index.html">Go Back</a>
-            </div>
-          </div>
-
-          <div id="examPanel" class="hidden">
-            <div class="field">
-              <div class="label">Progress</div>
-              <div class="progress"><div id="bar"></div></div>
-              <div class="help"><span id="progText">0/30 answered</span> • Required to pass: <b id="needText">—</b></div>
-            </div>
-
-            <div class="hr"></div>
-
-            <div id="questionHost"></div>
-
-            <div class="row" style="margin-top:14px; justify-content:space-between;">
-              <button id="prevBtn" class="btn ghost" type="button">← Previous</button>
-              <div class="row">
-                <button id="submitBtn" class="btn primary" type="button">Submit</button>
+      <section class="exam">
+        <div class="panel qwrap fade-in" style="animation-delay:120ms">
+          <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between; margin-bottom:10px">
+            <div>
+              <div class="badge">Candidate</div>
+              <div style="margin-top:8px; display:flex; gap:10px; align-items:center; flex-wrap:wrap">
+                <input id="candidateName" class="input" placeholder="Your name (required)" style="min-width:260px; max-width:420px"/>
+                <span class="badge" id="answeredCount">0 / 20 answered</span>
               </div>
-              <button id="nextBtn" class="btn ghost" type="button">Next →</button>
             </div>
-
-            <div class="hr"></div>
-            <div class="help">
-              <b>Rule:</b> Don’t “speed-run.” The best answer is the one that follows protocol AND protects the server.
+            <div style="display:flex; gap:10px; flex-wrap:wrap">
+              <button class="btn" id="resetBtn">Reset</button>
+              <button class="btn primary" id="submitBtn">Submit Attempt</button>
             </div>
           </div>
 
-          <div id="resultPanel" class="hidden">
-            <div class="qTitle">
-              <b>Attempt Result</b>
-              <span id="resultBadge" class="badge">—</span>
-            </div>
-            <div class="hr"></div>
-            <div id="resultText" class="sub"></div>
-            <div class="hr"></div>
-            <div class="row">
-              <button id="reviewBtn" class="btn" type="button">Review Answers</button>
-              <button id="resetBtn" class="btn primary" type="button">New Attempt</button>
-            </div>
-
-            <div id="reviewHost" class="hidden" style="margin-top:16px;"></div>
-          </div>
+          <div id="questionList"></div>
         </div>
 
-        <!-- RIGHT -->
-        <aside class="qCard reveal" data-reveal>
-          <div class="qTitle">
-            <b>Attempt Rules</b>
-            <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">Supabase</span>
-          </div>
-          <div class="hr"></div>
-
-          <div class="row" style="gap:10px;">
-            <span class="badge">Questions: <b>30</b></span>
-            <span class="badge warn">Pass: <b>80%</b></span>
-            <span class="badge good">Cloud: <b>Enabled</b></span>
-          </div>
+        <aside class="panel aside fade-in" style="animation-delay:140ms">
+          <h3>Attempt Status</h3>
+          <p class="hint">Target: <b>70%</b> pass threshold. Finish all questions before submitting.</p>
 
           <div class="hr"></div>
 
-          <div class="field">
-            <div class="label">What gets logged</div>
-            <div class="help">
-              Candidate name, score, pass/fail, timestamp, and all question answers.
-              Admin view is protected by Supabase Auth + RLS.
-            </div>
+          <div class="row">
+            <span>Live Score</span>
+            <span class="badge" id="statusBadge">In Progress</span>
           </div>
+          <div class="big" id="scoreBig">0%</div>
 
           <div class="hr"></div>
 
-          <div class="field">
-            <div class="label">Integrity</div>
-            <div class="help">
-              You can retry, but staff can review attempt history and answer patterns.
-            </div>
-          </div>
+          <p class="hint">
+            Tip: If you get stuck, think like staff: de-escalate, document, and escalate correctly.
+          </p>
+
+          <div class="hr"></div>
+
+          <button class="btn" id="adminBtn" style="width:100%">Admin Access</button>
         </aside>
       </section>
 
-      <div class="footer reveal" data-reveal>
-        <div class="split">
-          <div>Void Staff Academy • Certification System</div>
-          <div>© 2026 Void Esports. All rights reserved.</div>
-        </div>
+      <div class="footer">
+        <div>Void Staff Academy • Confidential Internal Certification System</div>
+        <div>© 2026 Void Esports.</div>
       </div>
-
-    </div>
-  </main>
+    </main>
+  </div>
 
   <!-- Admin modal -->
-  <div id="adminModal" class="backdrop" role="dialog" aria-modal="true" aria-label="Admin panel">
-    <div class="modal" style="width:min(1040px, 100%);">
-      <div class="hd">
-        <b>Admin Control Dashboard</b>
-        <button id="adminClose" class="btn ghost" type="button">Close</button>
-      </div>
-      <div class="bd">
-        <!-- AUTH GATE -->
-        <div id="adminGate">
-          <div class="field">
-            <div class="label">Admin email</div>
-            <input id="adminEmail" type="email" placeholder="you@domain.com" />
+  <div class="modal-backdrop" id="adminBackdrop">
+    <div class="modal" id="adminModal">
+      <div class="modal-head">
+        <h3>Admin Control Panel</h3>
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
+          <div class="tabs">
+            <button class="tab active" data-tab="overview">Overview</button>
+            <button class="tab" data-tab="attempts">Attempts</button>
+            <button class="tab" data-tab="answers">Who Answered</button>
+            <button class="tab" data-tab="questions">Questions</button>
+            <button class="tab" data-tab="export">Export</button>
           </div>
-          <div class="field">
-            <div class="label">Admin password</div>
-            <input id="adminPass" type="password" placeholder="••••••••" />
-            <div class="help">This is Supabase Auth. Not a client-side “fake password.”</div>
-          </div>
-          <div class="row">
-            <button id="adminLogin" class="btn primary" type="button">Login</button>
-            <button id="adminLogout" class="btn" type="button">Logout</button>
-          </div>
-          <div id="adminGateMsg" class="help" style="margin-top:10px;"></div>
-        </div>
-
-        <!-- ADMIN PANEL -->
-        <div id="adminPanel" class="hidden">
-          <div class="row" style="justify-content:space-between; align-items:flex-end; gap:12px;">
-            <div style="flex:1;">
-              <div class="field" style="margin:0;">
-                <div class="label">Search attempts</div>
-                <input id="adminSearch" placeholder="Search by name, pass/fail, score, date…" />
-              </div>
-            </div>
-            <div class="row" style="align-items:end;">
-              <button id="refreshBtn" class="btn" type="button">Refresh</button>
-            </div>
-          </div>
-
-          <div class="hr"></div>
-
-          <!-- Analytics -->
-          <div class="grid" style="margin-top:0;">
-            <div class="card" style="grid-column: span 6;">
-              <h3>Pass/Fail Analytics</h3>
-              <p class="small">Live metrics from cloud logs.</p>
-              <div class="hr"></div>
-              <div id="analyticsBox" class="help">Loading…</div>
-            </div>
-
-            <div class="card" style="grid-column: span 6;">
-              <h3>Admin Session</h3>
-              <p class="small">Only allowed admin emails can view logs (RLS enforced).</p>
-              <div class="hr"></div>
-              <div id="sessionBox" class="help">Loading…</div>
-            </div>
-          </div>
-
-          <div class="hr"></div>
-
-          <table class="table" aria-label="Attempts table">
-            <thead>
-              <tr>
-                <th>Time</th>
-                <th>Candidate</th>
-                <th>Score</th>
-                <th>Status</th>
-                <th>Details</th>
-              </tr>
-            </thead>
-            <tbody id="attemptTable"></tbody>
-          </table>
-
-          <div id="attemptDetail" class="qCard hidden" style="margin-top:14px;"></div>
+          <button class="btn" id="adminClose">Close</button>
         </div>
       </div>
+      <div class="modal-body" id="adminBody"></div>
     </div>
   </div>
 
   <!-- Command palette -->
-  <div id="cmdPalette" class="backdrop" role="dialog" aria-modal="true" aria-label="Command palette">
-    <div class="modal">
-      <div class="hd">
-        <b>Command Palette</b>
-        <span class="kbd">Esc</span>
+  <div class="cmdk" id="cmdk">
+    <div class="cmdk-box">
+      <div class="cmdk-top">
+        <input id="cmdkInput" placeholder="Search modules…" />
+        <span class="badge">Esc</span>
       </div>
-      <div class="bd">
-        <input id="cmdInput" placeholder="Type to search… (Home, Moderation, Roster, Certification)" />
-        <div id="cmdList" class="cmd-list"></div>
-      </div>
+      <div class="cmdk-list" id="cmdkList"></div>
     </div>
   </div>
 
-  <div id="toast" class="toast"></div>
-
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-  /**********************
-   * CONFIG — CHANGE ME
-   **********************/
-  const SUPABASE_URL = "https://jzvnqbwcfgnhunulhuk.supabase.co";
-  const SUPABASE_KEY = "sb_publishable_Q1YlgilLpktVG2Wm9kN1MQ_0hQC-rol";
-
-  // Only these emails can view admin logs (RLS ALSO MUST MATCH THIS LIST)
-  const ADMIN_EMAIL_ALLOWLIST = [
-    "opeyemiadegoke77@gmail.com"
-  ];
-
-  const PASS_PERCENT = 80;
-  const TOTAL_Q = 30;
-
-  // Ensure Supabase loaded
-  if (!window.supabase || !window.supabase.createClient) {
-    console.error("Supabase library not loaded. Check script order.");
-    return;
-  }
-
-  const supabase = window.supabase.createClient(https://jzvnqbwcfgnhunulhuk.supabase.co, sb_publishable_Q1YlgilLpktVG2Wm9kN1MQ_0hQC-rol);
-
-  /**********************
-   * QUESTIONS (30)
-   **********************/
-  const QUESTIONS = [
-    { q:"Ticket opens. Best FIRST message?", choices:[
-      "yo what you need",
-      "Hello, how may I help you today?",
-      "Send tracker rn",
-      "Hold on I’m busy"
-    ], a:1 },
-
-    { q:"After greeting, what is REQUIRED before routing staff/roster applications?", choices:[
-      "Ask their favorite skin",
-      "Confirm age (and be clear)",
-      "Ask for Nitro",
-      "Ask if they’re rich"
-    ], a:1 },
-
-    { q:"User says: “I’m 13 but mature.” Correct action?", choices:[
-      "Let them in anyway",
-      "Politely stop + follow underage procedure and document",
-      "Ignore it",
-      "Tell them to lie next time"
-    ], a:1 },
-
-    { q:"A user wants Pro roster. What proof bundle is the best standard request?", choices:[
-      "Only a TikTok link",
-      "Tracker + lobby proof + earnings proof (if required) + identity match",
-      "Just tell them yes",
-      "Only screenshots of settings"
-    ], a:1 },
-
-    { q:"A roster applicant sends a tracker that doesn’t match their Discord/IGN. Best move?", choices:[
-      "Accept anyway",
-      "Ask them to confirm IGN + provide matching proof before role changes",
-      "Argue with them",
-      "Ban instantly"
-    ], a:1 },
-
-    { q:"Creative applicant: best validation approach?", choices:[
-      "Ask for 2–3 recent clips + verify uniqueness + route to Creative lead",
-      "Only ask for PR",
-      "Only ask for earnings",
-      "Don’t ask anything"
-    ], a:0 },
-
-    { q:"Content Creator applicant: what matters MOST for routing?", choices:[
-      "Their ranked skin",
-      "Their socials + consistent quality + follower thresholds (if required)",
-      "Their keyboard brand",
-      "Their ping"
-    ], a:1 },
-
-    { q:"Jr Content Creator role: best decision logic?", choices:[
-      "If they’re close to thresholds + quality is good + consistent posting",
-      "Only if they have earnings",
-      "Only if they have PR",
-      "Never give Jr CC"
-    ], a:0 },
-
-    { q:"GFX/VFX applicant: best required artifact?", choices:[
-      "A portfolio of work (links or images) + consistency expectation",
-      "Tracker",
-      "Earnings",
-      "Only a promise"
-    ], a:0 },
-
-    { q:"Escalation rule: when do you escalate?", choices:[
-      "Every ticket",
-      "Complex/sensitive cases with evidence + context summary",
-      "Never",
-      "Only when bored"
-    ], a:1 },
-
-    { q:"You’re unsure if proof is edited/fake. Best action?", choices:[
-      "Call them names",
-      "Request additional verification and escalate with concerns + screenshots",
-      "Accept anyway",
-      "Ignore it"
-    ], a:1 },
-
-    { q:"Correct location for warn command usage?", choices:[
-      "General chat",
-      "#staff-commands only",
-      "DMs",
-      "Anywhere"
-    ], a:1 },
-
-    { q:"Correct warn syntax (per your protocol)?", choices:[
-      "*warn user-id reason",
-      "/warn @user",
-      "!warn user",
-      "warn user reason"
-    ], a:0 },
-
-    { q:"A user is spamming in a ticket and insulting staff. Best professional response?", choices:[
-      "Insult back",
-      "Warn calmly, set boundary, document, escalate if needed",
-      "Delete ticket instantly no notes",
-      "Ghost them"
-    ], a:1 },
-
-    { q:"Ticket closure should include:", choices:[
-      "No message just close",
-      "Final confirmation + next steps (name change/code proof) + polite close",
-      "A meme",
-      "Arguing"
-    ], a:1 },
-
-    { q:"Minimum documentation expectation when routing to leadership:", choices:[
-      "Only vibes",
-      "Short summary + evidence + what you already asked + what you need decided",
-      "Nothing",
-      "A long rant"
-    ], a:1 },
-
-    { q:"User asks for role but refuses to show any proof. Best outcome?", choices:[
-      "Give role anyway",
-      "Explain proof requirement; if they refuse, end politely and document",
-      "Threaten them",
-      "Beg them"
-    ], a:1 },
-
-    { q:"A staff member tells you to ‘skip age checks to go faster’. Best response?", choices:[
-      "Agree",
-      "Do NOT skip; follow protocol; if pressured, escalate to leadership",
-      "Ignore",
-      "Laugh"
-    ], a:1 },
-
-    { q:"Operations: correct shift start command?", choices:[
-      "/start",
-      "/login",
-      "/shift",
-      "/begin"
-    ], a:1 },
-
-    { q:"Operations: correct shift end command?", choices:[
-      "/logout",
-      "/end",
-      "/stop",
-      "/leave"
-    ], a:0 },
-
-    { q:"LOA request should include:", choices:[
-      "Only emojis",
-      "Duration + reason (and notify if extended)",
-      "Nothing",
-      "A random lie"
-    ], a:1 },
-
-    { q:"Report command usage is best for:", choices:[
-      "Small typo",
-      "Major or repeated infractions WITH documentation",
-      "Jokes",
-      "Asking for roles"
-    ], a:1 },
-
-    { q:"Recruitment: most important early screen for staff applicants?", choices:[
-      "Do they have earnings",
-      "Age honesty + motivation + availability + communication clarity",
-      "Do they have rare skins",
-      "Do they type fast"
-    ], a:1 },
-
-    { q:"Recruitment: if answers feel dishonest or ‘off’, best action?", choices:[
-      "Push them through anyway",
-      "Stop process politely; don’t pass them to exam",
-      "Argue",
-      "Expose them publicly"
-    ], a:1 },
-
-    { q:"Leadership: escalation is not “snitching” because…", choices:[
-      "It’s how standards and safety stay consistent and documented",
-      "It’s for drama",
-      "It wastes time",
-      "It’s optional always"
-    ], a:0 },
-
-    { q:"A ticket is ‘Roster’ but user actually wants GFX/VFX. Best routing?", choices:[
-      "Keep them in roster forever",
-      "Clarify request, move/route to GFX/VFX lead, document",
-      "Ignore",
-      "Close instantly"
-    ], a:1 },
-
-    { q:"A user wants Semi-Pro. They meet PR but no earnings. Best decision?", choices:[
-      "Semi-Pro anyway",
-      "Follow standard: if earnings required, deny/offer Academy/Grinder+; document",
-      "Ban them",
-      "Call them bad"
-    ], a:1 },
-
-    { q:"A user sends proof but is extremely toxic. Best action?", choices:[
-      "Accept role because proof is proof",
-      "Consider conduct: warn/report if needed; escalate before granting roles",
-      "Ignore toxicity always",
-      "Argue"
-    ], a:1 },
-
-    { q:"Most professional tone guideline?", choices:[
-      "Match their insults",
-      "Stay calm, short, respectful, and factual",
-      "Spam emojis",
-      "Use slang only"
-    ], a:1 },
-
-    { q:"Final check before assigning any role:", choices:[
-      "No check needed",
-      "Verify proof matches person + correct routing + clean documentation",
-      "Ask for Nitro",
-      "Ask if they like Void"
-    ], a:1 },
-  ];
-
-  /**********************
-   * SAFE DOM GETTERS
-   **********************/
-  const $ = (id) => document.getElementById(id);
-
-  const statusMono   = $("statusMono");
-  const startPanel   = $("startPanel");
-  const examPanel    = $("examPanel");
-  const resultPanel  = $("resultPanel");
-
-  const candidateName = $("candidateName");
-  const beginBtn      = $("beginBtn");
-  const questionHost  = $("questionHost");
-
-  const prevBtn   = $("prevBtn");
-  const nextBtn   = $("nextBtn");
-  const submitBtn = $("submitBtn");
-
-  const bar      = $("bar");
-  const progText = $("progText");
-  const needText = $("needText");
-
-  const resultBadge = $("resultBadge");
-  const resultText  = $("resultText");
-  const reviewBtn   = $("reviewBtn");
-  const resetBtn    = $("resetBtn");
-  const reviewHost  = $("reviewHost");
-
-  const adminBtn    = $("adminBtn");
-  const adminModal  = $("adminModal");
-  const adminClose  = $("adminClose");
-
-  const adminGate   = $("adminGate");
-  const adminPanel  = $("adminPanel");
-
-  const adminEmail  = $("adminEmail");
-  const adminPass   = $("adminPass");
-  const adminLogin  = $("adminLogin");
-  const adminLogout = $("adminLogout");
-  const adminGateMsg= $("adminGateMsg");
-
-  const adminSearch = $("adminSearch");
-  const refreshBtn  = $("refreshBtn");
-
-  const analyticsBox = $("analyticsBox");
-  const sessionBox   = $("sessionBox");
-
-  const attemptTable  = $("attemptTable");
-  const attemptDetail = $("attemptDetail");
-
-  // If any of these core buttons are missing, warn instead of crashing
-  if (!beginBtn || !adminBtn) {
-    console.error("Missing beginBtn or adminBtn element IDs in HTML.");
-    return;
-  }
-
-  /**********************
-   * EXAM STATE
-   **********************/
-  let idx = 0;
-  let answers = Array(TOTAL_Q).fill(null);
-
-  function setStatus(s){
-    if (statusMono) statusMono.textContent = "Status: " + s;
-  }
-
-  function answeredCount(){
-    return answers.filter(v => v !== null).length;
-  }
-
-  function requiredCorrect(){
-    return Math.ceil((PASS_PERCENT / 100) * TOTAL_Q);
-  }
-
-  function showPanels(which){
-    if (startPanel)  startPanel.classList.toggle("hidden", which !== "start");
-    if (examPanel)   examPanel.classList.toggle("hidden", which !== "exam");
-    if (resultPanel) resultPanel.classList.toggle("hidden", which !== "result");
-  }
-
-  function renderProgress(){
-    const done = answeredCount();
-    const pct = Math.round((done / TOTAL_Q) * 100);
-    if (bar) bar.style.width = pct + "%";
-    if (progText) progText.textContent = `${done}/${TOTAL_Q} answered`;
-    if (needText) needText.textContent = `${requiredCorrect()}/${TOTAL_Q}`;
-  }
-
-  function renderQuestion(){
-    const q = QUESTIONS[idx];
-    const chosen = answers[idx];
-
-    if (!questionHost) return;
-
-    questionHost.innerHTML = `
-      <div class="qTitle">
-        <b>Question ${idx+1}</b>
-        <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">${idx+1}/${TOTAL_Q}</span>
-      </div>
-
-      <div style="margin-top:10px;color:rgba(238,240,255,.92);font-size:14px;line-height:1.5">
-        ${escapeHTML(q.q)}
-      </div>
-
-      <div style="display:grid;gap:10px;margin-top:12px;">
-        ${q.choices.map((c,i)=>`
-          <label class="choice">
-            <input type="radio" name="q" ${chosen===i ? "checked":""} data-choice="${i}">
-            <div class="txt">${escapeHTML(c)}</div>
-          </label>
-        `).join("")}
-      </div>
-    `;
-
-    questionHost.querySelectorAll("input[type=radio]").forEach(r=>{
-      r.addEventListener("change", ()=>{
-        answers[idx] = Number(r.getAttribute("data-choice"));
-        renderProgress();
-        if (window.VOIDToast) VOIDToast("Saved answer for Q" + (idx+1));
-      });
-    });
-
-    if (prevBtn) prevBtn.disabled = (idx === 0);
-    if (nextBtn) nextBtn.disabled = (idx === TOTAL_Q - 1);
-  }
-
-  function scoreExam(){
-    let correct = 0;
-    const perQ = QUESTIONS.map((q,i)=>{
-      const picked = answers[i];
-      const ok = picked === q.a;
-      if(ok) correct++;
-      return {i, picked, ok};
-    });
-    const percent = Math.round((correct / TOTAL_Q) * 100);
-    const passed = percent >= PASS_PERCENT;
-    return {correct, percent, passed, perQ};
-  }
-
-  async function saveAttempt(attempt){
-    const { error } = await supabase
-      .from("certification_attempts")
-      .insert([{
-        candidate: attempt.candidate,
-        percent: attempt.percent,
-        correct: attempt.correct,
-        passed: attempt.passed,
-        answers: attempt.answers
-      }]);
-
-    if(error){
-      console.error(error);
-      if (window.VOIDToast) VOIDToast("Database error (check RLS policies).");
-      throw error;
-    }
-  }
-
-  /**********************
-   * CANDIDATE FLOW
-   **********************/
-  beginBtn.addEventListener("click", ()=>{
-    const name = (candidateName?.value || "").trim();
-    if(!name){
-      if (window.VOIDToast) VOIDToast("Enter your Discord name.");
-      return;
-    }
-
-    idx = 0;
-    answers = Array(TOTAL_Q).fill(null);
-    showPanels("exam");
-    setStatus("in progress");
-    renderProgress();
-    renderQuestion();
-  });
-
-  if (prevBtn) prevBtn.addEventListener("click", ()=>{ idx = Math.max(0, idx-1); renderQuestion(); });
-  if (nextBtn) nextBtn.addEventListener("click", ()=>{ idx = Math.min(TOTAL_Q-1, idx+1); renderQuestion(); });
-
-  if (submitBtn) submitBtn.addEventListener("click", async ()=>{
-    if(answeredCount() < TOTAL_Q){
-      if (window.VOIDToast) VOIDToast("Answer all 30 questions before submitting.");
-      return;
-    }
-
-    const name = ((candidateName?.value || "").trim()) || "Unknown";
-    const r = scoreExam();
-
-    const attempt = {
-      candidate: name,
-      percent: r.percent,
-      correct: r.correct,
-      passed: r.passed,
-      answers: QUESTIONS.map((q,i)=>({
-        q: q.q,
-        picked: answers[i],
-        pickedText: q.choices[answers[i]],
-        correct: q.a,
-        correctText: q.choices[q.a],
-        ok: answers[i] === q.a
-      }))
-    };
-
-    submitBtn.disabled = true;
-    const oldText = submitBtn.textContent;
-    submitBtn.textContent = "Submitting…";
-
-    try{
-      await saveAttempt(attempt);
-
-      showPanels("result");
-      setStatus("submitted");
-
-      if (resultBadge) {
-        resultBadge.className = "badge " + (attempt.passed ? "good":"bad");
-        resultBadge.textContent = attempt.passed ? "PASS" : "FAIL";
-      }
-
-      if (resultText) {
-        resultText.innerHTML = `
-          Candidate: <b>${escapeHTML(attempt.candidate)}</b><br/>
-          Score: <b>${attempt.correct}/${TOTAL_Q}</b> • <b>${attempt.percent}%</b><br/>
-          Required: <b>${PASS_PERCENT}%</b>
-        `;
-      }
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = oldText;
-    }
-  });
-
-  if (reviewBtn) reviewBtn.addEventListener("click", ()=>{
-    const r = scoreExam();
-    if (!reviewHost) return;
-
-    reviewHost.innerHTML = r.perQ.map(x=>{
-      const q = QUESTIONS[x.i];
-      const picked = answers[x.i];
-      const pickedText = picked === null ? "—" : q.choices[picked];
-      const ok = x.ok;
-
-      return `
-        <div class="qCard" style="margin-bottom:12px;">
-          <div class="qTitle">
-            <b>Q${x.i+1} • ${ok ? "Correct":"Incorrect"}</b>
-            <span class="${ok ? "badge good":"badge bad"}">${ok ? "OK":"MISS"}</span>
-          </div>
-          <div style="margin-top:10px;color:rgba(238,240,255,.92);">${escapeHTML(q.q)}</div>
-          <div class="hr"></div>
-          <div class="help">
-            Your answer: <b>${escapeHTML(pickedText)}</b><br/>
-            Correct answer: <b>${escapeHTML(q.choices[q.a])}</b>
-          </div>
-        </div>
-      `;
-    }).join("");
-
-    reviewHost.classList.remove("hidden");
-  });
-
-  if (resetBtn) resetBtn.addEventListener("click", ()=>{
-    idx = 0;
-    answers = Array(TOTAL_Q).fill(null);
-    showPanels("start");
-    setStatus("idle");
-    renderProgress();
-    if (reviewHost) {
-      reviewHost.classList.add("hidden");
-      reviewHost.innerHTML = "";
-    }
-  });
-
-  /**********************
-   * ADMIN: modal + auth
-   **********************/
-  function openAdmin(){ if(adminModal) adminModal.classList.add("show"); }
-  function closeAdmin(){ if(adminModal) adminModal.classList.remove("show"); }
-
-  adminBtn.addEventListener("click", async ()=>{
-    openAdmin();
-    await syncAdminUI();
-  });
-
-  if (adminClose) adminClose.addEventListener("click", closeAdmin);
-  if (adminModal) adminModal.addEventListener("click", (e)=>{ if(e.target === adminModal) closeAdmin(); });
-
-  if (adminLogin) adminLogin.addEventListener("click", async ()=>{
-    if (!adminGateMsg) return;
-    adminGateMsg.textContent = "";
-
-    const email = (adminEmail?.value || "").trim().toLowerCase();
-    const pass = adminPass?.value || "";
-
-    const { error } = await supabase.auth.signInWithPassword({ email, password: pass });
-    if(error){
-      console.error(error);
-      adminGateMsg.textContent = "Login failed. Check email/password.";
-      return;
-    }
-    await syncAdminUI();
-  });
-
-  if (adminLogout) adminLogout.addEventListener("click", async ()=>{
-    await supabase.auth.signOut();
-    await syncAdminUI();
-  });
-
-  supabase.auth.onAuthStateChange(async ()=>{ await syncAdminUI(); });
-
-  function isAdminEmail(email){
-    return ADMIN_EMAIL_ALLOWLIST.includes((email||"").toLowerCase());
-  }
-
-  async function syncAdminUI(){
-    const { data } = await supabase.auth.getSession();
-    const session = data.session;
-
-    if(!session){
-      if (adminGateMsg) adminGateMsg.textContent = "Not logged in.";
-      if (adminPanel) adminPanel.classList.add("hidden");
-      if (adminGate) adminGate.classList.remove("hidden");
-      if (sessionBox) sessionBox.textContent = "Session: none";
-      if (attemptTable) attemptTable.innerHTML = "";
-      if (attemptDetail) attemptDetail.classList.add("hidden");
-      return;
-    }
-
-    const email = session.user?.email || "";
-    if (sessionBox) {
-      sessionBox.innerHTML = `Logged in as: <b>${escapeHTML(email)}</b>`;
-    }
-
-    if(!isAdminEmail(email)){
-      if (adminGateMsg) adminGateMsg.textContent = "Not authorized as admin.";
-      if (adminPanel) adminPanel.classList.add("hidden");
-      if (adminGate) adminGate.classList.remove("hidden");
-      await supabase.auth.signOut();
-      return;
-    }
-
-    if (adminGateMsg) adminGateMsg.textContent = "Authorized.";
-    if (adminGate) adminGate.classList.add("hidden");
-    if (adminPanel) adminPanel.classList.remove("hidden");
-
-    await loadAdminData();
-  }
-
-  if (adminSearch) adminSearch.addEventListener("input", ()=>{ loadAdminData(); });
-  if (refreshBtn) refreshBtn.addEventListener("click", ()=>{ loadAdminData(); });
-
-  async function loadAdminData(){
-    const q = (adminSearch?.value || "").toLowerCase().trim();
-
-    const { data, error } = await supabase
-      .from("certification_attempts")
-      .select("id, created_at, candidate, percent, correct, passed, answers")
-      .order("created_at", { ascending: false })
-      .limit(500);
-
-    if(error){
-      console.error(error);
-      if (analyticsBox) analyticsBox.textContent = "Failed to load admin data (check RLS).";
-      if (attemptTable) attemptTable.innerHTML = "";
-      return;
-    }
-
-    const filtered = !q ? data : data.filter(a=>{
-      const blob = `${a.created_at} ${a.candidate} ${a.percent} ${a.correct} ${a.passed ? "pass":"fail"}`.toLowerCase();
-      return blob.includes(q);
-    });
-
-    renderAnalytics(data);
-    renderAttemptsTable(filtered);
-  }
-
-  function renderAttemptsTable(rows){
-    if (attemptDetail) {
-      attemptDetail.classList.add("hidden");
-      attemptDetail.innerHTML = "";
-    }
-
-    if (!attemptTable) return;
-
-    attemptTable.innerHTML = rows.map(a=>`
-      <tr>
-        <td style="font-family:var(--mono);font-size:12px;">${escapeHTML(new Date(a.created_at).toLocaleString())}</td>
-        <td><b>${escapeHTML(a.candidate || "—")}</b></td>
-        <td style="font-family:var(--mono)">${a.correct}/${TOTAL_Q} • ${a.percent}%</td>
-        <td><span class="badge ${a.passed ? "good":"bad"}">${a.passed ? "PASS":"FAIL"}</span></td>
-        <td><button class="btn ghost" type="button" data-view="${a.id}">View</button></td>
-      </tr>
-    `).join("");
-
-    attemptTable.querySelectorAll("[data-view]").forEach(btn=>{
-      btn.addEventListener("click", ()=>{
-        const id = btn.getAttribute("data-view");
-        const found = rows.find(x => x.id === id);
-        if(!found){ if (window.VOIDToast) VOIDToast("Not found."); return; }
-        viewAttempt(found);
-      });
-    });
-  }
-
-  function viewAttempt(a){
-    const ans = Array.isArray(a.answers) ? a.answers : [];
-    if (!attemptDetail) return;
-
-    attemptDetail.classList.remove("hidden");
-    attemptDetail.innerHTML = `
-      <div class="qTitle">
-        <b>Attempt Details</b>
-        <span class="badge ${a.passed ? "good":"bad"}">${a.passed ? "PASS":"FAIL"} • ${a.percent}%</span>
-      </div>
-      <div class="hr"></div>
-      <div class="help">
-        Candidate: <b>${escapeHTML(a.candidate || "—")}</b><br/>
-        Time: <span style="font-family:var(--mono)">${escapeHTML(new Date(a.created_at).toLocaleString())}</span><br/>
-        Correct: <b>${a.correct}/${TOTAL_Q}</b>
-      </div>
-      <div class="hr"></div>
-      ${ans.map((x,i)=>`
-        <div style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06)">
-          <div style="font-weight:700">Q${i+1}</div>
-          <div class="help" style="margin-top:6px">${escapeHTML(x.q || "")}</div>
-          <div class="row" style="margin-top:8px;gap:10px;">
-            <span class="badge ${x.ok ? "good":"bad"}">${x.ok ? "Correct":"Incorrect"}</span>
-            <span class="help">Picked: <b>${escapeHTML(x.pickedText || "—")}</b></span>
-            <span class="help">Correct: <b>${escapeHTML(x.correctText || "—")}</b></span>
-          </div>
-        </div>
-      `).join("")}
-    `;
-  }
-
-  function renderAnalytics(rows){
-    if (!analyticsBox) return;
-
-    const total = rows.length;
-    const passCount = rows.filter(r => r.passed).length;
-    const failCount = total - passCount;
-    const passRate = total ? Math.round((passCount/total)*100) : 0;
-    const avg = total ? Math.round(rows.reduce((s,r)=>s+(r.percent||0),0)/total) : 0;
-
-    analyticsBox.innerHTML = `
-      <b>Total attempts:</b> ${total}<br/>
-      <b>Pass:</b> ${passCount} • <b>Fail:</b> ${failCount}<br/>
-      <b>Pass rate:</b> ${passRate}%<br/>
-      <b>Average score:</b> ${avg}%<br/>
-    `;
-  }
-
-  function escapeHTML(s){
-    return String(s).replace(/[&<>"']/g, (m)=>({
-      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-    }[m]));
-  }
-
-  // Init
-  setStatus("idle");
-  renderProgress();
-});
-</script>
+  <script src="assets/ui.js"></script>
+  <script src="assets/certification.js"></script>
 </body>
 </html>
