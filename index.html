@@ -1,186 +1,142 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Void Staff Academy • Governance</title>
-  <meta name="description" content="Void Staff Academy — governance, training, certification, and compliance system for Void Esports staff."/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Void Staff Academy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/app.css"/>
+  <link rel="stylesheet" href="assets/ui.css" />
 </head>
+<body>
+  <div class="vfx"></div>
+  <div class="noise"></div>
 
-<body class="fade-page">
-  <div class="aurora"></div>
-  <div class="grain"></div>
-
-  <!-- Topbar -->
-  <header class="topbar">
-    <div class="container">
-      <div class="inner">
-        <a class="brand" href="index.html" aria-label="Home">
-          <div class="mark"></div>
-          <div class="title">
-            <b>VOID STAFF ACADEMY</b>
-            <span>Governance • Training • Compliance</span>
-          </div>
-        </a>
-
-        <nav class="nav" aria-label="Primary">
-          <a data-nav href="index.html">Home</a>
-          <a data-nav href="moderation.html">Moderation</a>
-          <a data-nav href="roster.html">Roster</a>
-          <a data-nav href="operations.html">Command Center</a>
-          <a data-nav href="certification.html">Certification</a>
-        </nav>
-
-        <div class="actions">
-          <span class="kbd">Ctrl/⌘ K</span>
-          <button id="mobileOpen" class="btn ghost mobileBtn" type="button" aria-label="Open menu">
-            <span class="icon">☰</span> Menu
-          </button>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <h1>VOID STAFF ACADEMY</h1>
+          <p>Governance • Training • Compliance</p>
         </div>
       </div>
-    </div>
-  </header>
 
-  <!-- Mobile sheet -->
-  <div id="mobileSheet" class="mobileSheet" aria-hidden="true">
-    <div class="shade"></div>
-    <div class="panel">
-      <div class="head">
-        <b>Navigation</b>
-        <button id="mobileClose" class="btn ghost" type="button">Close</button>
+      <nav class="nav">
+        <a data-nav href="index.html"><span class="label">🏛️ Home</span><span class="pill">Overview</span></a>
+        <a data-nav href="moderation.html"><span class="label">🛡️ Moderation</span><span class="pill">Protocol</span></a>
+        <a data-nav href="roster.html"><span class="label">📋 Roster</span><span class="pill">Standards</span></a>
+        <a data-nav href="operations.html"><span class="label">🧠 Operations</span><span class="pill">Escalations</span></a>
+        <a data-nav href="recruitment.html"><span class="label">🧲 Recruitment</span><span class="pill">Pipeline</span></a>
+        <a data-nav href="leadership.html"><span class="label">👑 Leadership</span><span class="pill">Chain</span></a>
+        <a data-nav href="certification.html"><span class="label">✅ Certification</span><span class="pill">Exam</span></a>
+      </nav>
+
+      <div class="sb-foot">
+        <div class="kbd"><span>Command Palette</span><code>Ctrl/⌘ K</code></div>
+        <div class="kbd"><span>Quick Actions</span><button id="cmdkOpen" class="btn" style="padding:6px 10px">Open</button></div>
       </div>
-      <div class="links">
-        <a data-nav href="index.html">Home</a>
-        <a data-nav href="moderation.html">Moderation</a>
-        <a data-nav href="roster.html">Roster</a>
-        <a data-nav href="operations.html">Command Center</a>
-        <a data-nav href="certification.html">Certification</a>
-        <a data-nav href="recruitment.html">Recruitment</a>
-        <a data-nav href="leadership.html">Leadership</a>
+    </aside>
+
+    <main class="main">
+      <div class="topbar fade-in">
+        <div class="breadcrumb">
+          <b>Void</b> <span class="dot"></span> <span id="crumbHere">Home</span>
+        </div>
+        <div class="top-actions">
+          <a class="btn" href="certification.html">Begin Certification</a>
+          <button class="btn primary" id="cmdkOpen">Jump</button>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <main>
-    <div class="container">
-
-      <section class="hero reveal" data-reveal>
-        <div class="content">
+      <section class="hero fade-in" style="animation-delay:80ms">
+        <div class="hero-inner">
           <div>
-            <div class="eyebrow">
-              <span class="pill">Enterprise-grade staff enablement</span>
-            </div>
-
-            <div class="h1">Void Mod Training</div>
-            <p class="sub">
-              Comprehensive certification program for new Void Esports moderators. Master ticket handling,
-              roster intake, and community moderation through realistic scenarios and measurable testing —
-              built to scale with the organization.
+            <span class="kicker"><span class="spark"></span> Enterprise-grade staff enablement</span>
+            <h2>Void Mod Training</h2>
+            <p>
+              Comprehensive certification program for new Void Esports moderators. Master ticket handling, roster intake, and community moderation
+              through realistic scenarios and measurable testing — built to scale with the organization.
             </p>
-
-            <div class="cta">
-              <a class="btn primary" href="certification.html">Begin Certification</a>
+            <div class="hero-ctas">
+              <a class="btn primary" href="certification.html">Start Exam</a>
               <a class="btn" href="moderation.html">View Protocol</a>
               <a class="btn" href="roster.html">Roster Standards</a>
-            </div>
-
-            <div class="hr"></div>
-
-            <div class="row">
-              <span class="pill">Audit logging: Enabled</span>
-              <span class="pill">Passing score: 70%</span>
-              <span class="pill">Deploy: Vercel</span>
+              <a class="btn ghost" href="operations.html">Command Center</a>
             </div>
           </div>
 
-          <div class="metrics">
-            <div class="metric">
-              <b>Passing score</b>
-              <span>70%</span>
+          <div class="cards">
+            <div class="card">
+              <div class="t">Passing score</div>
+              <div class="v">70%</div>
+              <div class="sub">Measured performance</div>
             </div>
-            <div class="metric">
-              <b>Scenario questions</b>
-              <span>20</span>
+            <div class="card">
+              <div class="t">Scenario questions</div>
+              <div class="v">20</div>
+              <div class="sub">Realistic prompts</div>
             </div>
-            <div class="metric">
-              <b>Audit logging</b>
-              <span>Enabled</span>
+            <div class="card">
+              <div class="t">Audit logging</div>
+              <div class="v">Enabled</div>
+              <div class="sub">Accountability first</div>
             </div>
-            <div class="metric">
-              <b>Deploy</b>
-              <span>Vercel</span>
+            <div class="card">
+              <div class="t">Deploy</div>
+              <div class="v">Vercel</div>
+              <div class="sub">Fast + reliable</div>
             </div>
           </div>
         </div>
       </section>
 
       <section class="grid">
-        <article class="card reveal" data-reveal>
+        <div class="panel span-7 fade-in" style="animation-delay:120ms">
           <h3>Ticket Architecture</h3>
           <p>Professional ticket flow: greeting → intent → verification → routing → documentation → closure.</p>
-          <div class="card-actions">
-            <a class="btn" href="moderation.html">Open module</a>
-            <span class="small">Standardized openers, routing, escalation, and closure.</span>
+          <div class="panel-actions">
+            <a class="btn primary" href="moderation.html">Open module</a>
+            <a class="btn" href="operations.html">Escalations</a>
           </div>
-        </article>
+        </div>
 
-        <article class="card reveal" data-reveal>
+        <div class="panel span-5 fade-in" style="animation-delay:140ms">
           <h3>Roster Intake Standards</h3>
           <p>Verify PR, earnings, eligibility, and onboarding steps across competitive, creative, and content divisions.</p>
-          <div class="card-actions">
-            <a class="btn" href="roster.html">Open standards</a>
-            <span class="small">Pro / Semi-Pro / Academy / Creative / CC / Jr CC / GFX-VFX.</span>
+          <div class="panel-actions">
+            <a class="btn primary" href="roster.html">Open standards</a>
+            <a class="btn" href="recruitment.html">Trial pipeline</a>
           </div>
-        </article>
+        </div>
 
-        <article class="card reveal" data-reveal>
-          <h3>Staff Command Center</h3>
-          <p>Shift logging, escalation tools, and performance thresholds — designed for accountability at scale.</p>
-          <div class="card-actions">
-            <a class="btn" href="operations.html">Enter</a>
-            <span class="small">Login/logout, LOA, warn/report rules, minimum activity.</span>
-          </div>
-        </article>
-
-        <article class="card reveal" data-reveal>
+        <div class="panel span-12 fade-in" style="animation-delay:160ms">
           <h3>Certification Portal</h3>
           <p>Scenario-based exam using realistic chat logs and operational decision-making — not basic trivia.</p>
-          <div class="card-actions">
+          <div class="panel-actions">
             <a class="btn primary" href="certification.html">Start</a>
-            <span class="small">Auto-scoring + audit logs + admin review.</span>
+            <button class="btn" id="cmdkOpen">Search modules</button>
           </div>
-        </article>
+        </div>
       </section>
 
-      <div class="footer reveal" data-reveal>
-        <div class="split">
-          <div>Void Staff Academy • Internal Governance System</div>
-          <div>© 2026 Void Esports. All rights reserved.</div>
-        </div>
+      <div class="footer">
+        <div>Void Staff Academy • Internal Governance System</div>
+        <div>© 2026 Void Esports. All rights reserved.</div>
       </div>
-
-    </div>
-  </main>
+    </main>
+  </div>
 
   <!-- Command palette -->
-  <div id="cmdPalette" class="backdrop" role="dialog" aria-modal="true" aria-label="Command palette">
-    <div class="modal">
-      <div class="hd">
-        <b>Command Palette</b>
-        <span class="kbd">Esc</span>
+  <div class="cmdk" id="cmdk">
+    <div class="cmdk-box">
+      <div class="cmdk-top">
+        <input id="cmdkInput" placeholder="Search modules… (Home, Moderation, Roster…)" />
+        <span class="badge">Esc</span>
       </div>
-      <div class="bd">
-        <input id="cmdInput" placeholder="Type to search… (Home, Moderation, Roster, Certification)" />
-        <div id="cmdList" class="cmd-list"></div>
-      </div>
+      <div class="cmdk-list" id="cmdkList"></div>
     </div>
   </div>
 
-  <div id="toast" class="toast"></div>
-  <script src="assets/app.js"></script>
+  <script src="assets/ui.js"></script>
 </body>
 </html>
