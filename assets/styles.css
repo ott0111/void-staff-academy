@@ -350,3 +350,92 @@ button, input, textarea{font:inherit}
   .two{grid-template-columns: 1fr}
   .nav{display:none}
 }
+/* ===== ADMIN MODAL FIX ===== */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal .panel {
+  width: min(1000px, 95vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 28px;
+  background: rgba(12,14,24,0.95);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 40px 120px rgba(0,0,0,0.7);
+  padding: 24px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.tab {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.tab.active {
+  background: rgba(139,92,246,0.25);
+  border-color: rgba(139,92,246,0.45);
+}
+
+/* Question cards */
+.qcard {
+  padding: 22px;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-top: 18px;
+}
+
+.chat {
+  background: rgba(0,0,0,0.45);
+  border-radius: 14px;
+  padding: 12px;
+  margin-top: 10px;
+  font-size: 13px;
+  white-space: pre-wrap;
+}
+
+.opts {
+  margin-top: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.opt {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.opt:hover {
+  background: rgba(255,255,255,0.08);
+}
