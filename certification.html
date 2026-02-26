@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/app.css"/>
 </head>
-
+  
 <body class="fade-page">
   <div class="aurora"></div>
   <div class="grain"></div>
@@ -252,12 +252,17 @@
   </div>
 
   <div id="toast" class="toast"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="assets/app.js"></script>
 
   <script>
     /***************
      * CERT SETTINGS
      ***************/
+    const SUPABASE_URL = "https://jzvnqbwcfgnhunulhuk.supabase.co";
+const SUPABASE_KEY = "sb_publishable_Q1YlgilLpktVG2Wm9kN1MQ_0hQC-rol";
+
+const supabase = window.supabase.createClient(https://jzvnqbwcfgnhunulhuk.supabase.co, sb_publishable_Q1YlgilLpktVG2Wm9kN1MQ_0hQC-rol);
     const ADMIN_PASSWORD = "STAFFACCESS"; // <-- CHANGE THIS
 
     const PASS_PERCENT = 70;
@@ -476,15 +481,6 @@
 
     const nowISO = ()=> new Date().toISOString();
 
-    function loadLogs(){
-      try{ return JSON.parse(localStorage.getItem(LS_KEY) || "[]"); }
-      catch{ return []; }
-    }
-    function saveLogs(logs){
-      localStorage.setItem(LS_KEY, JSON.stringify(logs));
-      refreshMini();
-    }
-
     function fmtTime(iso){
       const d = new Date(iso);
       return d.toLocaleString();
@@ -667,9 +663,13 @@
         }))
       };
 
-      logs.unshift(attempt);
-      saveLogs(logs);
-      localStorage.removeItem(LS_DRAFT);
+      await supabase.from("certification_attempts").insert([{
+  candidate: attempt.candidate,
+  percent: attempt.percent,
+  correct: attempt.correct,
+  passed: attempt.passed,
+  answers: attempt.answers
+}]);
 
       // Show result
       examPanel.classList.add("hidden");
@@ -767,13 +767,31 @@
       VOIDToast("Admin unlocked.");
     }
 
-    function renderAdminTable(){
-      const q = (adminSearch.value || "").toLowerCase().trim();
-      const logs = loadLogs().filter(a=>{
-        if(!q) return true;
-        const blob = `${a.t} ${a.candidate} ${a.percent} ${a.correct} ${a.passed ? "pass":"fail"}`.toLowerCase();
-        return blob.includes(q);
-      });
+    async function renderAdminTable() {
+  const { data, error } = await supabase
+    .from("certification_attempts")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error(error);
+    VOIDToast("Database error.");
+    return;
+  }
+
+  attemptTable.innerHTML = data.map(a => `
+    <tr>
+      <td>${new Date(a.created_at).toLocaleString()}</td>
+      <td><b>${a.candidate}</b></td>
+      <td>${a.correct}/20 • ${a.percent}%</td>
+      <td>
+        <span class="badge ${a.passed ? "good":"bad"}">
+          ${a.passed ? "PASS":"FAIL"}
+        </span>
+      </td>
+    </tr>
+  `).join("");
+}
 
       attemptTable.innerHTML = logs.map(a=>{
         const badge = a.passed ? "good" : "bad";
