@@ -1,214 +1,157 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Void Staff Academy — Roster Standards</title>
-  <link rel="stylesheet" href="assets/styles.css" />
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script defer src="assets/app.js"></script>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Void Staff Academy • Moderation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/app.css"/>
 </head>
-<body>
-  <div class="noise"></div>
+
+<body class="fade-page">
+  <div class="aurora"></div>
+  <div class="grain"></div>
 
   <header class="topbar">
-    <div class="inner">
-      <a class="brand" href="index.html">
-        <div class="mark"></div>
-        <div class="title">
-          <span>VOID STAFF ACADEMY</span>
-          <span>Governance • Training • Compliance</span>
-        </div>
-      </a>
+    <div class="container">
+      <div class="inner">
+        <a class="brand" href="index.html">
+          <div class="mark"></div>
+          <div class="title">
+            <b>VOID STAFF ACADEMY</b>
+            <span>Governance • Training • Compliance</span>
+          </div>
+        </a>
 
-      <nav class="nav">
-        <a data-nav href="index.html"><i data-lucide="home" style="width:16px;height:16px"></i>Home</a>
-        <a data-nav href="moderation.html"><i data-lucide="shield" style="width:16px;height:16px"></i>Moderation</a>
-        <a data-nav href="roster.html"><i data-lucide="users" style="width:16px;height:16px"></i>Roster</a>
-        <a data-nav href="command-center.html"><i data-lucide="layout-dashboard" style="width:16px;height:16px"></i>Command Center</a>
-        <a data-nav href="certification.html"><i data-lucide="clipboard-check" style="width:16px;height:16px"></i>Certification</a>
-      </nav>
+        <nav class="nav">
+          <a data-nav href="index.html">Home</a>
+          <a data-nav href="moderation.html">Moderation</a>
+          <a data-nav href="roster.html">Roster</a>
+          <a data-nav href="operations.html">Command Center</a>
+          <a data-nav href="certification.html">Certification</a>
+        </nav>
+
+        <div class="actions">
+          <span class="kbd">Ctrl/⌘ K</span>
+          <button id="mobileOpen" class="btn ghost mobileBtn" type="button"><span class="icon">☰</span> Menu</button>
+        </div>
+      </div>
     </div>
   </header>
 
-  <main class="wrap">
-    <section class="hero fade-in">
-      <div class="kicker"><i data-lucide="users" style="width:16px;height:16px"></i>Roster Division</div>
-      <h1 class="h1">Void Roster Standards</h1>
-      <p class="sub">
-        Intake, eligibility verification, and structured onboarding across competitive, creative, and creator divisions — consistent rules, clean proof, documented outcomes.
-      </p>
-      <div class="btnrow">
-        <a class="btn" href="certification.html"><i data-lucide="clipboard-check"></i>Take the exam</a>
-        <a class="btn" href="moderation.html"><i data-lucide="shield"></i>Ticket protocol</a>
+  <div id="mobileSheet" class="mobileSheet">
+    <div class="shade"></div>
+    <div class="panel">
+      <div class="head">
+        <b>Navigation</b>
+        <button id="mobileClose" class="btn ghost" type="button">Close</button>
       </div>
-    </section>
-
-    <section class="section fade-in">
-      <h2>Competitive rosters</h2>
-      <p class="muted">Verify PR + earnings + consistency. Require proof before routing.</p>
-
-      <div class="grid">
-        <div class="card" style="grid-column: span 6">
-          <div class="hd">
-            <div class="left">
-              <div class="iconbox"><i data-lucide="crown"></i></div>
-              <div>
-                <h3>Pro Roster</h3>
-                <p>Top-tier competitive standards.</p>
-              </div>
-            </div>
-            <span class="pill good"><i data-lucide="badge-check" style="width:14px;height:14px"></i>Verified</span>
-          </div>
-          <p>
-            • 25,000+ Power Ranking<br/>
-            • $1,000+ official earnings<br/>
-            • Consistent placements<br/>
-            • Represents Void in-game & on socials
-          </p>
-        </div>
-
-        <div class="card" style="grid-column: span 6">
-          <div class="hd">
-            <div class="left">
-              <div class="iconbox"><i data-lucide="trophy"></i></div>
-              <div>
-                <h3>Semi-Pro</h3>
-                <p>Competitive-ready with earnings.</p>
-              </div>
-            </div>
-            <span class="pill warn"><i data-lucide="clipboard-list" style="width:14px;height:14px"></i>Proof required</span>
-          </div>
-          <p>
-            • 10,000–25,000 PR<br/>
-            • Must have earnings<br/>
-            • Consistent placements<br/>
-            • Uses Fortnite code
-          </p>
-        </div>
-
-        <div class="card" style="grid-column: span 6">
-          <div class="hd">
-            <div class="left">
-              <div class="iconbox"><i data-lucide="graduation-cap"></i></div>
-              <div>
-                <h3>Academy</h3>
-                <p>Developing competitors with consistency.</p>
-              </div>
-            </div>
-          </div>
-          <p>
-            • 500–10,000 PR<br/>
-            • Consistent placements<br/>
-            • Represents Void in-game<br/>
-            • Uses Fortnite code
-          </p>
-        </div>
-
-        <div class="card" style="grid-column: span 6">
-          <div class="hd">
-            <div class="left">
-              <div class="iconbox"><i data-lucide="wand-2"></i></div>
-              <div>
-                <h3>Creative Roster</h3>
-                <p>Mechanics + identity + clips.</p>
-              </div>
-            </div>
-          </div>
-          <p>
-            • Smooth / fast mechanics<br/>
-            • Unique playstyle<br/>
-            • Provides clips when asked<br/>
-            • Represents Void publicly
-          </p>
-        </div>
+      <div class="links">
+        <a data-nav href="index.html">Home</a>
+        <a data-nav href="moderation.html">Moderation</a>
+        <a data-nav href="roster.html">Roster</a>
+        <a data-nav href="operations.html">Command Center</a>
+        <a data-nav href="certification.html">Certification</a>
+        <a data-nav href="recruitment.html">Recruitment</a>
+        <a data-nav href="leadership.html">Leadership</a>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <section class="section fade-in">
-      <h2>Creators & media</h2>
-      <p class="muted">Verify metrics honestly. Require links + recent activity proof.</p>
+  <main>
+    <div class="container">
 
-      <div class="grid">
-        <div class="card" style="grid-column: span 6">
-          <div class="hd">
-            <div class="left">
-              <div class="iconbox"><i data-lucide="radio"></i></div>
-              <div>
-                <h3>Streamer</h3>
-                <p>Consistent live content and reach.</p>
-              </div>
+      <section class="hero reveal" data-reveal>
+        <div class="content" style="grid-template-columns:1fr;">
+          <div>
+            <div class="eyebrow"><span class="pill">Moderation Module</span></div>
+            <div class="h1">Ticket Handling Standards</div>
+            <p class="sub">
+              Your priority is efficient, professional ticket management. Every response must follow protocol:
+              greeting → purpose → age verification → correct routing → documentation.
+            </p>
+            <div class="cta">
+              <a class="btn primary" href="certification.html">Go to Practical Assessment</a>
+              <a class="btn" href="operations.html">Next Module: Operations</a>
             </div>
           </div>
-          <p>
-            • 1k+ followers/subscribers<br/>
-            • 25+ average viewers<br/>
-            • Streams 4x per week<br/>
-            • Uses hashtags & represents Void
-          </p>
         </div>
+      </section>
 
-        <div class="card" style="grid-column: span 6">
-          <div class="hd">
-            <div class="left">
-              <div class="iconbox"><i data-lucide="video"></i></div>
-              <div>
-                <h3>Content Creator</h3>
-                <p>Original posts, consistent output.</p>
-              </div>
-            </div>
-          </div>
-          <p>
-            • 1k+ Twitch/YouTube<br/>
-            • 10k+ TikTok<br/>
-            • Original high-quality posts<br/>
-            • Active and willing to support Void
-          </p>
-        </div>
+      <section class="grid">
+        <article class="card reveal" data-reveal>
+          <h3>Protocol Snapshot</h3>
+          <p><b>Ticket Types:</b> General • Roster</p>
+          <p><b>Required Opening:</b> professional greeting + role inquiry + age verification</p>
+          <p><b>Escalation:</b> complex or sensitive cases go to senior staff with proof + context</p>
+        </article>
 
-        <div class="card" style="grid-column: span 6">
-          <div class="hd">
-            <div class="left">
-              <div class="iconbox"><i data-lucide="sparkles"></i></div>
-              <div>
-                <h3>Junior Content Creator</h3>
-                <p>Developing creators with potential.</p>
-              </div>
-            </div>
-          </div>
-          <p>
-            • 500+ Twitch/YouTube<br/>
-            • 3k+ TikTok<br/>
-            • High-quality posts<br/>
-            • Grinding toward main CC roster
-          </p>
-        </div>
+        <article class="card reveal" data-reveal>
+          <h3>Protocol (Non-Negotiable)</h3>
+          <p>• Start with a professional greeting (no “yo”, “bro”, etc.).</p>
+          <p>• Ask what they need / what role they’re applying for.</p>
+          <p>• Ask for age verification clearly.</p>
+          <p>• Request correct proof (tracker/clips/socials/portfolio).</p>
+          <p>• Route to correct department + keep records.</p>
+        </article>
 
-        <div class="card" style="grid-column: span 6">
-          <div class="hd">
-            <div class="left">
-              <div class="iconbox"><i data-lucide="brush"></i></div>
-              <div>
-                <h3>GFX / VFX</h3>
-                <p>Portfolio-first evaluation.</p>
-              </div>
-            </div>
-            <span class="pill warn"><i data-lucide="folder-open" style="width:14px;height:14px"></i>Portfolio</span>
-          </div>
-          <p>
-            • Editing experience<br/>
-            • Portfolio required<br/>
-            • 1440p+ quality work<br/>
-            • Delivers consistently
-          </p>
+        <article class="card reveal" data-reveal>
+          <h3>Approved Openers</h3>
+          <p><b>Greetings</b></p>
+          <p>• Hello, how may I help you?</p>
+          <p>• Hello, what can I assist you with today?</p>
+          <div class="hr"></div>
+          <p><b>Core Questions</b></p>
+          <p>• What role are you applying for today?</p>
+          <p>• May I ask how old you are?</p>
+        </article>
+
+        <article class="card reveal" data-reveal>
+          <h3>Role-Specific Routing</h3>
+          <p><b>Creative</b> — ask for 2–3 clips, ping Creative Department.</p>
+          <p><b>Roster</b> — ask tracker + lobby proof. Pro/Semi: ping operations.</p>
+          <p><b>GFX/VFX</b> — ask portfolio, ping GFX/VFX lead.</p>
+          <p><b>Content</b> — ask socials, ping Content Department.</p>
+          <p class="small">Fallback: offer Grinder+ if they don’t qualify for roster roles.</p>
+        </article>
+
+        <article class="card reveal" data-reveal>
+          <h3>Closing the Ticket</h3>
+          <p><b>Final prompt</b>: “Perfect! Please change your name to have Void in it and send a screenshot of using our code!”</p>
+          <p><b>After proof</b>: “Thank you! Here are your roles! Have a nice day!”</p>
+        </article>
+
+        <article class="card reveal" data-reveal>
+          <h3>Commands Reminder</h3>
+          <p><span class="badge warn">Warn</span> Use only in #staff-commands: <span style="font-family:var(--mono)"><code>*warn user-id reason</code></span></p>
+          <p><span class="badge bad">Report</span> Use <span style="font-family:var(--mono)"><code>/report</code></span> with documentation.</p>
+          <p><span class="badge">Blacklist (Underage)</span> Store Username • Discord ID • Reason.</p>
+        </article>
+      </section>
+
+      <div class="footer reveal" data-reveal>
+        <div class="split">
+          <div>Void Esports Mod Certification System • Made by Void Yeezy</div>
+          <div>© 2026 Void Esports. All rights reserved.</div>
         </div>
       </div>
-    </section>
 
-    <div class="footer">
-      <div>Void Staff Academy • Roster Standards</div>
-      <div class="right">© 2026 Void Esports. All rights reserved.</div>
     </div>
   </main>
+
+  <div id="cmdPalette" class="backdrop">
+    <div class="modal">
+      <div class="hd"><b>Command Palette</b><span class="kbd">Esc</span></div>
+      <div class="bd">
+        <input id="cmdInput" placeholder="Type to search…"/>
+        <div id="cmdList" class="cmd-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="assets/app.js"></script>
 </body>
 </html>
