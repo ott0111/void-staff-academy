@@ -289,10 +289,8 @@
 
   <div id="toast" class="toast"></div>
 
-  <script src="assets/app.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
   <script>
+document.addEventListener("DOMContentLoaded", () => {
   /**********************
    * CONFIG — CHANGE ME
    **********************/
@@ -307,11 +305,16 @@
   const PASS_PERCENT = 80;
   const TOTAL_Q = 30;
 
+  // Ensure Supabase loaded
+  if (!window.supabase || !window.supabase.createClient) {
+    console.error("Supabase library not loaded. Check script order.");
+    return;
+  }
+
   const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
   /**********************
    * QUESTIONS (30)
-   * Hard but clear.
    **********************/
   const QUESTIONS = [
     { q:"Ticket opens. Best FIRST message?", choices:[
@@ -526,53 +529,60 @@
   ];
 
   /**********************
-   * DOM
+   * SAFE DOM GETTERS
    **********************/
-  const statusMono = document.getElementById("statusMono");
-  const startPanel = document.getElementById("startPanel");
-  const examPanel = document.getElementById("examPanel");
-  const resultPanel = document.getElementById("resultPanel");
+  const $ = (id) => document.getElementById(id);
 
-  const candidateName = document.getElementById("candidateName");
-  const beginBtn = document.getElementById("beginBtn");
-  const questionHost = document.getElementById("questionHost");
+  const statusMono   = $("statusMono");
+  const startPanel   = $("startPanel");
+  const examPanel    = $("examPanel");
+  const resultPanel  = $("resultPanel");
 
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
-  const submitBtn = document.getElementById("submitBtn");
+  const candidateName = $("candidateName");
+  const beginBtn      = $("beginBtn");
+  const questionHost  = $("questionHost");
 
-  const bar = document.getElementById("bar");
-  const progText = document.getElementById("progText");
-  const needText = document.getElementById("needText");
+  const prevBtn   = $("prevBtn");
+  const nextBtn   = $("nextBtn");
+  const submitBtn = $("submitBtn");
 
-  const resultBadge = document.getElementById("resultBadge");
-  const resultText = document.getElementById("resultText");
-  const reviewBtn = document.getElementById("reviewBtn");
-  const resetBtn = document.getElementById("resetBtn");
-  const reviewHost = document.getElementById("reviewHost");
+  const bar      = $("bar");
+  const progText = $("progText");
+  const needText = $("needText");
 
-  // Admin modal + auth
-  const adminBtn = document.getElementById("adminBtn");
-  const adminModal = document.getElementById("adminModal");
-  const adminClose = document.getElementById("adminClose");
+  const resultBadge = $("resultBadge");
+  const resultText  = $("resultText");
+  const reviewBtn   = $("reviewBtn");
+  const resetBtn    = $("resetBtn");
+  const reviewHost  = $("reviewHost");
 
-  const adminGate = document.getElementById("adminGate");
-  const adminPanel = document.getElementById("adminPanel");
+  const adminBtn    = $("adminBtn");
+  const adminModal  = $("adminModal");
+  const adminClose  = $("adminClose");
 
-  const adminEmail = document.getElementById("adminEmail");
-  const adminPass = document.getElementById("adminPass");
-  const adminLogin = document.getElementById("adminLogin");
-  const adminLogout = document.getElementById("adminLogout");
-  const adminGateMsg = document.getElementById("adminGateMsg");
+  const adminGate   = $("adminGate");
+  const adminPanel  = $("adminPanel");
 
-  const adminSearch = document.getElementById("adminSearch");
-  const refreshBtn = document.getElementById("refreshBtn");
+  const adminEmail  = $("adminEmail");
+  const adminPass   = $("adminPass");
+  const adminLogin  = $("adminLogin");
+  const adminLogout = $("adminLogout");
+  const adminGateMsg= $("adminGateMsg");
 
-  const analyticsBox = document.getElementById("analyticsBox");
-  const sessionBox = document.getElementById("sessionBox");
+  const adminSearch = $("adminSearch");
+  const refreshBtn  = $("refreshBtn");
 
-  const attemptTable = document.getElementById("attemptTable");
-  const attemptDetail = document.getElementById("attemptDetail");
+  const analyticsBox = $("analyticsBox");
+  const sessionBox   = $("sessionBox");
+
+  const attemptTable  = $("attemptTable");
+  const attemptDetail = $("attemptDetail");
+
+  // If any of these core buttons are missing, warn instead of crashing
+  if (!beginBtn || !adminBtn) {
+    console.error("Missing beginBtn or adminBtn element IDs in HTML.");
+    return;
+  }
 
   /**********************
    * EXAM STATE
@@ -580,24 +590,37 @@
   let idx = 0;
   let answers = Array(TOTAL_Q).fill(null);
 
-  function setStatus(s){ statusMono.textContent = "Status: " + s; }
-  function answeredCount(){ return answers.filter(v => v !== null).length; }
+  function setStatus(s){
+    if (statusMono) statusMono.textContent = "Status: " + s;
+  }
+
+  function answeredCount(){
+    return answers.filter(v => v !== null).length;
+  }
 
   function requiredCorrect(){
     return Math.ceil((PASS_PERCENT / 100) * TOTAL_Q);
   }
 
+  function showPanels(which){
+    if (startPanel)  startPanel.classList.toggle("hidden", which !== "start");
+    if (examPanel)   examPanel.classList.toggle("hidden", which !== "exam");
+    if (resultPanel) resultPanel.classList.toggle("hidden", which !== "result");
+  }
+
   function renderProgress(){
     const done = answeredCount();
     const pct = Math.round((done / TOTAL_Q) * 100);
-    bar.style.width = pct + "%";
-    progText.textContent = `${done}/${TOTAL_Q} answered`;
-    needText.textContent = `${requiredCorrect()}/${TOTAL_Q}`;
+    if (bar) bar.style.width = pct + "%";
+    if (progText) progText.textContent = `${done}/${TOTAL_Q} answered`;
+    if (needText) needText.textContent = `${requiredCorrect()}/${TOTAL_Q}`;
   }
 
   function renderQuestion(){
     const q = QUESTIONS[idx];
     const chosen = answers[idx];
+
+    if (!questionHost) return;
 
     questionHost.innerHTML = `
       <div class="qTitle">
@@ -621,15 +644,14 @@
 
     questionHost.querySelectorAll("input[type=radio]").forEach(r=>{
       r.addEventListener("change", ()=>{
-        const v = Number(r.getAttribute("data-choice"));
-        answers[idx] = v;
+        answers[idx] = Number(r.getAttribute("data-choice"));
         renderProgress();
         if (window.VOIDToast) VOIDToast("Saved answer for Q" + (idx+1));
       });
     });
 
-    prevBtn.disabled = (idx === 0);
-    nextBtn.disabled = (idx === TOTAL_Q - 1);
+    if (prevBtn) prevBtn.disabled = (idx === 0);
+    if (nextBtn) nextBtn.disabled = (idx === TOTAL_Q - 1);
   }
 
   function scoreExam(){
@@ -645,25 +667,6 @@
     return {correct, percent, passed, perQ};
   }
 
-  function showPanels(which){
-    startPanel.classList.toggle("hidden", which !== "start");
-    examPanel.classList.toggle("hidden", which !== "exam");
-    resultPanel.classList.toggle("hidden", which !== "result");
-  }
-
-  function resetExam(){
-    idx = 0;
-    answers = Array(TOTAL_Q).fill(null);
-    showPanels("start");
-    setStatus("idle");
-    renderProgress();
-    reviewHost.classList.add("hidden");
-    reviewHost.innerHTML = "";
-  }
-
-  /**********************
-   * SUPABASE: SAVE ATTEMPT
-   **********************/
   async function saveAttempt(attempt){
     const { error } = await supabase
       .from("certification_attempts")
@@ -677,7 +680,7 @@
 
     if(error){
       console.error(error);
-      if (window.VOIDToast) VOIDToast("Database error. Check RLS/policies.");
+      if (window.VOIDToast) VOIDToast("Database error (check RLS policies).");
       throw error;
     }
   }
@@ -686,30 +689,30 @@
    * CANDIDATE FLOW
    **********************/
   beginBtn.addEventListener("click", ()=>{
-    const name = candidateName.value.trim();
+    const name = (candidateName?.value || "").trim();
     if(!name){
       if (window.VOIDToast) VOIDToast("Enter your Discord name.");
       return;
     }
+
     idx = 0;
     answers = Array(TOTAL_Q).fill(null);
     showPanels("exam");
     setStatus("in progress");
     renderProgress();
     renderQuestion();
-    if (window.VOIDToast) VOIDToast("Exam started.");
   });
 
-  prevBtn.addEventListener("click", ()=>{ idx = Math.max(0, idx-1); renderQuestion(); });
-  nextBtn.addEventListener("click", ()=>{ idx = Math.min(TOTAL_Q-1, idx+1); renderQuestion(); });
+  if (prevBtn) prevBtn.addEventListener("click", ()=>{ idx = Math.max(0, idx-1); renderQuestion(); });
+  if (nextBtn) nextBtn.addEventListener("click", ()=>{ idx = Math.min(TOTAL_Q-1, idx+1); renderQuestion(); });
 
-  submitBtn.addEventListener("click", async ()=>{
+  if (submitBtn) submitBtn.addEventListener("click", async ()=>{
     if(answeredCount() < TOTAL_Q){
       if (window.VOIDToast) VOIDToast("Answer all 30 questions before submitting.");
       return;
     }
 
-    const name = candidateName.value.trim() || "Unknown";
+    const name = ((candidateName?.value || "").trim()) || "Unknown";
     const r = scoreExam();
 
     const attempt = {
@@ -728,6 +731,7 @@
     };
 
     submitBtn.disabled = true;
+    const oldText = submitBtn.textContent;
     submitBtn.textContent = "Submitting…";
 
     try{
@@ -736,24 +740,28 @@
       showPanels("result");
       setStatus("submitted");
 
-      resultBadge.className = "badge " + (attempt.passed ? "good":"bad");
-      resultBadge.textContent = attempt.passed ? "PASS" : "FAIL";
+      if (resultBadge) {
+        resultBadge.className = "badge " + (attempt.passed ? "good":"bad");
+        resultBadge.textContent = attempt.passed ? "PASS" : "FAIL";
+      }
 
-      resultText.innerHTML = `
-        Candidate: <b>${escapeHTML(attempt.candidate)}</b><br/>
-        Score: <b>${attempt.correct}/${TOTAL_Q}</b> • <b>${attempt.percent}%</b><br/>
-        Required: <b>${PASS_PERCENT}%</b>
-      `;
-
-      if (window.VOIDToast) VOIDToast(attempt.passed ? "Certified." : "Not passed — review and retry.");
+      if (resultText) {
+        resultText.innerHTML = `
+          Candidate: <b>${escapeHTML(attempt.candidate)}</b><br/>
+          Score: <b>${attempt.correct}/${TOTAL_Q}</b> • <b>${attempt.percent}%</b><br/>
+          Required: <b>${PASS_PERCENT}%</b>
+        `;
+      }
     } finally {
       submitBtn.disabled = false;
-      submitBtn.textContent = "Submit";
+      submitBtn.textContent = oldText;
     }
   });
 
-  reviewBtn.addEventListener("click", ()=>{
+  if (reviewBtn) reviewBtn.addEventListener("click", ()=>{
     const r = scoreExam();
+    if (!reviewHost) return;
+
     reviewHost.innerHTML = r.perQ.map(x=>{
       const q = QUESTIONS[x.i];
       const picked = answers[x.i];
@@ -775,50 +783,58 @@
         </div>
       `;
     }).join("");
+
     reviewHost.classList.remove("hidden");
   });
 
-  resetBtn.addEventListener("click", resetExam);
+  if (resetBtn) resetBtn.addEventListener("click", ()=>{
+    idx = 0;
+    answers = Array(TOTAL_Q).fill(null);
+    showPanels("start");
+    setStatus("idle");
+    renderProgress();
+    if (reviewHost) {
+      reviewHost.classList.add("hidden");
+      reviewHost.innerHTML = "";
+    }
+  });
 
   /**********************
-   * ADMIN: SECURE AUTH + RLS GATE
+   * ADMIN: modal + auth
    **********************/
-  function openAdmin(){ adminModal.classList.add("show"); }
-  function closeAdmin(){ adminModal.classList.remove("show"); }
+  function openAdmin(){ if(adminModal) adminModal.classList.add("show"); }
+  function closeAdmin(){ if(adminModal) adminModal.classList.remove("show"); }
 
   adminBtn.addEventListener("click", async ()=>{
     openAdmin();
     await syncAdminUI();
   });
 
-  adminClose.addEventListener("click", closeAdmin);
-  adminModal.addEventListener("click", (e)=>{ if(e.target === adminModal) closeAdmin(); });
+  if (adminClose) adminClose.addEventListener("click", closeAdmin);
+  if (adminModal) adminModal.addEventListener("click", (e)=>{ if(e.target === adminModal) closeAdmin(); });
 
-  adminLogin.addEventListener("click", async ()=>{
+  if (adminLogin) adminLogin.addEventListener("click", async ()=>{
+    if (!adminGateMsg) return;
     adminGateMsg.textContent = "";
-    const email = adminEmail.value.trim().toLowerCase();
-    const pass = adminPass.value;
 
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password: pass });
+    const email = (adminEmail?.value || "").trim().toLowerCase();
+    const pass = adminPass?.value || "";
+
+    const { error } = await supabase.auth.signInWithPassword({ email, password: pass });
     if(error){
       console.error(error);
       adminGateMsg.textContent = "Login failed. Check email/password.";
       return;
     }
     await syncAdminUI();
-    if (window.VOIDToast) VOIDToast("Admin signed in.");
   });
 
-  adminLogout.addEventListener("click", async ()=>{
+  if (adminLogout) adminLogout.addEventListener("click", async ()=>{
     await supabase.auth.signOut();
     await syncAdminUI();
-    if (window.VOIDToast) VOIDToast("Signed out.");
   });
 
-  supabase.auth.onAuthStateChange(async ()=>{
-    // keep UI in sync if session changes
-    await syncAdminUI();
-  });
+  supabase.auth.onAuthStateChange(async ()=>{ await syncAdminUI(); });
 
   function isAdminEmail(email){
     return ADMIN_EMAIL_ALLOWLIST.includes((email||"").toLowerCase());
@@ -829,44 +845,40 @@
     const session = data.session;
 
     if(!session){
-      adminGateMsg.textContent = "Not logged in.";
-      adminPanel.classList.add("hidden");
-      adminGate.classList.remove("hidden");
-      sessionBox.textContent = "Session: none";
-      attemptTable.innerHTML = "";
-      attemptDetail.classList.add("hidden");
+      if (adminGateMsg) adminGateMsg.textContent = "Not logged in.";
+      if (adminPanel) adminPanel.classList.add("hidden");
+      if (adminGate) adminGate.classList.remove("hidden");
+      if (sessionBox) sessionBox.textContent = "Session: none";
+      if (attemptTable) attemptTable.innerHTML = "";
+      if (attemptDetail) attemptDetail.classList.add("hidden");
       return;
     }
 
     const email = session.user?.email || "";
-    sessionBox.innerHTML = `
-      Logged in as: <b>${escapeHTML(email)}</b><br/>
-      Role: <span style="font-family:var(--mono)">${escapeHTML(session.user?.role || "authenticated")}</span>
-    `;
+    if (sessionBox) {
+      sessionBox.innerHTML = `Logged in as: <b>${escapeHTML(email)}</b>`;
+    }
 
     if(!isAdminEmail(email)){
-      adminGateMsg.textContent = "You are logged in, but not authorized as admin.";
-      adminPanel.classList.add("hidden");
-      adminGate.classList.remove("hidden");
-      // Safety: force sign-out if non-admin logged in on this device
+      if (adminGateMsg) adminGateMsg.textContent = "Not authorized as admin.";
+      if (adminPanel) adminPanel.classList.add("hidden");
+      if (adminGate) adminGate.classList.remove("hidden");
       await supabase.auth.signOut();
-      sessionBox.textContent = "Session: unauthorized (signed out)";
       return;
     }
 
-    adminGateMsg.textContent = "Authorized.";
-    adminGate.classList.add("hidden");
-    adminPanel.classList.remove("hidden");
+    if (adminGateMsg) adminGateMsg.textContent = "Authorized.";
+    if (adminGate) adminGate.classList.add("hidden");
+    if (adminPanel) adminPanel.classList.remove("hidden");
 
     await loadAdminData();
   }
 
-  adminSearch.addEventListener("input", ()=>{ loadAdminData(); });
-  refreshBtn.addEventListener("click", ()=>{ loadAdminData(); });
+  if (adminSearch) adminSearch.addEventListener("input", ()=>{ loadAdminData(); });
+  if (refreshBtn) refreshBtn.addEventListener("click", ()=>{ loadAdminData(); });
 
   async function loadAdminData(){
-    // Pull attempts (RLS must allow only admin emails to select)
-    const q = (adminSearch.value || "").toLowerCase().trim();
+    const q = (adminSearch?.value || "").toLowerCase().trim();
 
     const { data, error } = await supabase
       .from("certification_attempts")
@@ -876,8 +888,8 @@
 
     if(error){
       console.error(error);
-      analyticsBox.textContent = "Failed to load admin data. Check RLS policies.";
-      attemptTable.innerHTML = "";
+      if (analyticsBox) analyticsBox.textContent = "Failed to load admin data (check RLS).";
+      if (attemptTable) attemptTable.innerHTML = "";
       return;
     }
 
@@ -891,20 +903,22 @@
   }
 
   function renderAttemptsTable(rows){
-    attemptDetail.classList.add("hidden");
-    attemptDetail.innerHTML = "";
+    if (attemptDetail) {
+      attemptDetail.classList.add("hidden");
+      attemptDetail.innerHTML = "";
+    }
 
-    attemptTable.innerHTML = rows.map(a=>{
-      return `
-        <tr>
-          <td style="font-family:var(--mono);font-size:12px;">${escapeHTML(new Date(a.created_at).toLocaleString())}</td>
-          <td><b>${escapeHTML(a.candidate || "—")}</b></td>
-          <td style="font-family:var(--mono)">${a.correct}/${TOTAL_Q} • ${a.percent}%</td>
-          <td><span class="badge ${a.passed ? "good":"bad"}">${a.passed ? "PASS":"FAIL"}</span></td>
-          <td><button class="btn ghost" type="button" data-view="${a.id}">View</button></td>
-        </tr>
-      `;
-    }).join("");
+    if (!attemptTable) return;
+
+    attemptTable.innerHTML = rows.map(a=>`
+      <tr>
+        <td style="font-family:var(--mono);font-size:12px;">${escapeHTML(new Date(a.created_at).toLocaleString())}</td>
+        <td><b>${escapeHTML(a.candidate || "—")}</b></td>
+        <td style="font-family:var(--mono)">${a.correct}/${TOTAL_Q} • ${a.percent}%</td>
+        <td><span class="badge ${a.passed ? "good":"bad"}">${a.passed ? "PASS":"FAIL"}</span></td>
+        <td><button class="btn ghost" type="button" data-view="${a.id}">View</button></td>
+      </tr>
+    `).join("");
 
     attemptTable.querySelectorAll("[data-view]").forEach(btn=>{
       btn.addEventListener("click", ()=>{
@@ -917,7 +931,9 @@
   }
 
   function viewAttempt(a){
-    const answers = Array.isArray(a.answers) ? a.answers : [];
+    const ans = Array.isArray(a.answers) ? a.answers : [];
+    if (!attemptDetail) return;
+
     attemptDetail.classList.remove("hidden");
     attemptDetail.innerHTML = `
       <div class="qTitle">
@@ -931,7 +947,7 @@
         Correct: <b>${a.correct}/${TOTAL_Q}</b>
       </div>
       <div class="hr"></div>
-      ${answers.map((x,i)=>`
+      ${ans.map((x,i)=>`
         <div style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06)">
           <div style="font-weight:700">Q${i+1}</div>
           <div class="help" style="margin-top:6px">${escapeHTML(x.q || "")}</div>
@@ -943,58 +959,25 @@
         </div>
       `).join("")}
     `;
-    attemptDetail.scrollIntoView({behavior:"smooth", block:"start"});
   }
 
   function renderAnalytics(rows){
+    if (!analyticsBox) return;
+
     const total = rows.length;
     const passCount = rows.filter(r => r.passed).length;
     const failCount = total - passCount;
     const passRate = total ? Math.round((passCount/total)*100) : 0;
     const avg = total ? Math.round(rows.reduce((s,r)=>s+(r.percent||0),0)/total) : 0;
 
-    const now = Date.now();
-    const dayMs = 24*60*60*1000;
-
-    const last24 = rows.filter(r => (new Date(r.created_at)).getTime() >= (now - dayMs));
-    const last24Pass = last24.filter(r=>r.passed).length;
-    const last24Rate = last24.length ? Math.round((last24Pass/last24.length)*100) : 0;
-
-    // 7-day buckets
-    const buckets = [];
-    for(let d=6; d>=0; d--){
-      const start = now - (d+1)*dayMs;
-      const end = now - d*dayMs;
-      const dayRows = rows.filter(r=>{
-        const t = (new Date(r.created_at)).getTime();
-        return t >= start && t < end;
-      });
-      const dayPass = dayRows.filter(r=>r.passed).length;
-      const rate = dayRows.length ? Math.round((dayPass/dayRows.length)*100) : 0;
-      buckets.push({day: d, total: dayRows.length, rate});
-    }
-
-    const spark = buckets.map(b=>{
-      const bars = Math.round((b.rate/100)*10);
-      return `${"▮".repeat(bars)}${"▯".repeat(10-bars)} ${String(b.rate).padStart(3," ")}% (${b.total})`;
-    }).join("<br/>");
-
     analyticsBox.innerHTML = `
       <b>Total attempts:</b> ${total}<br/>
       <b>Pass:</b> ${passCount} • <b>Fail:</b> ${failCount}<br/>
       <b>Pass rate:</b> ${passRate}%<br/>
       <b>Average score:</b> ${avg}%<br/>
-      <div class="hr"></div>
-      <b>Last 24h:</b> ${last24.length} attempts • ${last24Rate}% pass rate<br/>
-      <div class="hr"></div>
-      <b>Last 7 days trend:</b><br/>
-      <span style="font-family:var(--mono)">${spark}</span>
     `;
   }
 
-  /**********************
-   * HELPERS
-   **********************/
   function escapeHTML(s){
     return String(s).replace(/[&<>"']/g, (m)=>({
       "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
@@ -1004,6 +987,7 @@
   // Init
   setStatus("idle");
   renderProgress();
-  </script>
+});
+</script>
 </body>
 </html>
