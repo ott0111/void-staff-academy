@@ -1,1 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Void Staff Academy — Certification</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b14; --panel:rgba(255,255,255,.06); --stroke:rgba(255,255,255,.10);
+  --text:#ffffff; --muted:rgba(255,255,255,.72);
+  --accent:#a855f7; --accent2:#7c3aed; --shadow:0 18px 60px rgba(0,0,0,.55);
+  --radius:18px;
+  --good:#7CFFB2; --bad:#ff6b6b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Inter,system-ui,Segoe UI,Arial;
+  background:radial-gradient(circle at top,#1a1a2b,var(--bg));
+  color:var(--text);
+}
+nav{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 28px;border-bottom:1px solid var(--stroke);
+  background:rgba(10,10,18,.6);backdrop-filter:blur(12px);
+}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .dot{width:10px;height:10px;border-radius:999px;background:var(--accent);box-shadow:0 0 20px rgba(168,85,247,.8)}
+.brand h1{font-size:16px;font-weight:800;color:var(--accent)}
+.links a{
+  color:var(--text);text-decoration:none;font-weight:600;font-size:13px;
+  padding:10px 12px;border-radius:12px;opacity:.9;transition:.2s;
+}
+.links a:hover{background:rgba(255,255,255,.06);opacity:1}
+.links a.active{background:linear-gradient(135deg,rgba(168,85,247,.22),rgba(124,58,237,.14));border:1px solid rgba(168,85,247,.35)}
+.wrap{max-width:1100px;margin:0 auto;padding:28px}
+.hero{
+  padding:22px;border:1px solid var(--stroke);background:var(--panel);border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+.hero h2{font-size:24px}
+.hero p{color:var(--muted);line-height:1.6;margin-top:8px}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 10px;border-radius:999px;border:1px solid rgba(168,85,247,.35);
+  background:rgba(168,85,247,.10);color:#f2e9ff;font-weight:800;font-size:12px;
+}
+.panel{
+  margin-top:16px;
+  padding:18px;border:1px solid var(--stroke);background:var(--panel);border-radius:var(--radius);
+}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.input{
+  flex:1;min-width:240px;
+  background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.12);
+  color:white;border-radius:14px;padding:12px 14px;outline:none;
+}
+.small{font-size:12px;color:rgba(255,255,255,.6);line-height:1.6}
+.q{
+  padding:16px;border:1px solid rgba(255,255,255,.10);
+  background:rgba(0,0,0,.20);border-radius:16px;margin-top:14px;
+}
+.q h3{font-size:14px;margin-bottom:10px}
+.opt{
+  display:flex;gap:10px;align-items:flex-start;
+  padding:10px 10px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.04);
+  margin:8px 0;cursor:pointer;transition:.15s;
+}
+.opt:hover{transform:translateY(-1px);border-color:rgba(168,85,247,.35)}
+.opt input{margin-top:3px}
+.opt span{color:rgba(255,255,255,.80);line-height:1.55}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+button{
+  border:none;cursor:pointer;font-weight:800;
+  padding:12px 16px;border-radius:14px;color:white;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  transition:.2s;
+}
+button:hover{transform:scale(1.03)}
+button.secondary{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+}
+.result{
+  display:none;margin-top:16px;
+  padding:18px;border:1px solid var(--stroke);background:var(--panel);border-radius:var(--radius);
+}
+.result.good{border-color:rgba(124,255,178,.35)}
+.result.bad{border-color:rgba(255,107,107,.35)}
+.result h3{font-size:16px}
+.result p{color:var(--muted);line-height:1.7;margin-top:8px}
+hr.sep{border:none;border-top:1px solid rgba(255,255,255,.08);margin:14px 0}
+.certificate{
+  display:none;margin-top:16px;
+  border-radius:22px;
+  background:linear-gradient(135deg,#19192a,#0d0d14);
+  border:2px solid rgba(168,85,247,.55);
+  box-shadow:0 24px 80px rgba(0,0,0,.55);
+  overflow:hidden;
+}
+.certTop{
+  padding:18px 18px 0 18px;
+  display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+}
+.certMark{
+  display:flex;align-items:center;gap:10px
+}
+.certMark .logo{
+  width:38px;height:38px;border-radius:14px;
+  background:linear-gradient(135deg,rgba(168,85,247,.85),rgba(124,58,237,.75));
+  box-shadow:0 0 26px rgba(168,85,247,.45);
+}
+.certMark b{font-size:14px}
+.certBody{
+  padding:18px;
+}
+.certTitle{
+  font-size:28px;font-weight:900;letter-spacing:.3px;
+}
+.certSub{margin-top:8px;color:rgba(255,255,255,.75);line-height:1.6}
+.certName{
+  margin-top:18px;font-size:34px;font-weight:900;color:#f2e9ff;
+}
+.certMeta{
+  margin-top:12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;
+}
+.metaBox{
+  padding:12px 12px;border-radius:16px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.10);
+}
+.metaBox div:first-child{font-size:11px;color:rgba(255,255,255,.6);font-weight:800;letter-spacing:.4px}
+.metaBox div:last-child{margin-top:6px;font-size:13px;color:rgba(255,255,255,.85);font-weight:800}
+.certFoot{
+  margin-top:16px;
+  padding:14px 18px;border-top:1px solid rgba(255,255,255,.10);
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  color:rgba(255,255,255,.6);font-size:12px;
+}
+.footer{
+  text-align:center;margin-top:22px;padding:18px;color:rgba(255,255,255,.55);font-size:12px
+}
 
+/* print-friendly for “Save as PDF” */
+@media print{
+  nav,.hero,.panel,.result,.btns,.footer{display:none !important}
+  body{background:#0b0b14}
+  .wrap{padding:0;margin:0;max-width:none}
+  .certificate{display:block !important;border:none;box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand"><div class="dot"></div><h1>Void Staff Academy</h1></div>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="moderation.html">Moderation</a>
+    <a href="roster.html">Roster</a>
+    <a href="operations.html">Operations</a>
+    <a class="active" href="certification.html">Certification</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="hero">
+    <span class="badge">Practical Assessment — 20 Questions</span>
+    <h2>Void Moderator Certification Exam</h2>
+    <p>Auto-graded. Passing score is <strong>70%</strong> (14/20). Correct answers are hidden. If you pass, you’ll receive a screenshot-ready certificate with a unique ID.</p>
+  </div>
+
+  <div class="panel" id="examPanel">
+    <div class="row">
+      <input class="input" id="discordName" placeholder="Enter your Discord Username (example: VoidYeezy#0001)" />
+      <div class="small">Tip: Use the exact username you want on your certificate.</div>
+    </div>
+
+    <!-- QUESTIONS -->
+    <div id="questions"></div>
+
+    <div class="btns">
+      <button onclick="submitExam()">Submit Certification</button>
+      <button class="secondary" onclick="resetExam()">Reset Answers</button>
+      <button class="secondary" onclick="skipAll()">Skip All Questions</button>
+    </div>
+
+    <div class="result" id="resultBox"></div>
+  </div>
+
+  <!-- CERTIFICATE -->
+  <div class="certificate" id="certBox">
+    <div class="certTop">
+      <div class="certMark">
+        <div class="logo"></div>
+        <div>
+          <b>Void Esports</b><br>
+          <span style="color:rgba(255,255,255,.6);font-size:12px">Official Void Staff Academy</span>
+        </div>
+      </div>
+      <div style="text-align:right;color:rgba(255,255,255,.65);font-size:12px">
+        System Architecture:<br><b style="color:rgba(255,255,255,.9)">Enhanced Audit Layer Active</b>
+      </div>
+    </div>
+
+    <div class="certBody">
+      <div class="certTitle">Moderator Certification</div>
+      <div class="certSub">
+        This certificate confirms successful completion of the Void Staff Academy practical assessment
+        under official ticket handling, roster intake, operations logging, and moderation protocol.
+      </div>
+
+      <div class="certName" id="certName">—</div>
+
+      <div class="certMeta">
+        <div class="metaBox">
+          <div>FINAL SCORE</div>
+          <div id="certScore">—</div>
+        </div>
+        <div class="metaBox">
+          <div>CERTIFICATE ID</div>
+          <div id="certId">—</div>
+        </div>
+        <div class="metaBox">
+          <div>ISSUED</div>
+          <div id="certDate">—</div>
+        </div>
+        <div class="metaBox">
+          <div>AUTHORIZED BY</div>
+          <div>Void Operations • Made by Void Yeezy</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="certFoot">
+      <div>© 2026 Void Esports. All rights reserved.</div>
+      <div>Founded by Frank • Ranked 25th in NAC • 13k+ Discord Members</div>
+      <div>Community: discord.gg/dqHF9HPucf</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Void Esports Mod Certification System • Made by Void Yeezy<br>
+    © 2026 Void Esports. All rights reserved.
+  </div>
+</div>
+
+<script>
+/* 20 practical questions, scenario-based */
+const exam = [
+  {
+    q: "1) A user opens a ticket. What is the correct first response flow?",
+    opts: [
+      "Say “yo what’s up” and ask what they want.",
+      "Professional greeting → ask what they need/applying for → ask age.",
+      "Ask for clips immediately without greeting.",
+      "Close the ticket until they type again."
+    ],
+    a: 1
+  },
+  {
+    q: "2) A roster applicant joins. What MUST you ask early in the ticket?",
+    opts: [
+      "Their favorite pro player.",
+      "Their age.",
+      "Their PC specs.",
+      "Their keyboard sensitivity."
+    ],
+    a: 1
+  },
+  {
+    q: "3) Which ticket type is for support inquiries and issue reports?",
+    opts: ["Roster Ticket", "General Ticket", "Blacklist Ticket", "Scrim Ticket"],
+    a: 1
+  },
+  {
+    q: "4) Which ticket type is specifically for users applying to join Void Esports?",
+    opts: ["General Ticket", "Roster Ticket", "Ban Appeal Ticket", "Staff Ticket"],
+    a: 1
+  },
+  {
+    q: "5) In tickets, which message style is NOT allowed?",
+    opts: [
+      "“Hello, how may I help you?”",
+      "“Hello, what can I assist you with today?”",
+      "“Yo bro what you need”",
+      "“May I ask how old you are?”"
+    ],
+    a: 2
+  },
+  {
+    q: "6) Minor rule violation happens in chat. Where do you use the warn command?",
+    opts: ["In any channel", "Only in #staff-commands", "In DMs only", "In announcements"],
+    a: 1
+  },
+  {
+    q: "7) A user keeps breaking rules repeatedly. What’s the correct action?",
+    opts: [
+      "Keep warning forever with no proof.",
+      "Use /report with detailed documentation.",
+      "Ignore it if you’re busy.",
+      "Ask another member to handle it."
+    ],
+    a: 1
+  },
+  {
+    q: "8) You start moderating for the day. What should you do first?",
+    opts: ["/logout", "/loa", "/login", "/report"],
+    a: 2
+  },
+  {
+    q: "9) You finish your moderation session. What should you do?",
+    opts: ["/logout", "/login", "*warn", "/loa"],
+    a: 0
+  },
+  {
+    q: "10) You are sick and can’t be active. What is the correct protocol?",
+    opts: [
+      "Disappear with no message.",
+      "Use /loa with duration + reason, notify senior staff if extended.",
+      "Spam staff chat with memes.",
+      "Ask members to cover your shift."
+    ],
+    a: 1
+  },
+  {
+    q: "11) Weekly minimum ticket requirement to retain mod status is:",
+    opts: ["1 ticket", "5 tickets", "10 tickets", "25 tickets"],
+    a: 2
+  },
+  {
+    q: "12) Weekly minimum messages requirement to retain mod status is:",
+    opts: ["100", "250", "400", "1000"],
+    a: 2
+  },
+  {
+    q: "13) Applicant wants Academy Roster. What proof do you request?",
+    opts: [
+      "Tracker link + default dance lobby image.",
+      "Two-three clips only.",
+      "A screenshot of your role list.",
+      "Nothing, just assign roles."
+    ],
+    a: 0
+  },
+  {
+    q: "14) Applicant wants Semi-Pro or Pro Roster. What do you request + who do you ping?",
+    opts: [
+      "Clips and ping @Content Department.",
+      "Tracker + default dance lobby image; ping @operations.",
+      "Portfolio and ping @GFX / VFX Lead.",
+      "Only ask for PR, no proof needed."
+    ],
+    a: 1
+  },
+  {
+    q: "15) Applicant applies for VOID GFX/VFX. What’s the correct instruction?",
+    opts: [
+      "Ask for earnings and PR.",
+      "Ask for tracker and default dance image.",
+      "Ask for portfolio/previous work and ping GFX/VFX Lead.",
+      "Tell them to change their name first, then close."
+    ],
+    a: 2
+  },
+  {
+    q: "16) Applicant applies for Content Creator. What should you ask for?",
+    opts: [
+      "Social media links; ping @Content Department for review.",
+      "Only their Discord tag.",
+      "Only their PR.",
+      "Only their keyboard/mouse."
+    ],
+    a: 0
+  },
+  {
+    q: "17) User doesn’t qualify for roster roles. What option can you offer?",
+    opts: ["Pro Roster anyway", "Void Grinder+", "Instant blacklist", "BOD role"],
+    a: 1
+  },
+  {
+    q: "18) Grinder+ proof includes which of these?",
+    opts: [
+      "Screenshot using support creator code Team.Void",
+      "Screenshot of Epic username with 'Void'",
+      "Use Discord 'Void' tag",
+      "All of the above"
+    ],
+    a: 3
+  },
+  {
+    q: "19) Underage user case. What blacklist details must be included?",
+    opts: [
+      "Only the username",
+      "User + User ID + Reason (Underage)",
+      "Only the reason",
+      "Only screenshots"
+    ],
+    a: 1
+  },
+  {
+    q: "20) What is the correct closing after they send all required images?",
+    opts: [
+      "“k bye”",
+      "“Thanks. Here are your roles! Have a nice day!”",
+      "“Send more proof or no roles”",
+      "Ignore and leave ticket open forever"
+    ],
+    a: 1
+  }
+];
+
+const PASS_SCORE = 70; // percent
+const TOTAL = exam.length;
+const PASS_NEEDED = Math.ceil((PASS_SCORE/100) * TOTAL); // 14 for 20
+
+function renderQuestions(){
+  const wrap = document.getElementById("questions");
+  wrap.innerHTML = "";
+  exam.forEach((item, idx) => {
+    const qId = "q" + (idx+1);
+    const box = document.createElement("div");
+    box.className = "q";
+    box.innerHTML = `<h3>${item.q}</h3>` + item.opts.map((t, i) => `
+      <label class="opt">
+        <input type="radio" name="${qId}" value="${i}">
+        <span>${t}</span>
+      </label>
+    `).join("");
+    wrap.appendChild(box);
+  });
+}
+
+function resetExam(){
+  document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+  const res = document.getElementById("resultBox");
+  res.style.display = "none";
+  res.className = "result";
+  res.innerHTML = "";
+}
+
+function skipAll(){
+  // leaves unanswered (counts as incorrect). Helpful if someone wants to see what happens.
+  submitExam();
+}
+
+function submitExam(){
+  const name = document.getElementById("discordName").value.trim();
+  if(!name){
+    alert("Enter your Discord Username first.");
+    return;
+  }
+
+  let correct = 0;
+  let answered = 0;
+
+  exam.forEach((item, idx) => {
+    const qId = "q" + (idx+1);
+    const sel = document.querySelector(`input[name="${qId}"]:checked`);
+    if(sel){
+      answered++;
+      if(parseInt(sel.value,10) === item.a) correct++;
+    }
+  });
+
+  const percent = Math.round((correct / TOTAL) * 100);
+  const passed = percent >= PASS_SCORE;
+
+  const res = document.getElementById("resultBox");
+  res.style.display = "block";
+  res.className = "result " + (passed ? "good" : "bad");
+  res.innerHTML = `
+    <h3 style="color:${passed ? 'var(--good)' : 'var(--bad)'}">${passed ? "PASS" : "FAIL"}</h3>
+    <p>
+      Score: <strong>${percent}%</strong> • Correct: <strong>${correct}/${TOTAL}</strong> • Answered: <strong>${answered}/${TOTAL}</strong><br>
+      Passing requirement: <strong>${PASS_SCORE}%</strong> (${PASS_NEEDED}/${TOTAL})
+    </p>
+    <hr class="sep">
+    <p class="small">
+      Correct answers are hidden. If you passed, your certificate will generate below.
+      If you failed, review the modules and retry.
+    </p>
+  `;
+
+  if(passed){
+    generateCertificate(name, percent);
+  } else {
+    // ensure cert hidden
+    document.getElementById("certBox").style.display = "none";
+  }
+}
+
+function generateCertificate(name, percent){
+  const certBox = document.getElementById("certBox");
+  certBox.style.display = "block";
+
+  const id = "VOID-" + Math.random().toString(36).slice(2, 8).toUpperCase() + "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
+  const date = new Date();
+  const issued = date.toLocaleString(undefined, { year:"numeric", month:"long", day:"numeric" });
+
+  document.getElementById("certName").textContent = name;
+  document.getElementById("certScore").textContent = percent + "% (Pass)";
+  document.getElementById("certId").textContent = id;
+  document.getElementById("certDate").textContent = issued;
+
+  // optional lock-out after pass (local only). Can be removed if you don't want it.
+  try{
+    localStorage.setItem("void_cert_passed", "true");
+    localStorage.setItem("void_cert_name", name);
+    localStorage.setItem("void_cert_score", String(percent));
+    localStorage.setItem("void_cert_id", id);
+    localStorage.setItem("void_cert_date", issued);
+  }catch(e){}
+}
+
+// restore certificate if they already passed on this device/browser
+function restoreIfPassed(){
+  try{
+    if(localStorage.getItem("void_cert_passed") === "true"){
+      const name = localStorage.getItem("void_cert_name") || "—";
+      const score = localStorage.getItem("void_cert_score") || "—";
+      const id = localStorage.getItem("void_cert_id") || "—";
+      const date = localStorage.getItem("void_cert_date") || "—";
+
+      document.getElementById("certBox").style.display = "block";
+      document.getElementById("certName").textContent = name;
+      document.getElementById("certScore").textContent = score + "% (Pass)";
+      document.getElementById("certId").textContent = id;
+      document.getElementById("certDate").textContent = date;
+
+      const res = document.getElementById("resultBox");
+      res.style.display = "block";
+      res.className = "result good";
+      res.innerHTML = `
+        <h3 style="color:var(--good)">PASSED (Saved)</h3>
+        <p>
+          This device already has a saved passing certificate.<br>
+          You can screenshot the certificate below as proof.
+        </p>
+        <hr class="sep">
+        <p class="small">Correct answers remain hidden.</p>
+      `;
+    }
+  }catch(e){}
+}
+
+renderQuestions();
+restoreIfPassed();
+</script>
+
+</body>
+</html>
