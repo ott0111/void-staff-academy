@@ -639,7 +639,7 @@ const supabase = window.supabase.createClient(
       return {correct, percent, passed, perQ};
     }
 
-    function submitExam(){
+    async function submitExam() {
       if(answeredCount() < TOTAL_Q){
         VOIDToast("Answer all 20 questions before submitting.");
         return;
