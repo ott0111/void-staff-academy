@@ -449,3 +449,33 @@ textarea {
 .opt:hover {
   background: rgba(255,255,255,0.08);
 }
+/* ===== FORCE VISIBILITY FIX ===== */
+
+.qcard,
+.qcard h3,
+.qcard p,
+.qcard div,
+.qcard span,
+.qcard label {
+  color: #ffffff !important;
+}
+
+.chat {
+  color: #ffffff !important;
+}
+
+.opt {
+  color: #ffffff !important;
+}
+
+textarea {
+  color: #ffffff !important;
+}
+
+.qmeta {
+  color: #cfcfff !important;
+}
+
+.examGrid {
+  opacity: 1 !important;
+}
