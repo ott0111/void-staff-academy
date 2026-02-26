@@ -1,157 +1,75 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Void Staff Academy • Moderation</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/app.css"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Void Staff Academy — Moderation</title>
+  <link rel="stylesheet" href="assets/ui.css" />
 </head>
-
-<body class="fade-page">
-  <div class="aurora"></div>
-  <div class="grain"></div>
-
-  <header class="topbar">
-    <div class="container">
-      <div class="inner">
-        <a class="brand" href="index.html">
-          <div class="mark"></div>
-          <div class="title">
-            <b>VOID STAFF ACADEMY</b>
-            <span>Governance • Training • Compliance</span>
-          </div>
-        </a>
-
-        <nav class="nav">
-          <a data-nav href="index.html">Home</a>
-          <a data-nav href="moderation.html">Moderation</a>
-          <a data-nav href="roster.html">Roster</a>
-          <a data-nav href="operations.html">Command Center</a>
-          <a data-nav href="certification.html">Certification</a>
-        </nav>
-
-        <div class="actions">
-          <span class="kbd">Ctrl/⌘ K</span>
-          <button id="mobileOpen" class="btn ghost mobileBtn" type="button"><span class="icon">☰</span> Menu</button>
-        </div>
+<body>
+  <div class="vfx"></div><div class="noise"></div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><div class="logo"></div><div><h1>VOID STAFF ACADEMY</h1><p>Moderation Protocol</p></div></div>
+      <nav class="nav">
+        <a data-nav href="index.html"><span class="label">🏛️ Home</span><span class="pill">Back</span></a>
+        <a data-nav href="moderation.html"><span class="label">🛡️ Moderation</span><span class="pill">Active</span></a>
+        <a data-nav href="roster.html"><span class="label">📋 Roster</span><span class="pill">Standards</span></a>
+        <a data-nav href="operations.html"><span class="label">🧠 Operations</span><span class="pill">Escalations</span></a>
+        <a data-nav href="certification.html"><span class="label">✅ Certification</span><span class="pill">Exam</span></a>
+      </nav>
+      <div class="sb-foot">
+        <div class="kbd"><span>Command Palette</span><code>Ctrl/⌘ K</code></div>
+        <div class="kbd"><span>Quick</span><button id="cmdkOpen" class="btn" style="padding:6px 10px">Open</button></div>
       </div>
-    </div>
-  </header>
+    </aside>
 
-  <div id="mobileSheet" class="mobileSheet">
-    <div class="shade"></div>
-    <div class="panel">
-      <div class="head">
-        <b>Navigation</b>
-        <button id="mobileClose" class="btn ghost" type="button">Close</button>
+    <main class="main">
+      <div class="topbar fade-in">
+        <div class="breadcrumb"><b>Void</b><span class="dot"></span><span id="crumbHere">Moderation</span></div>
+        <div class="top-actions"><a class="btn" href="certification.html">Take Exam</a><button class="btn primary" id="cmdkOpen">Jump</button></div>
       </div>
-      <div class="links">
-        <a data-nav href="index.html">Home</a>
-        <a data-nav href="moderation.html">Moderation</a>
-        <a data-nav href="roster.html">Roster</a>
-        <a data-nav href="operations.html">Command Center</a>
-        <a data-nav href="certification.html">Certification</a>
-        <a data-nav href="recruitment.html">Recruitment</a>
-        <a data-nav href="leadership.html">Leadership</a>
-      </div>
-    </div>
-  </div>
 
-  <main>
-    <div class="container">
-
-      <section class="hero reveal" data-reveal>
-        <div class="content" style="grid-template-columns:1fr;">
+      <section class="hero fade-in" style="animation-delay:80ms">
+        <div class="hero-inner">
           <div>
-            <div class="eyebrow"><span class="pill">Moderation Module</span></div>
-            <div class="h1">Ticket Handling Standards</div>
-            <p class="sub">
-              Your priority is efficient, professional ticket management. Every response must follow protocol:
-              greeting → purpose → age verification → correct routing → documentation.
-            </p>
-            <div class="cta">
-              <a class="btn primary" href="certification.html">Go to Practical Assessment</a>
-              <a class="btn" href="operations.html">Next Module: Operations</a>
+            <span class="kicker"><span class="spark"></span> Ticket handling that scales</span>
+            <h2>Moderation Protocol</h2>
+            <p>Use a consistent flow, keep it calm, document everything, and escalate through the chain — no ego, no freestyle.</p>
+            <div class="hero-ctas">
+              <a class="btn primary" href="certification.html">Validate via Exam</a>
+              <a class="btn" href="operations.html">Escalation Ladder</a>
             </div>
+          </div>
+          <div class="cards">
+            <div class="card"><div class="t">Flow</div><div class="v">6-step</div><div class="sub">Greeting → Closure</div></div>
+            <div class="card"><div class="t">Tone</div><div class="v">Calm</div><div class="sub">No hostility</div></div>
+            <div class="card"><div class="t">Logs</div><div class="v">Always</div><div class="sub">Evidence first</div></div>
+            <div class="card"><div class="t">Escalate</div><div class="v">Fast</div><div class="sub">When needed</div></div>
           </div>
         </div>
       </section>
 
       <section class="grid">
-        <article class="card reveal" data-reveal>
-          <h3>Protocol Snapshot</h3>
-          <p><b>Ticket Types:</b> General • Roster</p>
-          <p><b>Required Opening:</b> professional greeting + role inquiry + age verification</p>
-          <p><b>Escalation:</b> complex or sensitive cases go to senior staff with proof + context</p>
-        </article>
-
-        <article class="card reveal" data-reveal>
-          <h3>Protocol (Non-Negotiable)</h3>
-          <p>• Start with a professional greeting (no “yo”, “bro”, etc.).</p>
-          <p>• Ask what they need / what role they’re applying for.</p>
-          <p>• Ask for age verification clearly.</p>
-          <p>• Request correct proof (tracker/clips/socials/portfolio).</p>
-          <p>• Route to correct department + keep records.</p>
-        </article>
-
-        <article class="card reveal" data-reveal>
-          <h3>Approved Openers</h3>
-          <p><b>Greetings</b></p>
-          <p>• Hello, how may I help you?</p>
-          <p>• Hello, what can I assist you with today?</p>
-          <div class="hr"></div>
-          <p><b>Core Questions</b></p>
-          <p>• What role are you applying for today?</p>
-          <p>• May I ask how old you are?</p>
-        </article>
-
-        <article class="card reveal" data-reveal>
-          <h3>Role-Specific Routing</h3>
-          <p><b>Creative</b> — ask for 2–3 clips, ping Creative Department.</p>
-          <p><b>Roster</b> — ask tracker + lobby proof. Pro/Semi: ping operations.</p>
-          <p><b>GFX/VFX</b> — ask portfolio, ping GFX/VFX lead.</p>
-          <p><b>Content</b> — ask socials, ping Content Department.</p>
-          <p class="small">Fallback: offer Grinder+ if they don’t qualify for roster roles.</p>
-        </article>
-
-        <article class="card reveal" data-reveal>
-          <h3>Closing the Ticket</h3>
-          <p><b>Final prompt</b>: “Perfect! Please change your name to have Void in it and send a screenshot of using our code!”</p>
-          <p><b>After proof</b>: “Thank you! Here are your roles! Have a nice day!”</p>
-        </article>
-
-        <article class="card reveal" data-reveal>
-          <h3>Commands Reminder</h3>
-          <p><span class="badge warn">Warn</span> Use only in #staff-commands: <span style="font-family:var(--mono)"><code>*warn user-id reason</code></span></p>
-          <p><span class="badge bad">Report</span> Use <span style="font-family:var(--mono)"><code>/report</code></span> with documentation.</p>
-          <p><span class="badge">Blacklist (Underage)</span> Store Username • Discord ID • Reason.</p>
-        </article>
+        <div class="panel span-7 fade-in" style="animation-delay:120ms">
+          <h3>Standard Ticket Flow</h3>
+          <p><b>Greeting</b> → confirm intent → verify details → take action → summarize → close with next steps.</p>
+        </div>
+        <div class="panel span-5 fade-in" style="animation-delay:140ms">
+          <h3>Documentation Standard</h3>
+          <p>Log: timeline + rule reference + evidence + action + approver (if escalated).</p>
+        </div>
+        <div class="panel span-12 fade-in" style="animation-delay:160ms">
+          <h3>Golden Rule</h3>
+          <p>One voice to the user. If staff disagree, resolve it internally, then respond unified.</p>
+        </div>
       </section>
 
-      <div class="footer reveal" data-reveal>
-        <div class="split">
-          <div>Void Esports Mod Certification System • Made by Void Yeezy</div>
-          <div>© 2026 Void Esports. All rights reserved.</div>
-        </div>
-      </div>
-
-    </div>
-  </main>
-
-  <div id="cmdPalette" class="backdrop">
-    <div class="modal">
-      <div class="hd"><b>Command Palette</b><span class="kbd">Esc</span></div>
-      <div class="bd">
-        <input id="cmdInput" placeholder="Type to search…"/>
-        <div id="cmdList" class="cmd-list"></div>
-      </div>
-    </div>
+      <div class="footer"><div>Void Staff Academy • Moderation</div><div>© 2026 Void Esports.</div></div>
+    </main>
   </div>
 
-  <div id="toast" class="toast"></div>
-  <script src="assets/app.js"></script>
+  <div class="cmdk" id="cmdk"><div class="cmdk-box"><div class="cmdk-top"><input id="cmdkInput" placeholder="Search modules…" /><span class="badge">Esc</span></div><div class="cmdk-list" id="cmdkList"></div></div></div>
+  <script src="assets/ui.js"></script>
 </body>
 </html>
