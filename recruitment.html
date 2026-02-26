@@ -1,138 +1,122 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Void Staff Academy • Recruitment</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/app.css"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Void Staff Academy — Recruitment</title>
+  <link rel="stylesheet" href="assets/ui.css" />
 </head>
+<body>
+  <div class="vfx"></div>
+  <div class="noise"></div>
 
-<body class="fade-page">
-  <div class="aurora"></div>
-  <div class="grain"></div>
-
-  <header class="topbar">
-    <div class="container">
-      <div class="inner">
-        <a class="brand" href="index.html">
-          <div class="mark"></div>
-          <div class="title">
-            <b>VOID STAFF ACADEMY</b>
-            <span>Governance • Training • Compliance</span>
-          </div>
-        </a>
-
-        <nav class="nav">
-          <a data-nav href="index.html">Home</a>
-          <a data-nav href="moderation.html">Moderation</a>
-          <a data-nav href="roster.html">Roster</a>
-          <a data-nav href="operations.html">Command Center</a>
-          <a data-nav href="certification.html">Certification</a>
-        </nav>
-
-        <div class="actions">
-          <span class="kbd">Ctrl/⌘ K</span>
-          <button id="mobileOpen" class="btn ghost mobileBtn" type="button"><span class="icon">☰</span> Menu</button>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <h1>VOID STAFF ACADEMY</h1>
+          <p>Recruitment Division</p>
         </div>
       </div>
-    </div>
-  </header>
 
-  <div id="mobileSheet" class="mobileSheet">
-    <div class="shade"></div>
-    <div class="panel">
-      <div class="head">
-        <b>Navigation</b>
-        <button id="mobileClose" class="btn ghost" type="button">Close</button>
+      <nav class="nav">
+        <a data-nav href="index.html"><span class="label">🏛️ Home</span><span class="pill">Back</span></a>
+        <a data-nav href="recruitment.html"><span class="label">🧲 Recruitment</span><span class="pill">Active</span></a>
+        <a data-nav href="leadership.html"><span class="label">👑 Leadership</span><span class="pill">Chain</span></a>
+        <a data-nav href="certification.html"><span class="label">✅ Certification</span><span class="pill">Exam</span></a>
+      </nav>
+
+      <div class="sb-foot">
+        <div class="kbd"><span>Command Palette</span><code>Ctrl/⌘ K</code></div>
       </div>
-      <div class="links">
-        <a data-nav href="index.html">Home</a>
-        <a data-nav href="moderation.html">Moderation</a>
-        <a data-nav href="roster.html">Roster</a>
-        <a data-nav href="operations.html">Command Center</a>
-        <a data-nav href="certification.html">Certification</a>
-        <a data-nav href="recruitment.html">Recruitment</a>
-        <a data-nav href="leadership.html">Leadership</a>
+    </aside>
+
+    <main class="main">
+      <div class="topbar fade-in">
+        <div class="breadcrumb">
+          <b>Void</b> <span class="dot"></span> <span id="crumbHere">Recruitment</span>
+        </div>
+        <div class="top-actions">
+          <a class="btn primary" href="certification.html">Require Certification</a>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <main>
-    <div class="container">
-
-      <section class="hero reveal" data-reveal>
-        <div class="content" style="grid-template-columns:1fr;">
+      <section class="hero fade-in" style="animation-delay:80ms">
+        <div class="hero-inner">
           <div>
-            <div class="eyebrow"><span class="pill">Recruitment</span></div>
-            <div class="h1">Staff Intake Pipeline</div>
-            <p class="sub">
-              This is the consistent process for recruiting new moderators and staff.
-              Keep it structured. Keep it fair. Keep it documented.
+            <span class="kicker"><span class="spark"></span> Controlled Growth</span>
+            <h2>Staff Recruitment Pipeline</h2>
+            <p>
+              Identify → Validate → Trial → Certify → Promote.  
+              Recruitment is not about volume. It’s about filtering discipline,
+              maturity, and operational judgment before power is granted.
             </p>
-            <div class="cta">
-              <a class="btn" href="moderation.html">Ticket Script</a>
-              <a class="btn primary" href="certification.html">Certification</a>
+          </div>
+
+          <div class="cards">
+            <div class="card">
+              <div class="t">Age Verification</div>
+              <div class="v">2-Step</div>
+              <div class="sub">Prevent dishonesty</div>
+            </div>
+            <div class="card">
+              <div class="t">Motivation</div>
+              <div class="v">Screened</div>
+              <div class="sub">Why do they want power?</div>
+            </div>
+            <div class="card">
+              <div class="t">Trial Phase</div>
+              <div class="v">Monitored</div>
+              <div class="sub">Performance logged</div>
+            </div>
+            <div class="card">
+              <div class="t">Certification</div>
+              <div class="v">Required</div>
+              <div class="sub">Before promotion</div>
             </div>
           </div>
         </div>
       </section>
 
       <section class="grid">
-        <article class="card reveal" data-reveal>
-          <h3>Phase 1 — First Contact</h3>
-          <p>• Have them open a ticket.</p>
-          <p>• Ask age (and confirm again).</p>
-          <p>• Ask motivation + availability.</p>
-          <p>• Evaluate communication + honesty.</p>
-        </article>
+        <div class="panel span-7 fade-in" style="animation-delay:120ms">
+          <h3>Interview Framework</h3>
+          <p>
+            Ask age twice in different phrasing.  
+            Ask motivation.  
+            Ask prior moderation experience.  
+            Ask loyalty alignment.  
+            Observe tone and maturity.
+          </p>
+        </div>
 
-        <article class="card reveal" data-reveal>
-          <h3>Phase 2 — Screening</h3>
-          <p>• 1–2 experience questions (if applicable).</p>
-          <p>• Ask if they’ll be loyal and consistent.</p>
-          <p>• If answers feel off → stop the process.</p>
-          <p class="small">No rushing applicants just to fill slots.</p>
-        </article>
+        <div class="panel span-5 fade-in" style="animation-delay:140ms">
+          <h3>Red Flags</h3>
+          <p>
+            Seeking power for status.  
+            Avoiding proof.  
+            Defensive tone.  
+            Blaming past servers for everything.
+          </p>
+        </div>
 
-        <article class="card reveal" data-reveal>
-          <h3>Phase 3 — Training Route</h3>
-          <p>• Send them to the Staff Academy site.</p>
-          <p>• Require reading every line.</p>
-          <p>• Then they take the exam.</p>
-        </article>
-
-        <article class="card reveal" data-reveal>
-          <h3>Phase 4 — Finalization</h3>
-          <p>• Review exam attempts (Admin logs).</p>
-          <p>• Assign role + explain expectations.</p>
-          <p>• Track performance weekly.</p>
-        </article>
+        <div class="panel span-12 fade-in" style="animation-delay:160ms">
+          <h3>Promotion Rule</h3>
+          <p>
+            No staff role is permanent without certification.  
+            Promotion is earned through documented performance — not favoritism.
+          </p>
+        </div>
       </section>
 
-      <div class="footer reveal" data-reveal>
-        <div class="split">
-          <div>Void Staff Academy • Recruitment Standards</div>
-          <div>© 2026 Void Esports. All rights reserved.</div>
-        </div>
+      <div class="footer">
+        <div>Void Staff Academy • Recruitment Division</div>
+        <div>© 2026 Void Esports.</div>
       </div>
-
-    </div>
-  </main>
-
-  <div id="cmdPalette" class="backdrop">
-    <div class="modal">
-      <div class="hd"><b>Command Palette</b><span class="kbd">Esc</span></div>
-      <div class="bd">
-        <input id="cmdInput" placeholder="Type to search…"/>
-        <div id="cmdList" class="cmd-list"></div>
-      </div>
-    </div>
+    </main>
   </div>
 
-  <div id="toast" class="toast"></div>
-  <script src="assets/app.js"></script>
+  <script src="assets/ui.js"></script>
 </body>
 </html>
