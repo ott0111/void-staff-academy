@@ -796,29 +796,31 @@ const supabase = window.supabase.createClient(
   `).join("");
 }
 
-      attemptTable.innerHTML = logs.map(a=>{
-        const badge = a.passed ? "good" : "bad";
-        return `
-          <tr>
-            <td style="font-family:var(--mono);font-size:12px;">${escapeHTML(fmtTime(a.t))}</td>
-            <td><b>${escapeHTML(a.candidate)}</b></td>
-            <td style="font-family:var(--mono)">${a.correct}/${TOTAL_Q} • ${a.percent}%</td>
-            <td><span class="badge ${badge}">${a.passed ? "PASS":"FAIL"}</span></td>
-            <td><button class="btn ghost" type="button" data-view="${a.id}">View</button></td>
-          </tr>
-        `;
-      }).join("");
+      async function renderAdminTable() {
+  const { data, error } = await supabase
+    .from("certification_attempts")
+    .select("*")
+    .order("created_at", { ascending: false });
 
-      // bind view buttons
-      attemptTable.querySelectorAll("[data-view]").forEach(btn=>{
-        btn.addEventListener("click", ()=>{
-          const id = btn.getAttribute("data-view");
-          const logs2 = loadLogs();
-          const found = logs2.find(x=>x.id===id);
-          if(!found){ VOIDToast("Not found."); return; }
-          viewAttempt(found);
-        });
-      });
+  if (error) {
+    console.error(error);
+    VOIDToast("Database error.");
+    return;
+  }
+
+  attemptTable.innerHTML = data.map(a => `
+    <tr>
+      <td>${new Date(a.created_at).toLocaleString()}</td>
+      <td><b>${a.candidate}</b></td>
+      <td>${a.correct}/20 • ${a.percent}%</td>
+      <td>
+        <span class="badge ${a.passed ? "good":"bad"}">
+          ${a.passed ? "PASS":"FAIL"}
+        </span>
+      </td>
+    </tr>
+  `).join("");
+}
 
     function viewAttempt(a){
       // quick modal inside admin (reuse admin modal body by injecting)
