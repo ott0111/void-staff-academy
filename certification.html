@@ -1,188 +1,148 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Void Staff Academy — Certification</title>
-  <link rel="stylesheet" href="assets/styles.css" />
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script defer src="assets/app.js"></script>
-  <style>
-    .examGrid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
-    .qcard{padding:18px;border-radius:var(--radius2);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);box-shadow:var(--shadow2)}
-    .qhead{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
-    .qtitle{margin:0;font-size:15px;letter-spacing:-.02em}
-    .qmeta{color:var(--muted2);font-size:12px;font-weight:800}
-    .chat{
-      margin-top:10px;
-      background: rgba(0,0,0,.35);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius: 16px;
-      padding: 12px;
-      color: rgba(238,240,255,.82);
-      font-size: 12.5px;
-      line-height: 1.55;
-      white-space: pre-wrap;
-    }
-    .opts{display:grid;gap:10px;margin-top:12px}
-    .opt{
-      display:flex; gap:10px; align-items:flex-start;
-      padding: 12px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.10);
-      cursor:pointer;
-      transition:.18s ease;
-    }
-    .opt:hover{background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.16)}
-    .opt input{margin-top:2px}
-    textarea{
-      width:100%;
-      min-height: 100px;
-      background: rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.10);
-      color: var(--text);
-      border-radius: 16px;
-      padding: 12px;
-      outline:none;
-    }
-    textarea:focus{border-color: rgba(139,92,246,.35); box-shadow: 0 0 0 4px rgba(139,92,246,.12)}
-    .bar{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-      margin-top: 12px;
-    }
-    .input{
-      background: rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.10);
-      color: var(--text);
-      border-radius: 14px;
-      padding: 10px 12px;
-      outline:none;
-      min-width: 220px;
-    }
-    .input:focus{border-color: rgba(139,92,246,.35); box-shadow: 0 0 0 4px rgba(139,92,246,.12)}
-    .modal{
-      position:fixed; inset:0; display:none;
-      background: rgba(0,0,0,.6);
-      align-items:center; justify-content:center;
-      padding: 18px;
-      z-index: 80;
-    }
-    .modal.show{display:flex}
-    .modal .panel{
-      width:min(920px, 96vw);
-      border-radius: 26px;
-      background: rgba(10,12,20,.88);
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow: var(--shadow);
-      padding: 18px;
-      backdrop-filter: blur(18px);
-    }
-    .tabs{display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px}
-    .tab{
-      padding: 9px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.10);
-      color: var(--muted);
-      font-weight: 800;
-      font-size: 12px;
-      cursor:pointer;
-    }
-    .tab.active{
-      color: var(--text);
-      background: rgba(139,92,246,.16);
-      border-color: rgba(139,92,246,.28);
-    }
-  </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Void Staff Academy — Certification</title>
+
+<link rel="stylesheet" href="assets/styles.css"/>
+<script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<script src="assets/exam.js"></script>
+
 <body>
-  <div class="noise"></div>
+<div class="noise"></div>
 
-  <header class="topbar">
-    <div class="inner">
-      <a class="brand" href="index.html">
-        <div class="mark"></div>
-        <div class="title">
-          <span>VOID STAFF ACADEMY</span>
-          <span>Governance • Training • Compliance</span>
-        </div>
-      </a>
-
-      <nav class="nav">
-        <a data-nav href="index.html"><i data-lucide="home" style="width:16px;height:16px"></i>Home</a>
-        <a data-nav href="moderation.html"><i data-lucide="shield" style="width:16px;height:16px"></i>Moderation</a>
-        <a data-nav href="roster.html"><i data-lucide="users" style="width:16px;height:16px"></i>Roster</a>
-        <a data-nav href="command-center.html"><i data-lucide="layout-dashboard" style="width:16px;height:16px"></i>Command Center</a>
-        <a data-nav href="certification.html"><i data-lucide="clipboard-check" style="width:16px;height:16px"></i>Certification</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <section class="hero fade-in">
-      <div class="kicker"><i data-lucide="clipboard-check" style="width:16px;height:16px"></i>Certification Portal</div>
-      <h1 class="h1">Scenario Certification</h1>
-      <p class="sub">
-        This exam tests judgment, documentation discipline, and escalation logic using realistic chat/ticket scenarios. Passing score: <b>70%</b>.
-      </p>
-
-      <div class="bar">
-        <input id="traineeName" class="input" placeholder="Your name (for logs)" />
-        <button class="btn" id="openAdmin"><i data-lucide="lock"></i>Admin</button>
-        <span class="pill"><i data-lucide="info" style="width:14px;height:14px"></i><span id="progressText">0 / 20 answered</span></span>
-        <span class="pill warn"><i data-lucide="target" style="width:14px;height:14px"></i>70% required</span>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="index.html">
+      <div class="mark"></div>
+      <div class="title">
+        <span>VOID STAFF ACADEMY</span>
+        <span>Governance • Training • Compliance</span>
       </div>
-    </section>
+    </a>
 
-    <section class="examGrid fade-in" id="exam"></section>
-
-    <section class="section fade-in">
-      <h2>Submit</h2>
-      <p class="muted">Your attempt is saved locally for admin review (name + score + timestamp).</p>
-      <div class="btnrow">
-        <button class="btn primary" id="submitExam"><i data-lucide="check-circle-2"></i>Submit attempt</button>
-        <button class="btn" id="resetExam"><i data-lucide="rotate-ccw"></i>Reset answers</button>
-      </div>
-      <div id="result" style="margin-top:12px"></div>
-    </section>
-
-    <div class="footer">
-      <div>Void Staff Academy • Certification</div>
-      <div class="right">© 2026 Void Esports. All rights reserved.</div>
-    </div>
-  </main>
-
-  <!-- Admin Modal -->
-  <div class="modal" id="adminModal" aria-hidden="true">
-    <div class="panel">
-      <div class="qhead">
-        <div style="display:flex;gap:12px;align-items:flex-start">
-          <div class="iconbox"><i data-lucide="shield-check"></i></div>
-          <div>
-            <h3 style="margin:0;font-size:16px;letter-spacing:-.02em">Admin Control Panel</h3>
-            <div class="qmeta">Attempts • Questions • Export</div>
-          </div>
-        </div>
-        <button class="btn" id="closeAdmin"><i data-lucide="x"></i>Close</button>
-      </div>
-
-      <div class="bar" style="margin-top:12px">
-        <input id="adminPass" class="input" type="password" placeholder="Admin password" />
-        <button class="btn primary" id="adminLogin"><i data-lucide="key"></i>Unlock</button>
-        <span class="pill" id="adminStatus"><i data-lucide="lock" style="width:14px;height:14px"></i>Locked</span>
-      </div>
-
-      <div class="tabs">
-        <div class="tab active" data-tab="attempts">Attempts</div>
-        <div class="tab" data-tab="questions">Questions</div>
-        <div class="tab" data-tab="export">Export</div>
-      </div>
-
-      <div id="adminBody" style="margin-top:12px"></div>
-    </div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="moderation.html">Moderation</a>
+      <a href="roster.html">Roster</a>
+      <a href="command-center.html">Command Center</a>
+      <a class="active" href="certification.html">Certification</a>
+    </nav>
   </div>
+</header>
+
+<main class="wrap">
+
+<section class="hero fade-in">
+  <div class="kicker">
+    <i data-lucide="clipboard-check" style="width:16px;height:16px"></i>
+    Certification Portal
+  </div>
+
+  <h1 class="h1">Scenario Certification</h1>
+  <p class="sub">
+    This exam tests judgment, documentation discipline, and escalation logic using realistic ticket and moderation scenarios.
+    Passing score: <b>70%</b>.
+  </p>
+
+  <div class="bar">
+    <input id="traineeName" class="input" placeholder="Your name (for logs)"/>
+    <button class="btn" id="openAdmin">
+      <i data-lucide="lock"></i> Admin
+    </button>
+
+    <span class="pill">
+      <i data-lucide="info" style="width:14px;height:14px"></i>
+      <span id="progressText">0 / 20 answered</span>
+    </span>
+
+    <span class="pill warn">
+      <i data-lucide="target" style="width:14px;height:14px"></i>
+      70% required
+    </span>
+  </div>
+</section>
+
+<!-- QUESTIONS RENDER HERE -->
+<section class="examGrid fade-in" id="exam"></section>
+
+<section class="section fade-in">
+  <h2>Submit</h2>
+  <p class="muted">
+    Your attempt is saved locally for admin review (name + score + timestamp).
+  </p>
+
+  <div class="btnrow">
+    <button class="btn primary" id="submitExam">
+      <i data-lucide="check-circle-2"></i> Submit attempt
+    </button>
+
+    <button class="btn" id="resetExam">
+      <i data-lucide="rotate-ccw"></i> Reset answers
+    </button>
+  </div>
+
+  <div id="result" style="margin-top:12px"></div>
+</section>
+
+<div class="footer">
+  <div>Void Staff Academy • Certification</div>
+  <div class="right">© 2026 Void Esports. All rights reserved.</div>
+</div>
+
+</main>
+
+<!-- ADMIN MODAL -->
+<div class="modal" id="adminModal" aria-hidden="true">
+  <div class="panel">
+
+    <div class="qhead">
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <div class="iconbox">
+          <i data-lucide="shield-check"></i>
+        </div>
+        <div>
+          <h3 style="margin:0;font-size:16px;">Admin Control Panel</h3>
+          <div class="qmeta">Attempts • Questions • Export</div>
+        </div>
+      </div>
+
+      <button class="btn" id="closeAdmin">
+        <i data-lucide="x"></i> Close
+      </button>
+    </div>
+
+    <div class="bar" style="margin-top:12px">
+      <input id="adminPass" class="input" type="password" placeholder="Admin password"/>
+      <button class="btn primary" id="adminLogin">
+        <i data-lucide="key"></i> Unlock
+      </button>
+      <span class="pill" id="adminStatus">
+        <i data-lucide="lock" style="width:14px;height:14px"></i>
+        Locked
+      </span>
+    </div>
+
+    <div class="tabs">
+      <div class="tab active" data-tab="attempts">Attempts</div>
+      <div class="tab" data-tab="questions">Questions</div>
+      <div class="tab" data-tab="export">Export</div>
+    </div>
+
+    <div id="adminBody" style="margin-top:12px"></div>
+
+  </div>
+</div>
+
+<!-- LOAD EXAM SYSTEM -->
+<script src="assets/exam.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  if (window.lucide) lucide.createIcons();
+});
+</script>
 
 </body>
 </html>
