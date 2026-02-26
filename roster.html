@@ -1,333 +1,214 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Void Staff Academy — Roster Division</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --bg:#050509;
-  --accent:#a855f7;
-  --accent2:#7c3aed;
-  --text:#ffffff;
-  --muted:rgba(255,255,255,.65);
-}
-
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:'Inter',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
-}
-
-/* Animated grid */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    linear-gradient(rgba(168,85,247,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(168,85,247,.05) 1px, transparent 1px);
-  background-size:45px 45px;
-  mask-image:radial-gradient(circle at 50% 15%, black 40%, transparent 85%);
-  z-index:-3;
-}
-
-/* Glow */
-.glow{
-  position:fixed;
-  width:800px;
-  height:800px;
-  background:radial-gradient(circle, rgba(168,85,247,.35), transparent 60%);
-  filter:blur(160px);
-  top:-200px;
-  right:-200px;
-  animation:float 16s infinite alternate ease-in-out;
-  z-index:-2;
-}
-
-@keyframes float{
-  from{transform:translate(0,0)}
-  to{transform:translate(-220px,180px)}
-}
-
-/* NAV */
-nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  padding:25px 80px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  backdrop-filter:blur(14px);
-  background:rgba(10,10,15,.5);
-  border-bottom:1px solid rgba(255,255,255,.05);
-  z-index:100;
-  transition:.4s;
-}
-nav.scrolled{
-  padding:18px 80px;
-  background:rgba(5,5,10,.9);
-}
-
-.logo{
-  font-weight:900;
-  font-size:18px;
-  background:linear-gradient(90deg,var(--accent),white);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-nav a{
-  margin-left:30px;
-  text-decoration:none;
-  color:var(--muted);
-  font-weight:600;
-  font-size:14px;
-  transition:.3s;
-}
-
-nav a:hover{color:white}
-nav a.active{
-  color:white;
-  padding:10px 16px;
-  border-radius:999px;
-  border:1px solid rgba(168,85,247,.25);
-  background:linear-gradient(135deg, rgba(168,85,247,.2), rgba(124,58,237,.1));
-}
-
-/* Layout */
-.wrapper{
-  max-width:1500px;
-  margin:auto;
-  padding:130px 40px 100px;
-}
-
-/* Hero */
-.hero{
-  text-align:center;
-  margin-bottom:80px;
-  opacity:0;
-  transform:translateY(30px);
-  transition:.8s ease;
-}
-.hero.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.hero h1{
-  font-size:56px;
-  font-weight:900;
-}
-
-.hero span{
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.hero p{
-  margin-top:20px;
-  color:var(--muted);
-  max-width:800px;
-  margin-left:auto;
-  margin-right:auto;
-  line-height:1.7;
-}
-
-/* Grid */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:30px;
-}
-
-.card{
-  padding:35px;
-  border-radius:30px;
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.05);
-  backdrop-filter:blur(20px);
-  transition:.4s;
-  transform:translateY(40px);
-  opacity:0;
-}
-
-.card.show{
-  transform:translateY(0);
-  opacity:1;
-}
-
-.card:hover{
-  border-color:rgba(168,85,247,.4);
-  box-shadow:0 0 60px rgba(168,85,247,.25);
-}
-
-.card h3{
-  font-size:20px;
-  margin-bottom:15px;
-}
-
-.card ul{
-  list-style:none;
-}
-
-.card li{
-  margin:10px 0;
-  font-size:14px;
-  color:var(--muted);
-}
-
-footer{
-  margin-top:120px;
-  text-align:center;
-  color:rgba(255,255,255,.4);
-  font-size:13px;
-  border-top:1px solid rgba(255,255,255,.05);
-  padding-top:60px;
-}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Void Staff Academy — Roster Standards</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="assets/app.js"></script>
 </head>
-
 <body>
+  <div class="noise"></div>
 
-<div class="glow"></div>
+  <header class="topbar">
+    <div class="inner">
+      <a class="brand" href="index.html">
+        <div class="mark"></div>
+        <div class="title">
+          <span>VOID STAFF ACADEMY</span>
+          <span>Governance • Training • Compliance</span>
+        </div>
+      </a>
 
-<nav id="nav">
-  <div class="logo">Void Staff Academy</div>
-  <div>
-    <a href="index.html">Home</a>
-    <a href="moderation.html">Moderation</a>
-    <a class="active" href="roster.html">Roster</a>
-    <a href="operations.html">Operations</a>
-    <a href="certification.html">Certification</a>
-  </div>
-</nav>
-
-<div class="wrapper">
-
-  <div class="hero reveal">
-    <h1>Void <span>Roster Division</span></h1>
-    <p>
-      Responsible for intake, eligibility verification, and structured onboarding
-      across all competitive, creative, and content divisions.
-    </p>
-  </div>
-
-  <div class="grid">
-
-    <div class="card reveal">
-      <h3>🏆 Pro Roster</h3>
-      <ul>
-        <li>25,000+ Power Ranking</li>
-        <li>$1,000+ Official Earnings</li>
-        <li>Place and earn consistently</li>
-        <li>Represent Void in-game & on socials</li>
-      </ul>
+      <nav class="nav">
+        <a data-nav href="index.html"><i data-lucide="home" style="width:16px;height:16px"></i>Home</a>
+        <a data-nav href="moderation.html"><i data-lucide="shield" style="width:16px;height:16px"></i>Moderation</a>
+        <a data-nav href="roster.html"><i data-lucide="users" style="width:16px;height:16px"></i>Roster</a>
+        <a data-nav href="command-center.html"><i data-lucide="layout-dashboard" style="width:16px;height:16px"></i>Command Center</a>
+        <a data-nav href="certification.html"><i data-lucide="clipboard-check" style="width:16px;height:16px"></i>Certification</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="card reveal">
-      <h3>🎮 Semi-Pro</h3>
-      <ul>
-        <li>10,000–25,000 PR</li>
-        <li>Must have earnings</li>
-        <li>Place consistently</li>
-        <li>Use Fortnite code</li>
-      </ul>
+  <main class="wrap">
+    <section class="hero fade-in">
+      <div class="kicker"><i data-lucide="users" style="width:16px;height:16px"></i>Roster Division</div>
+      <h1 class="h1">Void Roster Standards</h1>
+      <p class="sub">
+        Intake, eligibility verification, and structured onboarding across competitive, creative, and creator divisions — consistent rules, clean proof, documented outcomes.
+      </p>
+      <div class="btnrow">
+        <a class="btn" href="certification.html"><i data-lucide="clipboard-check"></i>Take the exam</a>
+        <a class="btn" href="moderation.html"><i data-lucide="shield"></i>Ticket protocol</a>
+      </div>
+    </section>
+
+    <section class="section fade-in">
+      <h2>Competitive rosters</h2>
+      <p class="muted">Verify PR + earnings + consistency. Require proof before routing.</p>
+
+      <div class="grid">
+        <div class="card" style="grid-column: span 6">
+          <div class="hd">
+            <div class="left">
+              <div class="iconbox"><i data-lucide="crown"></i></div>
+              <div>
+                <h3>Pro Roster</h3>
+                <p>Top-tier competitive standards.</p>
+              </div>
+            </div>
+            <span class="pill good"><i data-lucide="badge-check" style="width:14px;height:14px"></i>Verified</span>
+          </div>
+          <p>
+            • 25,000+ Power Ranking<br/>
+            • $1,000+ official earnings<br/>
+            • Consistent placements<br/>
+            • Represents Void in-game & on socials
+          </p>
+        </div>
+
+        <div class="card" style="grid-column: span 6">
+          <div class="hd">
+            <div class="left">
+              <div class="iconbox"><i data-lucide="trophy"></i></div>
+              <div>
+                <h3>Semi-Pro</h3>
+                <p>Competitive-ready with earnings.</p>
+              </div>
+            </div>
+            <span class="pill warn"><i data-lucide="clipboard-list" style="width:14px;height:14px"></i>Proof required</span>
+          </div>
+          <p>
+            • 10,000–25,000 PR<br/>
+            • Must have earnings<br/>
+            • Consistent placements<br/>
+            • Uses Fortnite code
+          </p>
+        </div>
+
+        <div class="card" style="grid-column: span 6">
+          <div class="hd">
+            <div class="left">
+              <div class="iconbox"><i data-lucide="graduation-cap"></i></div>
+              <div>
+                <h3>Academy</h3>
+                <p>Developing competitors with consistency.</p>
+              </div>
+            </div>
+          </div>
+          <p>
+            • 500–10,000 PR<br/>
+            • Consistent placements<br/>
+            • Represents Void in-game<br/>
+            • Uses Fortnite code
+          </p>
+        </div>
+
+        <div class="card" style="grid-column: span 6">
+          <div class="hd">
+            <div class="left">
+              <div class="iconbox"><i data-lucide="wand-2"></i></div>
+              <div>
+                <h3>Creative Roster</h3>
+                <p>Mechanics + identity + clips.</p>
+              </div>
+            </div>
+          </div>
+          <p>
+            • Smooth / fast mechanics<br/>
+            • Unique playstyle<br/>
+            • Provides clips when asked<br/>
+            • Represents Void publicly
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section fade-in">
+      <h2>Creators & media</h2>
+      <p class="muted">Verify metrics honestly. Require links + recent activity proof.</p>
+
+      <div class="grid">
+        <div class="card" style="grid-column: span 6">
+          <div class="hd">
+            <div class="left">
+              <div class="iconbox"><i data-lucide="radio"></i></div>
+              <div>
+                <h3>Streamer</h3>
+                <p>Consistent live content and reach.</p>
+              </div>
+            </div>
+          </div>
+          <p>
+            • 1k+ followers/subscribers<br/>
+            • 25+ average viewers<br/>
+            • Streams 4x per week<br/>
+            • Uses hashtags & represents Void
+          </p>
+        </div>
+
+        <div class="card" style="grid-column: span 6">
+          <div class="hd">
+            <div class="left">
+              <div class="iconbox"><i data-lucide="video"></i></div>
+              <div>
+                <h3>Content Creator</h3>
+                <p>Original posts, consistent output.</p>
+              </div>
+            </div>
+          </div>
+          <p>
+            • 1k+ Twitch/YouTube<br/>
+            • 10k+ TikTok<br/>
+            • Original high-quality posts<br/>
+            • Active and willing to support Void
+          </p>
+        </div>
+
+        <div class="card" style="grid-column: span 6">
+          <div class="hd">
+            <div class="left">
+              <div class="iconbox"><i data-lucide="sparkles"></i></div>
+              <div>
+                <h3>Junior Content Creator</h3>
+                <p>Developing creators with potential.</p>
+              </div>
+            </div>
+          </div>
+          <p>
+            • 500+ Twitch/YouTube<br/>
+            • 3k+ TikTok<br/>
+            • High-quality posts<br/>
+            • Grinding toward main CC roster
+          </p>
+        </div>
+
+        <div class="card" style="grid-column: span 6">
+          <div class="hd">
+            <div class="left">
+              <div class="iconbox"><i data-lucide="brush"></i></div>
+              <div>
+                <h3>GFX / VFX</h3>
+                <p>Portfolio-first evaluation.</p>
+              </div>
+            </div>
+            <span class="pill warn"><i data-lucide="folder-open" style="width:14px;height:14px"></i>Portfolio</span>
+          </div>
+          <p>
+            • Editing experience<br/>
+            • Portfolio required<br/>
+            • 1440p+ quality work<br/>
+            • Delivers consistently
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div>Void Staff Academy • Roster Standards</div>
+      <div class="right">© 2026 Void Esports. All rights reserved.</div>
     </div>
-
-    <div class="card reveal">
-      <h3>🎓 Academy</h3>
-      <ul>
-        <li>500–10,000 PR</li>
-        <li>Place consistently</li>
-        <li>Represent Void in-game</li>
-        <li>Use Fortnite code</li>
-      </ul>
-    </div>
-
-    <div class="card reveal">
-      <h3>🎨 Creative Roster</h3>
-      <ul>
-        <li>Smooth / fast mechanics</li>
-        <li>Must be unique</li>
-        <li>Provide clips when asked</li>
-        <li>Represent Void publicly</li>
-      </ul>
-    </div>
-
-    <div class="card reveal">
-      <h3>🎙️ Streamer</h3>
-      <ul>
-        <li>1k+ followers/subscribers</li>
-        <li>25+ average viewers</li>
-        <li>Stream 4x per week</li>
-        <li>Use hashtags & represent Void</li>
-      </ul>
-    </div>
-
-    <div class="card reveal">
-      <h3>🎥 Content Creator</h3>
-      <ul>
-        <li>1k+ Twitch/YouTube</li>
-        <li>10k+ TikTok</li>
-        <li>Original high-quality posts</li>
-        <li>Active & willing to help Void</li>
-      </ul>
-    </div>
-
-    <div class="card reveal">
-      <h3>🎬 Junior Content Creator</h3>
-      <ul>
-        <li>500+ Twitch/YouTube</li>
-        <li>3k+ TikTok</li>
-        <li>High-quality posts</li>
-        <li>Grinding toward main roster CC</li>
-      </ul>
-    </div>
-
-    <div class="card reveal">
-      <h3>🖌️ GFX / VFX</h3>
-      <ul>
-        <li>Editing experience</li>
-        <li>Portfolio required</li>
-        <li>1440p+ quality work</li>
-        <li>Deliver consistently</li>
-      </ul>
-    </div>
-
-  </div>
-
-  <footer>
-    Void Esports Mod Certification System • Made by Void Yeezy <br><br>
-    © 2026 Void Esports. All rights reserved.
-  </footer>
-
-</div>
-
-<script>
-window.addEventListener("scroll",()=>{
-  document.getElementById("nav").classList.toggle("scrolled",window.scrollY>50);
-});
-
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
-    }
-  });
-},{threshold:.2});
-
-document.querySelectorAll(".reveal").forEach(el=>{
-  observer.observe(el);
-});
-</script>
-
+  </main>
 </body>
 </html>
