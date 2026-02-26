@@ -538,3 +538,16 @@ button,input{font-family:inherit}
   .cards{grid-template-columns: 1fr}
   .hero h2{font-size:34px}
 }
+/* Clean circular logo */
+.logo-img{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  object-fit:cover;
+  display:block;
+}
+
+/* Remove old gradient box if it exists */
+.logo{
+  display:none;
+}
