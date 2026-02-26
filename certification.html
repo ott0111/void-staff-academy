@@ -1,127 +1,75 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Void Staff Academy — Certification</title>
 
-<link rel="stylesheet" href="assets/styles.css"/>
+<link rel="stylesheet" href="assets/styles.css">
 <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
-<div class="noise"></div>
-
-<header class="topbar">
-  <div class="inner">
-    <a class="brand" href="index.html">
-      <div class="mark"></div>
-      <div class="title">
-        <span>VOID STAFF ACADEMY</span>
-        <span>Governance • Training • Compliance</span>
-      </div>
-    </a>
-
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="moderation.html">Moderation</a>
-      <a href="roster.html">Roster</a>
-      <a href="command-center.html">Command Center</a>
-      <a class="active" href="certification.html">Certification</a>
-    </nav>
-  </div>
-</header>
-
 <main class="wrap">
 
-<section class="hero fade-in">
-  <div class="kicker">
-    <i data-lucide="clipboard-check" style="width:16px;height:16px"></i>
-    Certification Portal
-  </div>
-
-  <h1 class="h1">Scenario Certification</h1>
+<section class="hero">
+  <div class="qmeta">Void Staff Academy</div>
+  <h1 class="h1">Certification Examination</h1>
   <p class="sub">
-    This exam tests judgment, documentation discipline, and escalation logic using realistic ticket and moderation scenarios.
-    Passing score: <b>70%</b>.
+    This evaluation measures judgment, escalation logic, documentation standards,
+    and operational discipline through structured scenarios.
   </p>
 
   <div class="bar">
-    <input id="traineeName" class="input" placeholder="Your name (for logs)"/>
-    <button class="btn" id="openAdmin">
-      <i data-lucide="lock"></i> Admin
+    <input id="traineeName" class="input" placeholder="Enter your name">
+    <button id="openAdmin" class="btn">
+      <i data-lucide="shield"></i> Admin
     </button>
-
     <span class="pill">
-      <i data-lucide="info" style="width:14px;height:14px"></i>
       <span id="progressText">0 / 20 answered</span>
-    </span>
-
-    <span class="pill warn">
-      <i data-lucide="target" style="width:14px;height:14px"></i>
-      70% required
     </span>
   </div>
 </section>
 
-<!-- QUESTIONS RENDER HERE -->
-<section class="examGrid fade-in" id="exam"></section>
+<section id="exam" class="examGrid"></section>
 
-<section class="section fade-in">
-  <h2>Submit</h2>
-  <p class="muted">
-    Your attempt is saved locally for admin review (name + score + timestamp).
-  </p>
+<section class="section">
+  <h2>Submit Attempt</h2>
+  <p class="sub">Passing score: 70%</p>
 
   <div class="btnrow">
-    <button class="btn primary" id="submitExam">
-      <i data-lucide="check-circle-2"></i> Submit attempt
+    <button id="submitExam" class="btn primary">
+      <i data-lucide="check-circle"></i> Submit
     </button>
 
-    <button class="btn" id="resetExam">
-      <i data-lucide="rotate-ccw"></i> Reset answers
+    <button id="resetExam" class="btn">
+      <i data-lucide="rotate-ccw"></i> Reset
     </button>
   </div>
 
-  <div id="result" style="margin-top:12px"></div>
+  <div id="result" style="margin-top:20px;"></div>
 </section>
 
 <div class="footer">
-  <div>Void Staff Academy • Certification</div>
-  <div class="right">© 2026 Void Esports. All rights reserved.</div>
+  <div>Void Staff Academy</div>
+  <div>Internal Certification System</div>
 </div>
 
 </main>
 
 <!-- ADMIN MODAL -->
-<div class="modal" id="adminModal" aria-hidden="true">
+<div id="adminModal" class="modal">
   <div class="panel">
 
-    <div class="qhead">
-      <div style="display:flex;gap:12px;align-items:flex-start">
-        <div class="iconbox">
-          <i data-lucide="shield-check"></i>
-        </div>
-        <div>
-          <h3 style="margin:0;font-size:16px;">Admin Control Panel</h3>
-          <div class="qmeta">Attempts • Questions • Export</div>
-        </div>
-      </div>
-
-      <button class="btn" id="closeAdmin">
-        <i data-lucide="x"></i> Close
-      </button>
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <h2>Admin Control Panel</h2>
+      <button id="closeAdmin" class="btn">Close</button>
     </div>
 
-    <div class="bar" style="margin-top:12px">
-      <input id="adminPass" class="input" type="password" placeholder="Admin password"/>
-      <button class="btn primary" id="adminLogin">
-        <i data-lucide="key"></i> Unlock
-      </button>
-      <span class="pill" id="adminStatus">
-        <i data-lucide="lock" style="width:14px;height:14px"></i>
-        Locked
-      </span>
+    <div class="bar">
+      <input id="adminPass" class="input" type="password" placeholder="Password">
+      <button id="adminLogin" class="btn primary">Unlock</button>
+      <span id="adminStatus" class="pill">Locked</span>
     </div>
 
     <div class="tabs">
@@ -130,17 +78,15 @@
       <div class="tab" data-tab="export">Export</div>
     </div>
 
-    <div id="adminBody" style="margin-top:12px"></div>
+    <div id="adminBody"></div>
 
   </div>
 </div>
 
-<!-- LOAD EXAM SYSTEM -->
 <script src="assets/exam.js"></script>
-
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  if (window.lucide) lucide.createIcons();
+document.addEventListener("DOMContentLoaded",()=>{
+  if(window.lucide) lucide.createIcons();
 });
 </script>
 
