@@ -129,8 +129,10 @@ function initQuiz() {
 function setupEventListeners() {
     // Take Test button
     document.getElementById('takeTestBtn')?.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.authManager.startTest();
+    e.preventDefault();
+
+    document.querySelector('.test-page').classList.add('active');
+});
     });
 
     // Admin Login button
