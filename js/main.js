@@ -137,9 +137,9 @@ function setupEventListeners() {
 
     // Admin Login button
     document.getElementById('adminLoginBtn')?.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.authManager.startAdminLogin();
-    });
+    e.preventDefault();
+    alert("Admin login disabled.");
+});
 }
 
 // Handle window resize
